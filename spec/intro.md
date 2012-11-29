@@ -48,12 +48,13 @@ Number | Step                     | eDAIS
 
 ### EHC with Private Certifier and Council
 
-Number | Step | eDAIS
-1      | Investigate |
-2      | Prepare Application |
+Number | Step                     | eDAIS
+-------|--------------------------|------
+1      | Investigate              |
+2      | Prepare Application      |
 3      | Submit for Consideration |
-4      | Lodge Application | EHC sends application to Private Certifier system
-5      | Determine Application | Private Certifier system sends determination to the EHC and the Council system
+4      | Lodge Application        | EHC sends application to Private Certifier system
+5      | Determine Application    | Private Certifier system sends determination to the EHC and the Council system
 
 
 ## Transport Layer & Security

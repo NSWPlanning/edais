@@ -1,0 +1,12 @@
+---
+layout: default
+title: test textile
+---
+
+h2. What Is eDAIS?
+
+p)). eDAIS is a SOAP-based protocol for exchanging information about development applications. This site relates to the NSW implementation of the spec.
+
+| Textile test |
+
+

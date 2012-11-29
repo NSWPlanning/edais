@@ -1,0 +1,15 @@
+---
+layout: default
+title: test markdown rendering
+---
+
+Boo!
+====
+
+Hello everyone
+
+p)).
+    This is code!
+    So is this
+
+`This should also be code.

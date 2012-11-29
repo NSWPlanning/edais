@@ -11,6 +11,7 @@ There are three categories of actor in NSW:
 * Council systems, provided by commercial vendors
 * Private Certifier systems, also provided by commercial vendors
 
+Complying Development can be certified by either the Council of the area the development is being undertaken in, or by a Private Certifer who operates in that area. Private Certifiers do not need Council approval to Approve or Refuse an application, but they must notify Council two days prior to the commencement of building works.
 
 ## Use Cases
 
@@ -55,9 +56,20 @@ Number | Step | eDAIS
 5      | Determine Application | Private Certifier system sends determination to the EHC and the Council system
 
 
-## Transport Layer
+## Transport Layer & Security
 
 The transport layer is SOAP with BasicHttpBinding. Messages are sent and acknowledged synchronously.
+
+SSL is enforced, and the EHC system can only connect to systems on the default SSL port (443).
+
+Messages are additionally secured using [UsernameToken][1]. The username and password are configured on a per-endpoint basis, that is per-Council and per-Private Certifier. These usernames and passwords must be identically configured in any communicating systems.
+
+
+[1]: http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0.pdf
+
+## Attachments
+
+
 
 
 

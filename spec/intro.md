@@ -40,9 +40,9 @@ Approve/Refuse: Certifier determines whether the application is allowed or not.
 
 Number | Step                     | eDAIS
 -------|--------------------------|------
-1      | Investigate              |
-2      | Prepare Application      |
-3      | Submit for Consideration |
+1      | Investigate              | n/a
+2      | Prepare Application      | n/a
+3      | Submit for Consideration | n/a 
 4      | Lodge Application        | EHC sends application to Council system
 5      | Determine Application    | Council system sends determination to the EHC
 
@@ -50,9 +50,9 @@ Number | Step                     | eDAIS
 
 Number | Step                     | eDAIS
 -------|--------------------------|------
-1      | Investigate              |
-2      | Prepare Application      |
-3      | Submit for Consideration |
+1      | Investigate              | n/a 
+2      | Prepare Application      | n/a 
+3      | Submit for Consideration | n/a 
 4      | Lodge Application        | EHC sends application to Private Certifier system
 5      | Determine Application    | Private Certifier system sends determination to the EHC and the Council system
 

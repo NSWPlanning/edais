@@ -30,12 +30,14 @@ Number | Step                     | In Plain English
 
 Note: A common point of confusion:
 
-Accept/Reject: Certifier decides if they wish to take on the business.
-Approve/Refuse: Certifier determines whether the application is allowed or not.
+* Accept/Reject: Certifier decides if they wish to take on the business.
+* Approve/Refuse: Certifier determines whether the application is allowed or not.
+
+### Common Configurations
 
 There are two primary configurations:
-* Council as Certifier
-* Private Certifier with Council
+1. Council as Certifier
+2. Private Certifier with Council
 
 
 ### EHC with Council as Certifier

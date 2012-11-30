@@ -3,6 +3,8 @@ layout: default
 title: eDAIS Introduction
 ---
 
+# What Is eDAIS?
+
 eDAIS is a SOAP-based system for transferring information about development applications between heterogeneous systems. This site covers the use of the specification in NSW and the modifications ('specialisations') employed.
 
 There are three categories of actor in NSW:
@@ -15,10 +17,6 @@ Complying Development can be certified by either the Council of the area the dev
 
 ## Use Cases
 
-Two primary:
-* EHC + Council as Certifier
-* EHC + Private Certifier + Council
-
 The process, from an applicant's point of view:
 
 Number | Step                     | In Plain English 
@@ -30,10 +28,14 @@ Number | Step                     | In Plain English
 5      | Determine Application    | Approve or Refuse the application.
 
 
-A common point of confusion:
+Note: A common point of confusion:
 
 Accept/Reject: Certifier decides if they wish to take on the business.
 Approve/Refuse: Certifier determines whether the application is allowed or not.
+
+There are two primary configurations:
+* Council as Certifier
+* Private Certifier with Council
 
 
 ### EHC with Council as Certifier
@@ -64,6 +66,21 @@ The transport layer is SOAP with BasicHttpBinding. Messages are sent and acknowl
 SSL is enforced, and the EHC system can only connect to systems on the default SSL port (443).
 
 Messages are additionally secured using [UsernameToken][1]. The username and password are configured on a per-endpoint basis, that is per-Council and per-Private Certifier. These usernames and passwords must be identically configured in any communicating systems.
+
+{% highlight xml %}
+<soapenv:Header>
+    <wsse:Security xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:u="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+      <u:Timestamp u:Id="89f3558b-91cd-426a-a7cc-e75e8a68eed2">
+        <u:Created>2012-11-29T02:48:12.911Z</u:Created>
+        <u:Expires>2012-11-29T02:53:12.911Z</u:Expires>
+      </u:Timestamp>
+      <wsse:UsernameToken>
+        <wsse:Username>sample-username</wsse:Username>
+        <wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">sample-password</wsse:Password>
+      </wsse:UsernameToken>
+    </wsse:Security>
+  </soapenv:Header>
+  {% endhighlight %}
 
 
 [1]: http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0.pdf

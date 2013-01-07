@@ -1,0 +1,52 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/" xmlns:u="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+	<s:Header>
+		<o:Security xmlns:o="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" s:mustUnderstand="1">
+			<u:Timestamp u:Id="_0">
+				<u:Created>2012-11-26T00:42:09.526Z</u:Created>
+				<u:Expires>2012-11-26T00:47:09.526Z</u:Expires>
+			</u:Timestamp>
+		</o:Security>
+	</s:Header>
+	<s:Body>
+		<ReceiptAcknowledgementSignal xmlns="http://xml.gov.au/edais/bs/ReceiptAcknowledgementSignal.msg.2.3.0r2">
+			<ReceiptAcknowledgement>
+				<Timestamp xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">2012-11-26T11:42:09.5261049+11:00</Timestamp>
+			</ReceiptAcknowledgement>
+			<StandardBusinessMessageHeader>
+				<BusinessScope xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+					<Type>BusinessCollaboration</Type>
+				</BusinessScope>
+				<DocumentIdentification xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+					<CreationDateTime>2012-11-26T11:42:09.7264209+11:00</CreationDateTime>
+					<InstanceID>caf2a025-47b7-4f4a-8dd0-fdb98fe29182</InstanceID>
+					<Standard>eDAIS</Standard>
+					<Type>AcceptCreateApplicationTransaction</Type>
+					<TypeVersion>2.3.0r2</TypeVersion>
+				</DocumentIdentification>
+				<ReceiverPartner xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+					<Authority>ApplicantSystem</Authority>
+					<Contact>
+						<Contact>Buildaform Dev</Contact>
+						<ContactTypeIdentifier>Buildaform Support</ContactTypeIdentifier>
+						<EmailAddress>buildaform-dev@envoyat.com</EmailAddress>
+						<TelephoneNumber>8097 7328</TelephoneNumber>
+					</Contact>
+					<ID>0002</ID>
+					<ProcessRole>Initiator</ProcessRole>
+				</ReceiverPartner>
+				<SenderPartner xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+					<Authority>EHC</Authority>
+					<Contact>
+						<Contact>EHC HelpDesk</Contact>
+						<ContactTypeIdentifier>EHC Support</ContactTypeIdentifier>
+						<EmailAddress>EHC@planning.nsw.gov.au</EmailAddress>
+						<TelephoneNumber>9228 6100</TelephoneNumber>
+					</Contact>
+					<ID>0001</ID>
+					<ProcessRole>Responder</ProcessRole>
+				</SenderPartner>
+				<Version xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">eDAIS2.3.0r2</Version>
+			</StandardBusinessMessageHeader>
+		</ReceiptAcknowledgementSignal>
+	</s:Body>
+</s:Envelope>

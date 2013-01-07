@@ -1,0 +1,361 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+	<soapenv:Header>
+		<wsse:Security xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:u="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+			<u:Timestamp u:Id="1edf13c4-eac3-4b07-9982-4b7a195180da">
+				<u:Created>2012-11-25T23:38:59.796Z</u:Created>
+				<u:Expires>2012-11-25T23:43:59.796Z</u:Expires>
+			</u:Timestamp>
+			<wsse:UsernameToken>
+				<wsse:Username>
+					<!-- Removed-->
+				</wsse:Username>
+				<wsse:Password>
+					<!-- Removed-->
+				</wsse:Password>
+			</wsse:UsernameToken>
+		</wsse:Security>
+		<To xmlns="http://schemas.microsoft.com/ws/2005/05/addressing/none" soapenv:mustUnderstand="1">https://edais-test.envoyat.com/edais/Responder_CreateApplicationTransaction.svc</To>
+		<Action xmlns="http://schemas.microsoft.com/ws/2005/05/addressing/none" soapenv:mustUnderstand="1">http://example.xml.gov.au/CreateApplication_Responder.2.3.0r2/Propose</Action>
+	</soapenv:Header>
+	<soapenv:Body>
+		<ProposeCreateApplicationTransaction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://xml.gov.au/edais/bm/ProposeCreateApplicationTransaction.msg.2.3.0r2">
+			<Application ref="APP-0000166304">
+				<ApplicationNumber xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">APP-0000166304</ApplicationNumber>
+				<Attachment xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">
+					<Date>2012-11-26T07:42:40.7810644+11:00</Date>
+					<Description>Investigation Report</Description>
+					<Identification>EHC_Complying_Report.pdf</Identification>
+					<Size UnitCode="bytes">119796</Size>
+					<Type>Investigation Report</Type>
+					<URI>https://uat.licence.nsw.gov.au/gls_portal/Attachment.mvc/Download?fid=62046&s=MiyddLIsqx4vA015P91w</URI>
+				</Attachment>
+				<Attachment xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">
+					<Date>2012-11-26T07:42:40.7810644+11:00</Date>
+					<Description>SITE PLAN</Description>
+					<Identification>Test02_sig.txt</Identification>
+					<Size UnitCode="bytes">15</Size>
+					<Type>SITE PLAN</Type>
+					<URI>https://uat.licence.nsw.gov.au/gls_portal/Attachment.mvc/Download?fid=62047&s=lFJn9VyXUyUqUoYAsaD8w</URI>
+				</Attachment>
+				<Attachment xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">
+					<Date>2012-11-26T07:42:40.7810644+11:00</Date>
+					<Description>SystemGeneratedApplicationPDF</Description>
+					<Identification>application.pdf</Identification>
+					<Size UnitCode="bytes">19868</Size>
+					<Type>SystemGeneratedApplicationPDF</Type>
+					<URI>https://uat.licence.nsw.gov.au/gls_portal/Attachment.mvc/Download?fid=62048&s=B3vpnQFFCYqvY6obGqZA</URI>
+				</Attachment>
+				<Comments xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">Test PC</Comments>
+				<CreatedDate xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">2012-11-26T10:38:59.7810324+11:00</CreatedDate>
+				<LodgementDate xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">2012-11-26T10:38:59.7810324+11:00</LodgementDate>
+				<PartyRole xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">
+					<Party>
+						<Person xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">
+							<Identification/>
+							<Internet>
+								<Type>Email</Type>
+								<URI>eike_prenzel@technologyonecorp.com</URI>
+							</Internet>
+							<PersonName>
+								<Classification>Official Name</Classification>
+								<FamilyName>Test</FamilyName>
+								<GivenName>User</GivenName>
+								<MiddleName>Techone</MiddleName>
+								<Name>Mr Test, User Techone</Name>
+								<Title>Mr</Title>
+								<ValidityPeriod>
+									<Identification/>
+									<Start>2012-11-26T00:00:00+11:00</Start>
+								</ValidityPeriod>
+							</PersonName>
+							<PostalAddress>
+								<BuildingNumber/>
+								<CityName>EDGE HILL</CityName>
+								<CountryName>AUS</CountryName>
+								<CountrySubDivision>QLD</CountrySubDivision>
+								<Identification identificationSchemeName="TitleRef"/>
+								<LineFour/>
+								<LineOne>PO Box 310 </LineOne>
+								<LineThree/>
+								<LineTwo/>
+								<Postcode>4870</Postcode>
+								<StreetName/>
+								<StreetSuffix/>
+								<StreetType/>
+							</PostalAddress>
+							<Telephone>
+								<Number>0712345678</Number>
+								<Type>BusinessHours</Type>
+							</Telephone>
+							<Telephone>
+								<Number>0411154146</Number>
+								<Type>Mobile</Type>
+							</Telephone>
+						</Person>
+						<Identification xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2"/>
+						<Name xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">Mr Test, User Techone</Name>
+						<Type xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">APPLICANT</Type>
+					</Party>
+					<Type>APPLICANT</Type>
+				</PartyRole>
+				<PartyRole xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">
+					<Party>
+						<Person xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">
+							<Identification/>
+							<Internet>
+								<Type>Email</Type>
+								<URI>eike_prenzel@technologyonecorp.com</URI>
+							</Internet>
+							<PersonName>
+								<Classification>Official Name</Classification>
+								<FamilyName>Test</FamilyName>
+								<GivenName>User</GivenName>
+								<MiddleName>Techone</MiddleName>
+								<Name>Mr Test, User Techone</Name>
+								<Title>Mr</Title>
+								<ValidityPeriod>
+									<Identification/>
+									<Start>2012-11-26T00:00:00+11:00</Start>
+								</ValidityPeriod>
+							</PersonName>
+							<PostalAddress>
+								<BuildingNumber/>
+								<CityName>EDGE HILL</CityName>
+								<CountryName>AUS</CountryName>
+								<CountrySubDivision>QLD</CountrySubDivision>
+								<Identification identificationSchemeName="TitleRef"/>
+								<LineFour/>
+								<LineOne>PO Box 310 </LineOne>
+								<LineThree/>
+								<LineTwo/>
+								<Postcode>4870</Postcode>
+								<StreetName/>
+								<StreetSuffix/>
+								<StreetType/>
+							</PostalAddress>
+							<Telephone>
+								<Number>0712345678</Number>
+								<Type>BusinessHours</Type>
+							</Telephone>
+							<Telephone>
+								<Number>0411154146</Number>
+								<Type>Mobile</Type>
+							</Telephone>
+						</Person>
+						<Identification xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2"/>
+						<Name xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2"/>
+						<Type xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">OWNER</Type>
+					</Party>
+					<Type>OWNER</Type>
+				</PartyRole>
+				<PartyRole xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">
+					<Party>
+						<Organisation xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">
+							<Contact>
+								<Identification>1-LVDQ50</Identification>
+								<IsPrimary>true</IsPrimary>
+								<JobTitle>"Contact Person"</JobTitle>
+								<PersonName>
+									<Classification>Official Name</Classification>
+									<FamilyName>EDAIS</FamilyName>
+									<GivenName>TECHONE</GivenName>
+									<MiddleName/>
+									<Name>Mr EDAIS, TECHONE</Name>
+									<Title>Mr</Title>
+									<ValidityPeriod>
+										<Identification/>
+										<Start>2012-11-26T00:00:00+11:00</Start>
+									</ValidityPeriod>
+								</PersonName>
+								<Responsibility>"Contact Person"</Responsibility>
+							</Contact>
+							<Identification identificationSchemeName="ABN"/>
+							<IsActive>true</IsActive>
+							<OrganisationName>
+								<Classification>Official Name</Classification>
+								<Name>Techone Edias Testing Pty Ltd</Name>
+								<ValidityPeriod>
+									<Identification/>
+									<Start>2012-11-26T00:00:00+11:00</Start>
+								</ValidityPeriod>
+							</OrganisationName>
+							<OrganisationName>
+								<Classification>Registered Trading Name</Classification>
+								<Name/>
+								<ValidityPeriod>
+									<Identification/>
+									<Start>2012-11-26T00:00:00+11:00</Start>
+								</ValidityPeriod>
+							</OrganisationName>
+						</Organisation>
+						<Identification xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2"/>
+						<Name xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2"/>
+						<Type xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">CERTIFIER</Type>
+					</Party>
+					<Type>CERTIFIER</Type>
+				</PartyRole>
+				<PartyRole xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">
+					<Party>
+						<Person xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">
+							<Identification>1-LVDQ50</Identification>
+							<Internet>
+								<Type>Email</Type>
+								<URI>eike_prenzel@technologyonecorp.com</URI>
+							</Internet>
+							<PersonName>
+								<Classification>Official Name</Classification>
+								<FamilyName>EDAIS</FamilyName>
+								<GivenName>TECHONE</GivenName>
+								<MiddleName/>
+								<Name>Mr EDAIS, TECHONE</Name>
+								<Title>Mr</Title>
+								<ValidityPeriod>
+									<Identification/>
+									<Start>2012-11-26T00:00:00+11:00</Start>
+								</ValidityPeriod>
+							</PersonName>
+							<PostalAddress>
+								<BuildingNumber/>
+								<CityName>FORTITUDE VALLEY</CityName>
+								<CountryName>AUS</CountryName>
+								<CountrySubDivision>QLD</CountrySubDivision>
+								<Identification identificationSchemeName="TitleRef"/>
+								<LineFour/>
+								<LineOne>520-540 Wickham St</LineOne>
+								<LineThree/>
+								<LineTwo/>
+								<Postcode>4006</Postcode>
+								<StreetName/>
+								<StreetSuffix/>
+								<StreetType/>
+							</PostalAddress>
+						</Person>
+						<Identification xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2"/>
+						<Name xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2"/>
+						<Type xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">CONTACTPERSON</Type>
+					</Party>
+					<Type>CONTACTPERSON</Type>
+				</PartyRole>
+				<Status xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">Lodged</Status>
+				<SubjectLand xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2" ref="land1">
+					<Address>
+						<BuildingNumber xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2"/>
+						<CityName xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">SUTHERLAND</CityName>
+						<CountryName xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">AUS</CountryName>
+						<CountrySubDivision xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">NSW</CountrySubDivision>
+						<Identification xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2" identificationSchemeName="TitleRef">7//DP231603</Identification>
+						<LineFour xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2"/>
+						<LineOne xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">3 AUBURN STREET</LineOne>
+						<LineThree xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">3</LineThree>
+						<LineTwo xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2"/>
+						<Postcode xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">2232</Postcode>
+						<StreetName xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">AUBURN</StreetName>
+						<StreetSuffix xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2"/>
+						<StreetType xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">STREET</StreetType>
+					</Address>
+					<Document>
+						<DocumentNo xmlns="http://xml.gov.au/edais/core/lab.data.2.3.0r2">231603</DocumentNo>
+						<Jurisdiction xmlns="http://xml.gov.au/edais/core/lab.data.2.3.0r2">NSW</Jurisdiction>
+						<SurveyDocument xmlns="http://xml.gov.au/edais/core/lab.data.2.3.0r2">
+							<Survey>
+								<CoordinateSystem>
+									<HorizontalDatumName/>
+								</CoordinateSystem>
+							</Survey>
+						</SurveyDocument>
+					</Document>
+					<Parcel>
+						<Classification xmlns="http://xml.gov.au/edais/core/lab.data.2.3.0r2"/>
+						<Name xmlns="http://xml.gov.au/edais/core/lab.data.2.3.0r2">7</Name>
+						<OID xmlns="http://xml.gov.au/edais/core/lab.data.2.3.0r2">Sutherland Shire Council</OID>
+					</Parcel>
+				</SubjectLand>
+			</Application>
+			<Specialisation>
+				<DomainId xmlns="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2">EHC</DomainId>
+				<Extension xmlns="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2">
+					<Application xmlns="http://edais.daf.gov.au/nsw/da.data.1.0" ref="APP-0000166304">
+						<Type/>
+						<EstimatedValue>1000</EstimatedValue>
+						<DevelopmentCode>Ancillary development to an existing dwelling house -- Carport attached to the dwelling house</DevelopmentCode>
+						<BCAClass/>
+						<RefNumber/>
+					</Application>
+				</Extension>
+				<Jurisdiction xmlns="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2">NSW</Jurisdiction>
+				<Version xmlns="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2">1.0</Version>
+			</Specialisation>
+			<Specialisation>
+				<DomainId xmlns="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2">EHC</DomainId>
+				<Extension xmlns="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2">
+					<SubjectLand xmlns="http://edais.daf.gov.au/nsw/da.data.1.0" ref="land1">
+						<ABS_Statistics>
+							<NumberOfFloors>1</NumberOfFloors>
+							<GFA>50</GFA>
+							<GSA>1000</GSA>
+							<NumberOfNewDwellings>0</NumberOfNewDwellings>
+							<NumberOfExistingDwellings>1</NumberOfExistingDwellings>
+							<NumberDwellingsDemolished>0</NumberDwellingsDemolished>
+							<NewDwellingAttached>false</NewDwellingAttached>
+							<NewBuildingAttached>true</NewBuildingAttached>
+							<DualOccupancy>false</DualOccupancy>
+							<Floor codeListURI="http://edais.daf.gov.au/nsw/da.type" codeListAgency="DoPNSW" codeListName="Floor_CodeList" codeListVersion="1.0">20</Floor>
+							<Frame codeListURI="http://edais.daf.gov.au/nsw/da.type" codeListAgency="DoPNSW" codeListName="Frame_CodeList" codeListVersion="1.0">40</Frame>
+							<Roof codeListURI="http://edais.daf.gov.au/nsw/da.type" codeListAgency="DoPNSW" codeListName="Roof_CodeList" codeListVersion="1.0">10</Roof>
+							<Walls codeListURI="http://edais.daf.gov.au/nsw/da.type" codeListAgency="DoPNSW" codeListName="Walls_CodeList" codeListVersion="1.0">11</Walls>
+						</ABS_Statistics>
+					</SubjectLand>
+				</Extension>
+				<Jurisdiction xmlns="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2">NSW</Jurisdiction>
+				<Version xmlns="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2">1.0</Version>
+			</Specialisation>
+			<StandardBusinessMessageHeader>
+				<BusinessScope xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+					<CorrelationInformation>
+						<ExpectedResponseDateTime>2012-12-03T10:38:59.796658+11:00</ExpectedResponseDateTime>
+						<RequestingDocumentCreationDateTime>2012-12-03T10:38:59.796658+11:00</RequestingDocumentCreationDateTime>
+						<RequestingDocumentInstanceID identificationSchemeName="ApplicationNo">APP-0000166304</RequestingDocumentInstanceID>
+					</CorrelationInformation>
+					<ID identificationSchemeName="ApplicationNo">APP-0000166304</ID>
+					<InstanceID identificationSchemeName="ApplicationNo">APP-0000166304</InstanceID>
+					<Type>BusinessCollaboration</Type>
+				</BusinessScope>
+				<DocumentIdentification xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+					<CreationDateTime>2012-11-26T10:38:59.796658+11:00</CreationDateTime>
+					<InstanceID identificationSchemeName="ApplicationNo">APP-0000166304</InstanceID>
+					<Standard>eDAIS</Standard>
+					<Type>ProposeCreateApplication</Type>
+					<TypeVersion>2.3.0</TypeVersion>
+				</DocumentIdentification>
+				<ReceiverPartner xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+					<Authority>ConsentAuthority</Authority>
+					<Contact>
+						<Contact>Techone Edias Testing Pty Ltd</Contact>
+						<ContactTypeIdentifier/>
+						<EmailAddress>eike_prenzel@technologyonecorp.com</EmailAddress>
+						<TelephoneNumber/>
+					</Contact>
+					<ID>Council Name</ID>
+					<ProcessRole>CONSENT_AUTH</ProcessRole>
+				</ReceiverPartner>
+				<SenderPartner xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+					<Authority>EHC</Authority>
+					<Contact>
+						<Contact>EHC HelpDesk</Contact>
+						<ContactTypeIdentifier>EHC Support</ContactTypeIdentifier>
+						<EmailAddress>EHC@planning.nsw.gov.au</EmailAddress>
+						<TelephoneNumber>9228 6100</TelephoneNumber>
+					</Contact>
+					<ID>0001</ID>
+					<ProcessRole>APP_LODGE</ProcessRole>
+				</SenderPartner>
+				<SoftwareInformation xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+					<ProductID>EHCv1</ProductID>
+					<ProductName>NSW Electronic Housing Code</ProductName>
+					<ProductVersion>v1.0</ProductVersion>
+				</SoftwareInformation>
+				<Version xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">eDAIS2.3.0r2</Version>
+			</StandardBusinessMessageHeader>
+		</ProposeCreateApplicationTransaction>
+	</soapenv:Body>
+</soapenv:Envelope>

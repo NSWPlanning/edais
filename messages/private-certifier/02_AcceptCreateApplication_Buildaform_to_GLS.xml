@@ -1,0 +1,65 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/" xmlns:u="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+	<s:Header>
+		<o:Security xmlns:o="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" s:mustUnderstand="1">
+			<u:Timestamp u:Id="_0">
+				<u:Created>2012-11-26T00:42:09.804Z</u:Created>
+				<u:Expires>2012-11-26T00:47:09.804Z</u:Expires>
+			</u:Timestamp>
+			<o:UsernameToken u:Id="uuid-474cc933-1fc3-4d30-8d2a-6b8e8a4a8065-5">
+				<o:Username>
+					<!-- Removed-->
+				</o:Username>
+				<o:Password>
+					<!-- Removed-->
+				</o:Password>
+			</o:UsernameToken>
+		</o:Security>
+	</s:Header>
+	<s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+		<AcceptCreateApplicationTransaction xmlns="http://xml.gov.au/edais/bm/AcceptCreateApplicationTransaction.msg.2.3.0r2">
+			<Application>
+				<ApplicationNumber xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">APP-0000166304</ApplicationNumber>
+				<Status xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">Private Certifier</Status>
+			</Application>
+			<StandardBusinessMessageHeader>
+				<BusinessScope xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+					<CorrelationInformation>
+						<RequestingDocumentCreationDateTime>2012-11-26T11:42:09.7264209+11:00</RequestingDocumentCreationDateTime>
+						<RequestingDocumentInstanceID>caf2a025-47b7-4f4a-8dd0-fdb98fe29182</RequestingDocumentInstanceID>
+					</CorrelationInformation>
+					<Type>BusinessCollaboration</Type>
+				</BusinessScope>
+				<DocumentIdentification xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+					<CreationDateTime>2012-11-26T11:42:09.7264209+11:00</CreationDateTime>
+					<InstanceID>caf2a025-47b7-4f4a-8dd0-fdb98fe29182</InstanceID>
+					<Standard>eDAIS</Standard>
+					<Type>AcceptCreateApplicationTransaction</Type>
+					<TypeVersion>2.3.0r2</TypeVersion>
+				</DocumentIdentification>
+				<ReceiverPartner xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+					<Authority>EHC</Authority>
+					<Contact>
+						<Contact>EHC HelpDesk</Contact>
+						<ContactTypeIdentifier>EHC Support</ContactTypeIdentifier>
+						<EmailAddress>EHC@planning.nsw.gov.au</EmailAddress>
+						<TelephoneNumber>9228 6100</TelephoneNumber>
+					</Contact>
+					<ID>0001</ID>
+					<ProcessRole>Responder</ProcessRole>
+				</ReceiverPartner>
+				<SenderPartner xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+					<Authority>ApplicantSystem</Authority>
+					<Contact>
+						<Contact>Buildaform Dev</Contact>
+						<ContactTypeIdentifier>Buildaform Support</ContactTypeIdentifier>
+						<EmailAddress>buildaform-dev@envoyat.com</EmailAddress>
+						<TelephoneNumber>8097 7328</TelephoneNumber>
+					</Contact>
+					<ID>0002</ID>
+					<ProcessRole>Initiator</ProcessRole>
+				</SenderPartner>
+				<Version xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">eDAIS2.3.0r2</Version>
+			</StandardBusinessMessageHeader>
+		</AcceptCreateApplicationTransaction>
+	</s:Body>
+</s:Envelope>

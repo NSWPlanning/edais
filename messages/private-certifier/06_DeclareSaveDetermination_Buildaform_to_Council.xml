@@ -1,0 +1,89 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/" xmlns:u="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+	<s:Header>
+		<o:Security xmlns:o="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" s:mustUnderstand="1">
+			<u:Timestamp u:Id="_0">
+				<u:Created>2012-11-29T06:16:43.434Z</u:Created>
+				<u:Expires>2012-11-29T06:21:43.434Z</u:Expires>
+			</u:Timestamp>
+			<o:UsernameToken u:Id="uuid-055641ab-21b6-445d-ab36-8defe9e33049-3">
+				<o:Username>
+					<!-- Removed-->
+				</o:Username>
+				<o:Password>
+					<!-- Removed-->
+				</o:Password>
+			</o:UsernameToken>
+		</o:Security>
+	</s:Header>
+	<s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+		<DeclareSaveDeterminationNotification xmlns="http://xml.gov.au/edais/bm/DeclareSaveDeterminationNotification.msg.2.3.0r2">
+			<Application ref="APP-0000166304">
+				<ApplicationNumber xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">APP-0000166304</ApplicationNumber>
+				<Attachment xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">
+					<Date>2012-11-29T17:16:43.3565999+11:00</Date>
+					<Description>CDC</Description>
+					<Format>PDF</Format>
+					<Identification>120010_Complying Development Certificate.pdf</Identification>
+					<Size UnitCode="bytes">10952</Size>
+					<URI>https://edais-test.envoyat.com/download_ehc.ashx?ehcattachment=062f75b4-c0ba-4a3f-ac0f-155ffc68fcd4</URI>
+				</Attachment>
+				<Determination xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">
+					<Comments>Compliant</Comments>
+					<DeterminationDate>2012-11-29T17:16:43.3409748+11:00</DeterminationDate>
+					<Identification>caf2a025-47b7-4f4a-8dd0-fdb98fe29182</Identification>
+					<PartyRole>
+						<DateTime>2012-11-29T17:16:43.3409748+11:00</DateTime>
+						<Party>
+							<AccessRights xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2"/>
+							<Description xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">Buildaform Certifier</Description>
+							<Identification xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">eike_prenzel@technologyonecorp.com</Identification>
+							<Language xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">EN</Language>
+							<Name xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">eike_prenzel@technologyonecorp.com</Name>
+						</Party>
+					</PartyRole>
+					<Type/>
+				</Determination>
+				<Status xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">Approved</Status>
+			</Application>
+			<StandardBusinessMessageHeader>
+				<BusinessScope xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+					<CorrelationInformation>
+						<RequestingDocumentCreationDateTime>2012-11-29T17:16:43.372225+11:00</RequestingDocumentCreationDateTime>
+						<RequestingDocumentInstanceID>caf2a025-47b7-4f4a-8dd0-fdb98fe29182</RequestingDocumentInstanceID>
+					</CorrelationInformation>
+					<Type>BusinessCollaboration</Type>
+				</BusinessScope>
+				<DocumentIdentification xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+					<CreationDateTime>2012-11-29T17:16:43.372225+11:00</CreationDateTime>
+					<InstanceID>caf2a025-47b7-4f4a-8dd0-fdb98fe29182</InstanceID>
+					<Standard>eDAIS</Standard>
+					<Type>DeclareSaveDeterminationNotification</Type>
+					<TypeVersion>2.3.0r2</TypeVersion>
+				</DocumentIdentification>
+				<ReceiverPartner xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+					<Authority>TechOne</Authority>
+					<Contact>
+						<Contact>Eike</Contact>
+						<ContactTypeIdentifier/>
+						<EmailAddress>eike_prenzel@technologyonecorp.com</EmailAddress>
+						<TelephoneNumber/>
+					</Contact>
+					<ID>0007</ID>
+					<ProcessRole>Responder</ProcessRole>
+				</ReceiverPartner>
+				<SenderPartner xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+					<Authority>ApplicantSystem</Authority>
+					<Contact>
+						<Contact>Buildaform Dev</Contact>
+						<ContactTypeIdentifier>Buildaform Support</ContactTypeIdentifier>
+						<EmailAddress>buildaform-dev@envoyat.com</EmailAddress>
+						<TelephoneNumber>8097 7328</TelephoneNumber>
+					</Contact>
+					<ID>0002</ID>
+					<ProcessRole>Initiator</ProcessRole>
+				</SenderPartner>
+				<Version xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">eDAIS2.3.0r2</Version>
+			</StandardBusinessMessageHeader>
+		</DeclareSaveDeterminationNotification>
+	</s:Body>
+</s:Envelope>

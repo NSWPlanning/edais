@@ -3,7 +3,7 @@ layout: default
 title: eDAIS Introduction
 ---
 
-# What Is eDAIS?
+# Introduction
 
 eDAIS is a SOAP-based system for transferring information about development applications between heterogeneous systems. This site covers the use of the specification in NSW and the modifications ('specialisations') employed.
 
@@ -14,6 +14,16 @@ There are three categories of actor in NSW:
 * Private Certifier systems, also provided by commercial vendors
 
 Complying Development can be certified by either the Council of the area the development is being undertaken in, or by a Private Certifer who operates in that area. Private Certifiers do not need Council approval to Approve or Refuse an application, but they must notify Council two days prior to the commencement of building works.
+
+This document uses the terms 'MUST', 'SHOULD' and 'MAY', and their negatives, in the manner described in [RFC 2119](http://tools.ietf.org/html/rfc2119).
+
+### Glossary
+
+* Applicant: a person submitting an application for work, such as a new swimming pool, or adding an extension to a house. Often an architect or a home building company.
+* System: a software system participating in the exchange of eDAIS messages.
+* EHC: the system that accepts applications from applicants and initiates the eDAIS message flow.
+* Council System: the system installed at Council to manage 
+
 
 ## Use Cases
 
@@ -28,7 +38,7 @@ Number | Step                     | In Plain English
 5      | Determine Application    | Approve or Refuse the application.
 
 
-Note: A common point of confusion:
+**Note:** A common point of confusion:
 
 * Accept/Reject: Certifier decides if they wish to take on the business.
 * Approve/Refuse: Certifier determines whether the application is allowed or not.
@@ -36,11 +46,13 @@ Note: A common point of confusion:
 ### Common Configurations
 
 There are two primary configurations:
-1. Council as Certifier
-2. Private Certifier with Council
+1. Council providing CDC.
+2. Private Certifier providing CDC.
+
+When an applicant Submits for Consideration, they select the Certifier from a list of Accredited Certifers. Council is one of these. 
 
 
-### EHC with Council as Certifier
+### Council as Certifier
 
 Number | Step                     | eDAIS
 -------|--------------------------|------
@@ -63,9 +75,9 @@ Number | Step                     | eDAIS
 
 ## Transport Layer & Security
 
-The transport layer is SOAP with BasicHttpBinding. Messages are sent and acknowledged synchronously.
+The transport layer is SOAP with `BasicHttpBinding`. Messages are sent and acknowledged synchronously.
 
-SSL is enforced, and the EHC system can only connect to systems on the default SSL port (443).
+SSL/TLS is enforced, and the EHC system can only connect to systems on the default SSL port (443). Deployments may terminate SSL at the network perimeter and forward messages over HTTP.
 
 Messages are additionally secured using [UsernameToken][1]. The username and password are configured on a per-endpoint basis, that is per-Council and per-Private Certifier. These usernames and passwords must be identically configured in any communicating systems.
 
@@ -82,12 +94,47 @@ Messages are additionally secured using [UsernameToken][1]. The username and pas
       </wsse:UsernameToken>
     </wsse:Security>
   </soapenv:Header>
-  {% endhighlight %}
+{% endhighlight %}
+
+Acknowledgements should be sent synchronously on the same connection.
 
 
 [1]: http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0.pdf
 
 ## Attachments
+
+Attachments are in the `ProposeCreateApplication` and `DeclareSaveDetermination` messages. Below is a sample block from a `ProposeCreateApplication`. 
+
+EHC NOTE: Attachments sourced from the EHC will will expire after 3 retrieval attempts. There may also be a time expiry on this link, but that is currently unclear.
+
+{% highlight xml %}
+<Attachment xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">
+  <Date>2012-11-29T13:22:10.7104852+11:00</Date>
+  <Description>Investigation Report</Description>
+  <Identification>EHC_Complying_Report.pdf</Identification>
+  <Size UnitCode="bytes">120170</Size>
+  <Type>Investigation Report</Type>
+  <URI>https://uat.licence.nsw.gov.au/gls_portal/Attachment.mvc/Download?fid=99999&amp;s=xxxxx</URI>
+</Attachment>
+{% endhighlight %}
+
+* Systems should retrieve attachments as soon as possible and must aim to do so within an hour of receiving a message. 
+* Systems should attempt to use the `<Type>` to automatically categorise attachments.
+* Systems must be able to handle the fact that the values in `<Type>` may change without warning.
+* Systems must not notify end users of a new application or of a determination until attachments have been successfully retrieved. 
+* Systems must raise an error for the attention of the appropriate humans if attachments are unable to be downloaded.
+
+
+## Messages
+
+'ProposeCreateApplication' is sent from the EHC to a Council or Private Certifier system. Synchronously, the Council or Private Certifier system should respond with a `ReceiptAcknowledgementSignal'.
+
+Council or Private Certifier systems
+
+
+## Private Certifier systems
+
+* PC Systems
 
 
 

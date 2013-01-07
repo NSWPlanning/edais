@@ -1,0 +1,46 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/" xmlns:u="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+	<s:Header>
+		<ActivityId xmlns="http://schemas.microsoft.com/2004/09/ServiceModel/Diagnostics" CorrelationId="7cb04716-97af-4399-83cb-47fdca76d5d1">53160504-84ce-4f72-91c8-8a07686d134e</ActivityId>
+		<o:Security xmlns:o="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" s:mustUnderstand="1">
+			<u:Timestamp u:Id="_0">
+				<u:Created>2012-11-29T06:16:46.175Z</u:Created>
+				<u:Expires>2012-11-29T06:21:46.175Z</u:Expires>
+			</u:Timestamp>
+		</o:Security>
+	</s:Header>
+	<s:Body>
+		<ReceiptAcknowledgementSignal xmlns="http://xml.gov.au/edais/bs/ReceiptAcknowledgementSignal.msg.2.3.0r2">
+			<ReceiptAcknowledgement>
+				<Timestamp xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">2012-11-29T16:16:45.8913987+10:00</Timestamp>
+			</ReceiptAcknowledgement>
+			<StandardBusinessMessageHeader>
+				<BusinessScope xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+					<CorrelationInformation>
+						<ExpectedResponseDateTime>2012-11-29T16:21:45.8916244+10:00</ExpectedResponseDateTime>
+						<RequestingDocumentCreationDateTime>2012-11-29T16:16:45.891629+10:00</RequestingDocumentCreationDateTime>
+						<RequestingDocumentInstanceID>16ec2790-a907-495a-871b-252f0e86e787</RequestingDocumentInstanceID>
+					</CorrelationInformation>
+					<Type codeListAgency="NCO" codeListName="BusinessScope">BusinessCollaboration</Type>
+				</BusinessScope>
+				<DocumentIdentification xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+					<CreationDateTime>2012-11-29T16:16:45.8914063+10:00</CreationDateTime>
+					<InstanceID>16ec2790-a907-495a-871b-252f0e86e787</InstanceID>
+					<Standard codeListURI="http://xml.gov.au/edais/dt/qdt/msg.type.2.3.0r2" codeListAgency="NCO" codeListName="Standard_Code" codeListVersion="2.3.0r2">eDAIS</Standard>
+					<Type>DeclareSaveDeterminationNotification</Type>
+					<TypeVersion>2.3.0r2</TypeVersion>
+				</DocumentIdentification>
+				<ReceiverPartner xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+					<Authority>Tech One</Authority>
+					<ID>0003</ID>
+					<ProcessRole>Responder</ProcessRole>
+				</ReceiverPartner>
+				<SenderPartner xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+					<Authority>ApplicantSystem</Authority>
+					<ID>0002</ID>
+					<ProcessRole>Initiator</ProcessRole>
+				</SenderPartner>
+				<Version xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">2.3.0r2</Version>
+			</StandardBusinessMessageHeader>
+		</ReceiptAcknowledgementSignal>
+	</s:Body>
+</s:Envelope>

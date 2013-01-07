@@ -1,0 +1,61 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/" xmlns:u="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+	<s:Header>
+		<o:Security xmlns:o="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" s:mustUnderstand="1">
+			<u:Timestamp u:Id="_0">
+				<u:Created>2012-11-27T07:59:15.090Z</u:Created>
+				<u:Expires>2012-11-27T08:04:15.090Z</u:Expires>
+			</u:Timestamp>
+			<o:UsernameToken u:Id="uuid-7e181f1f-9b78-48e8-ad20-582de86ad2ab-3">
+				<o:Username>
+					<!-- Removed-->
+				</o:Username>
+				<o:Password>
+					<!-- Removed-->
+				</o:Password>
+			</o:UsernameToken>
+		</o:Security>
+		<To xmlns="http://schemas.microsoft.com/ws/2005/05/addressing/none" s:mustUnderstand="1">https://edais-test.envoyat.com/edais/Initiator_CreateApplicationTransaction.svc</To>
+		<Action xmlns="http://schemas.microsoft.com/ws/2005/05/addressing/none" s:mustUnderstand="1">http://example.xml.gov.au/CreateApplication_Initiator.2.3.0r2/Accept</Action>
+	</s:Header>
+	<s:Body>
+		<AcceptCreateApplicationTransaction xmlns="http://xml.gov.au/edais/bm/AcceptCreateApplicationTransaction.msg.2.3.0r2">
+			<Application>
+				<ApplicationNumber xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">APP-0000166304</ApplicationNumber>
+			</Application>
+			<Specialisation>
+				<DomainId xmlns="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2">EHC</DomainId>
+				<Extension xmlns="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2"/>
+				<Jurisdiction xmlns="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2">NSW</Jurisdiction>
+				<Version xmlns="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2">1.0</Version>
+			</Specialisation>
+			<StandardBusinessMessageHeader>
+				<BusinessScope xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+					<CorrelationInformation>
+						<ExpectedResponseDateTime>2012-11-27T18:04:13.9977966+10:00</ExpectedResponseDateTime>
+						<RequestingDocumentCreationDateTime>2012-11-27T17:59:13.997846+10:00</RequestingDocumentCreationDateTime>
+						<RequestingDocumentInstanceID>f398d764-a467-468c-8ddd-c880d406c646</RequestingDocumentInstanceID>
+					</CorrelationInformation>
+					<Type codeListAgency="NCO" codeListName="BusinessScope">BusinessCollaboration</Type>
+				</BusinessScope>
+				<DocumentIdentification xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+					<CreationDateTime>2012-11-27T17:59:13.9547867+10:00</CreationDateTime>
+					<InstanceID>f398d764-a467-468c-8ddd-c880d406c646</InstanceID>
+					<Standard codeListURI="http://xml.gov.au/edais/dt/qdt/msg.type.2.3.0r2" codeListAgency="NCO" codeListName="Standard_Code" codeListVersion="2.3.0r2">eDAIS</Standard>
+					<Type>AcceptCreateApplicationTransaction</Type>
+					<TypeVersion>2.3.0r2</TypeVersion>
+				</DocumentIdentification>
+				<ReceiverPartner xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+					<Authority>Test Private Certifier 1</Authority>
+					<ID>0002</ID>
+					<ProcessRole>Responder</ProcessRole>
+				</ReceiverPartner>
+				<SenderPartner xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+					<Authority>Tech One</Authority>
+					<ID>0003</ID>
+					<ProcessRole>Initiator</ProcessRole>
+				</SenderPartner>
+				<Version xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">2.3.0r2</Version>
+			</StandardBusinessMessageHeader>
+		</AcceptCreateApplicationTransaction>
+	</s:Body>
+</s:Envelope>

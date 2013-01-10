@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using System.Xml.Serialization;
 using eDAIS;
+using FluentAssertions;
 
 namespace ETH.Util
 {
@@ -16,6 +17,8 @@ namespace ETH.Util
 			var assembly = Assembly.GetExecutingAssembly();
 			using (var stream = assembly.GetManifestResourceStream("ETH.Scenarios.Messages." + resourceName))
 			{
+				stream.Should()
+				      .NotBeNull(string.Format("Cannot load test data file: {0}", resourceName));
 				var serializer = new XmlSerializer(typeof(T));
 				return (T)serializer.Deserialize(stream);
 			}

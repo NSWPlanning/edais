@@ -15,7 +15,7 @@ namespace ETH.Scenarios
 			get
 			{
 				return Data.FromXml<AcceptCreateApplicationTransactionType>(
-					"AcceptCreateApplicationTransactionType.xml");
+					"AcceptCreateApplicationTransaction.xml");
 			}
 		}
 

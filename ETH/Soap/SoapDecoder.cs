@@ -7,7 +7,9 @@ using System.Net.Mime;
 using System.ServiceModel.Channels;
 using System.Xml;
 using System.Xml.Serialization;
+using ETH.CommandLine;
 using ETH.Http;
+using Autofac;
 
 namespace ETH.Soap
 {
@@ -18,7 +20,14 @@ namespace ETH.Soap
 	{
 		// TODO: refactor with RequestConversions class
 
-		const string contentType = "application/soap+xml";
+		const string SoapContentType = "application/soap+xml";
+
+		static readonly string[] ValidContentTypes = new[]
+		{
+			SoapContentType,
+			"text/xml"
+		};
+		
 
 		/// <summary>
 		/// Converts a Nancy Request to a .NET SOAP Message.
@@ -108,7 +117,7 @@ namespace ETH.Soap
 		/// <param name="message"></param>
 		public static void FromMessage(this IHttpListenerResponse response, Message message)
 		{
-			response.ContentType = contentType;
+			response.ContentType = SoapContentType;
 
 			using (var writer = XmlDictionaryWriter.CreateTextWriter(response.OutputStream))
 			{
@@ -121,7 +130,7 @@ namespace ETH.Soap
 		public static void FromMessage(this HttpWebRequest request, Message message)
 		{
 			// TODO: refactor to share code with other FromMessage
-			request.ContentType = contentType;
+			request.ContentType = SoapContentType;
 
 			using (var stream = request.GetRequestStream())
 			using (var writer = XmlDictionaryWriter.CreateTextWriter(stream))
@@ -145,9 +154,11 @@ namespace ETH.Soap
 			}
 
 			var contentType = new ContentType(rawContentType);
-			if (contentType.MediaType != SoapDecoder.contentType)
+			if (!ValidContentTypes.Contains(contentType.MediaType))
 			{
-				throw new InvalidOperationException("Request is not a SOAP request.");
+				throw new InvalidOperationException(string.Format(
+					"Request has an invalid content type: {0}.", 
+					contentType.MediaType));
 			}
 			return contentType;
 		}
@@ -177,10 +188,15 @@ namespace ETH.Soap
 		static Message GetMessage(Stream stream)
 		{
 			var requestDocument = GetRequestDocument(stream);
+
+			// TODO: refactor out
+			var endpointProvider = Program.Container.Resolve<IEndpointProvider>();
+
 			var message = Message.CreateMessage(
 				new XmlNodeReader(requestDocument),
 				int.MaxValue,
-				MessageVersion.Soap12WSAddressingAugust2004);
+				endpointProvider.MessageVersion);
+
 			return message;
 		}
 

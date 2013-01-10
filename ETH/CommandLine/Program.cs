@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Net;
+using System.ServiceModel.Channels;
 using Autofac;
 using CommandLine;
 using ETH.Http;
@@ -16,6 +17,8 @@ namespace ETH.CommandLine
 		readonly IRunner scenarioRunner;
 		readonly IEndpointProvider endpointProvider;
 
+		public static IContainer Container { get; private set; } // TODO: refactor out
+
 		static int Main(string[] args)
 		{
 			var parser = GetParser();
@@ -23,8 +26,8 @@ namespace ETH.CommandLine
 
 			if (!parser.ParseArguments(args, options)) return 1;
 
-			var container = CreateContainer();
-			var program = container.Resolve<Program>();
+			Container = CreateContainer();
+			var program = Container.Resolve<Program>();
 			return program.Run(options, Console.Out);
 		}
 
@@ -43,6 +46,10 @@ namespace ETH.CommandLine
 				if (options.Scenario != null)
 				{
 					endpointProvider.ServerBaseUrl = options.ListenUrl;
+					if (options.UseSoap11)
+					{
+						endpointProvider.MessageVersion = MessageVersion.Soap11WSAddressingAugust2004;
+					}
 
 					try
 					{

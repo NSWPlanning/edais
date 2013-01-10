@@ -11,15 +11,10 @@ using ImpromptuInterface;
 
 namespace ETH.CommandLine
 {
-	public interface IEndpointProvider
-	{
-		string ServerBaseUrl { get; }
-		string ClientEndpoint { get; }
-	}
-
-	class Program : IEndpointProvider
+	class Program
 	{
 		readonly IRunner scenarioRunner;
+		readonly IEndpointProvider endpointProvider;
 
 		static int Main(string[] args)
 		{
@@ -33,9 +28,10 @@ namespace ETH.CommandLine
 			return program.Run(options, Console.Out);
 		}
 
-		public Program(IRunner scenarioRunner)
+		public Program(IRunner scenarioRunner, IEndpointProvider endpointProvider)
 		{
 			this.scenarioRunner = scenarioRunner;
+			this.endpointProvider = endpointProvider;
 		}
 
 		public int Run(Options options, TextWriter output)
@@ -46,7 +42,7 @@ namespace ETH.CommandLine
 			{
 				if (options.Scenario != null)
 				{
-					ServerBaseUrl = options.ListenUrl;
+					endpointProvider.ServerBaseUrl = options.ListenUrl;
 
 					try
 					{
@@ -104,9 +100,10 @@ namespace ETH.CommandLine
 			       .As<IHttpListener>();
 			builder.Register(context => new ScenarioTypeFinder(typeof(Program).Assembly))
 			       .As<IScenarioTypeFinder>();
-			builder.RegisterType<Program>()
+			builder.RegisterType<Program>().SingleInstance();
+			builder.RegisterType<EndpointProvider>()
 			       .SingleInstance()
-			       .As<IEndpointProvider>();
+				   .As<IEndpointProvider>();
 
 			return builder.Build();
 		}
@@ -119,8 +116,5 @@ namespace ETH.CommandLine
 			};
 			return new CommandLineParser(parserSettings);
 		}
-
-		public string ServerBaseUrl { get; private set; }
-		public string ClientEndpoint { get; private set; }
 	}
 }

@@ -63,6 +63,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandLine\EndpointProvider.cs" />
     <Compile Include="CommandLine\ScenarioRegistrationSource.cs" />
     <Compile Include="Http\Client.cs" />
     <Compile Include="Http\IHttpListener.cs" />

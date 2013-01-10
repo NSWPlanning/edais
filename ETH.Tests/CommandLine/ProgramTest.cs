@@ -16,7 +16,7 @@ namespace ETH.Tests.CommandLine
 			[Fact]
 			public void NoOptions()
 			{
-				var program = new Program(null);
+				var program = new Program(null, null);
 				program.Run(new Options(), new StringWriter()).Should().Be(1);
 			}
 
@@ -25,7 +25,7 @@ namespace ETH.Tests.CommandLine
 				[Fact]
 				public void NoSubOptions()
 				{
-					var program = new Program(null);
+					var program = new Program(null, null);
 					var options = new Options
 					{
 						TestRun = "testrun1"
@@ -43,7 +43,7 @@ namespace ETH.Tests.CommandLine
 				public void ScenarioOption()
 				{
 					var runner = new Mock<IRunner>();
-					var program = new Program(runner.Object);
+					var program = new Program(runner.Object, new Mock<IEndpointProvider>().Object);
 					var options = new Options
 					{
 						TestRun = "butts",
@@ -60,7 +60,7 @@ namespace ETH.Tests.CommandLine
 				public void ScenarioOptionWithArguments()
 				{
 					var runner = new Mock<IRunner>();
-					var program = new Program(runner.Object);
+					var program = new Program(runner.Object, new Mock<IEndpointProvider>().Object);
 					var options = new Options
 					{
 						TestRun = "heh",
@@ -78,7 +78,7 @@ namespace ETH.Tests.CommandLine
 				public void ScenarioOptionThrowingException()
 				{
 					var runner = new Mock<IRunner>();
-					var program = new Program(runner.Object);
+					var program = new Program(runner.Object, new Mock<IEndpointProvider>().Object);
 					var options = new Options
 					{
 						TestRun = "r",

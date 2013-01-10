@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:cdt="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.3.0r2">
+	<xs:annotation>
+		<xs:documentation>
+			<artefact id="715EEBAF_0487_4102_8FB6_99B007FA2A55" name="Core Data Types" stereotype="QDTLibrary"/>
+			<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+			<notes/>
+		</xs:documentation>
+	</xs:annotation>
+	<xs:simpleType name="Amount">
+		<xs:restriction base="xs:decimal"/>
+	</xs:simpleType>
+	<xs:complexType name="AmountType">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="78D75814_387B_4c1c_8CC7_7CF2917BE8AD" name="Amount" stereotype="QDT"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>Supports the ability to provide a currency code with an amount value.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="cdt:Amount">
+				<xs:attribute name="CurrencyCode" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>
+							<artefact id="2520B32D_D2FB_4e16_85C2_7C746AAAABD7" name="CurrencyCode" stereotype="SUP"/>
+							<notes>The currency code for the associated amount value.</notes>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="BinaryObject">
+		<xs:restriction base="xs:base64Binary"/>
+	</xs:simpleType>
+	<xs:complexType name="BinaryObjectType">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="0D0802BF_6C49_479c_B4A2_D77DDB98D4F0" name="BinaryObject" stereotype="QDT"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>A primitive date value with formatting attached.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="cdt:BinaryObject">
+				<xs:attribute name="Format" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>
+							<artefact id="0AAB9EFE_BE57_408a_9ED8_32C715304AB3" name="Format" stereotype="SUP"/>
+							<notes/>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="MimeCode" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>
+							<artefact id="12907CC9_C55B_44d9_8DE8_57E61A6B5F12" name="MimeCode" stereotype="SUP"/>
+							<notes/>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="CharacterSetCode" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>
+							<artefact id="88A2CF18_8BAE_472a_A7AB_571FCC93ACD2" name="CharacterSetCode" stereotype="SUP"/>
+							<notes/>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="EncodingCode" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>
+							<artefact id="3E0A6400_3632_48a0_A1AC_6B195BC04C80" name="EncodingCode" stereotype="SUP"/>
+							<notes/>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="UniformResourceIdentifier" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>
+							<artefact id="11C595B6_DE72_42e9_907E_97F4ADE06415" name="UniformResourceIdentifier" stereotype="SUP"/>
+							<notes/>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="Filename" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>
+							<artefact id="5203A659_E468_47e5_AF3A_994F18D7F88B" name="Filename" stereotype="SUP"/>
+							<notes/>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="Code">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:complexType name="CodeType">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="F1259AB4_7AAD_412f_8C29_60825CD05A11" name="Code" stereotype="QDT"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>A generic qualified data type which is used to define a placeholder where a more qualified code list driven data type could potentially be used, but can not as yet be defined.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="cdt:Code">
+				<xs:attribute name="codeName" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>
+							<artefact id="D16BEB62_1C24_40f0_8AE2_BC8FD8DC6B38" name="codeName" stereotype="SUP"/>
+							<notes>A textual representation of the content value.  Useful for providing an expanded version of a code (i.e. for AU content, you could provide Australia in its CodeName attribute).
+</notes>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="codeListURI" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>
+							<artefact id="652AF8C4_8FF8_4371_9869_C4193066AA29" name="codeListURI" stereotype="SUP"/>
+							<notes>The URI of this content's codelist.
+</notes>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="codeListAgency" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>
+							<artefact id="E5FF3F30_0C8C_4e20_A403_062F75C95046" name="codeListAgency" stereotype="SUP"/>
+							<notes>The name of the agency that is responsible for maintaining this content's codelist.
+</notes>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="codeListName" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>
+							<artefact id="367C529E_4B44_4ffb_BF9B_2AF2D0296DEC" name="codeListName" stereotype="SUP"/>
+							<notes>The name of the code list the content is taken from.
+</notes>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="codeListVersion" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>
+							<artefact id="278DBAE2_DC71_4def_87FA_C2A77563D4E8" name="codeListVersion" stereotype="SUP"/>
+							<notes>The unique version of this content's codelist.
+</notes>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="Date">
+		<xs:restriction base="xs:date"/>
+	</xs:simpleType>
+	<xs:complexType name="DateType">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="590FD531_CB2F_4ff7_B387_D5C06AC755F3" name="Date" stereotype="QDT"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>A primitive date value with formatting attached.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="cdt:Date">
+				<xs:attribute name="Format" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>
+							<artefact id="70D5118F_3891_4a8f_BAEC_B7505FFCF268" name="Format" stereotype="SUP"/>
+							<notes/>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="DateTime">
+		<xs:restriction base="xs:dateTime"/>
+	</xs:simpleType>
+	<xs:complexType name="DateTimeType">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="087C437F_E2A9_42e8_8A50_1C5822C18E50" name="DateTime" stereotype="QDT"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>A primitive datetime value with formatting attached.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="cdt:DateTime">
+				<xs:attribute name="Format" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>
+							<artefact id="3FCCEE37_0980_4891_921D_330BCADB1B7F" name="Format" stereotype="SUP"/>
+							<notes>The format of the datestring using ISO 8601 date format strings.
+</notes>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="Identifier">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:complexType name="IdentifierType">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="05B497C8_A833_4621_8066_A7AABC5D3614" name="Identifier" stereotype="QDT"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>A data type that optionally provides extra information surrounding an identifier value.
+
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="cdt:Identifier">
+				<xs:attribute name="identificationSchemeName" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>
+							<artefact id="01E276AA_F2BB_4097_83C9_FE669B935CEF" name="identificationSchemeName" stereotype="SUP"/>
+							<notes>The name of the identification scheme.
+</notes>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="identificationSchemeURI" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>
+							<artefact id="3A593286_0E8E_4f65_8F6D_2A78637D7906" name="identificationSchemeURI" stereotype="SUP"/>
+							<notes>The URI where this identification scheme is located.
+</notes>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="identificationSchemeVersion" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>
+							<artefact id="33747EF9_BB9F_454d_8BA5_026B1058B3AC" name="identificationSchemeVersion" stereotype="SUP"/>
+							<notes>The version of the identification scheme.
+</notes>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="identificationSchemeAgency" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>
+							<artefact id="BC159E14_9BB9_4b2b_80E0_453B43E4D039" name="identificationSchemeAgency" stereotype="SUP"/>
+							<notes>The name of the agency that maintains the identification scheme.
+</notes>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="Indicator">
+		<xs:restriction base="xs:boolean"/>
+	</xs:simpleType>
+	<xs:complexType name="IndicatorType">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="F18406F8_4226_4f54_B5D4_3C3BECAFDBF5" name="Indicator" stereotype="QDT"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>A primitive date value with formatting attached.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="cdt:Indicator">
+				<xs:attribute name="Format" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>
+							<artefact id="EB197999_A471_486b_8847_38B676DA3C22" name="Format" stereotype="SUP"/>
+							<notes/>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="Measure">
+		<xs:restriction base="xs:decimal"/>
+	</xs:simpleType>
+	<xs:complexType name="MeasureType">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="C2C9873D_8A3B_4aec_8270_52C3629B2463" name="Measure" stereotype="QDT"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>A decimal value with attached measure unit code.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="cdt:Measure">
+				<xs:attribute name="UnitCode" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>
+							<artefact id="FFB7737F_E21E_4321_A496_0B2A1EFC94DB" name="UnitCode" stereotype="SUP"/>
+							<notes/>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="Numeric">
+		<xs:restriction base="xs:decimal"/>
+	</xs:simpleType>
+	<xs:complexType name="NumericType">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="F0FB87DC_CED1_4719_8785_AADBFCE2DBBF" name="Numeric" stereotype="QDT"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>A decimal value with attached formatting.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="cdt:Numeric">
+				<xs:attribute name="Format" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>
+							<artefact id="516BBE7C_9EBE_475a_8CC8_5EA654B95C17" name="Format" stereotype="SUP"/>
+							<notes>The format of the number.
+</notes>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="Text">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:complexType name="TextType">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="47B1ABD8_F9AF_4aa5_904E_5D3B181D6478" name="Text" stereotype="QDT"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>This data type defines a primitive xsd:string type providing extra language and locale information.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="cdt:Text">
+				<xs:attribute name="LanguageIdentifier" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>
+							<artefact id="AFEA919C_1900_4b90_83EF_1F0A6D6D73E9" name="LanguageIdentifier" stereotype="SUP"/>
+							<notes>The identifier of the language used in this content.
+</notes>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="LanguageLocaleIdentifier" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>
+							<artefact id="9E745210_3D7A_417b_B5E0_778E8FE00331" name="LanguageLocaleIdentifier" stereotype="SUP"/>
+							<notes>The identification of the locale of the language.
+</notes>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="Time">
+		<xs:restriction base="xs:time"/>
+	</xs:simpleType>
+	<xs:complexType name="TimeType">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="A514DB2D_BEFA_418d_9639_6786C19A1AB1" name="Time" stereotype="QDT"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>A primitive time value with formatting.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="cdt:Time">
+				<xs:attribute name="Format" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>
+							<artefact id="098515DC_F7C1_495c_A2C8_63FFD47B39B6" name="Format" stereotype="SUP"/>
+							<notes/>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+</xs:schema>

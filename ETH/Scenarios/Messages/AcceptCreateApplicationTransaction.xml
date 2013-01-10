@@ -1,0 +1,45 @@
+<acc:AcceptCreateApplicationTransaction xmlns:acc="http://xml.gov.au/edais/bm/AcceptCreateApplicationTransaction.msg.2.3.0r2" xmlns:da="http://xml.gov.au/edais/core/da.data.2.3.0r2" xmlns:lab="http://xml.gov.au/edais/core/lab.data.2.3.0r2" xmlns:msg="http://xml.gov.au/edais/core/msg.data.2.3.0r2" xmlns:naa="http://xml.gov.au/edais/core/naa.data.2.3.0r2" xmlns:spec="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <Application xmlns="http://xml.gov.au/edais/bm/AcceptCreateApplicationTransaction.msg.2.3.0r2">
+      <ApplicationNumber xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">APP-0000171908</ApplicationNumber>
+      <Status xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">Private Certifier</Status>
+   </Application>
+   <StandardBusinessMessageHeader xmlns="http://xml.gov.au/edais/bm/AcceptCreateApplicationTransaction.msg.2.3.0r2">
+      <BusinessScope xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+         <CorrelationInformation>
+            <RequestingDocumentCreationDateTime>2012-12-14T13:17:11.4033137+11:00</RequestingDocumentCreationDateTime>
+            <RequestingDocumentInstanceID>953ad21f-4292-4988-b80a-d197979f541e</RequestingDocumentInstanceID>
+         </CorrelationInformation>
+         <Type>BusinessCollaboration</Type>
+      </BusinessScope>
+      <DocumentIdentification xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+         <CreationDateTime>2012-12-14T13:17:11.4033137+11:00</CreationDateTime>
+         <InstanceID>953ad21f-4292-4988-b80a-d197979f541e</InstanceID>
+         <Standard>eDAIS</Standard>
+         <Type>AcceptCreateApplicationTransaction</Type>
+         <TypeVersion>2.3.0r2</TypeVersion>
+      </DocumentIdentification>
+      <ReceiverPartner xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+         <Authority>EHC</Authority>
+         <Contact>
+            <Contact>EHC HelpDesk</Contact>
+            <ContactTypeIdentifier>EHC Support</ContactTypeIdentifier>
+            <EmailAddress>EHC@planning.nsw.gov.au</EmailAddress>
+            <TelephoneNumber>9228 6100</TelephoneNumber>
+         </Contact>
+         <ID>0001</ID>
+         <ProcessRole>Responder</ProcessRole>
+      </ReceiverPartner>
+      <SenderPartner xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+         <Authority>ApplicantSystem</Authority>
+         <Contact>
+            <Contact>Buildaform Dev</Contact>
+            <ContactTypeIdentifier>Buildaform Support</ContactTypeIdentifier>
+            <EmailAddress>buildaform-dev@envoyat.com</EmailAddress>
+            <TelephoneNumber>8097 7328</TelephoneNumber>
+         </Contact>
+         <ID>0002</ID>
+         <ProcessRole>Initiator</ProcessRole>
+      </SenderPartner>
+      <Version xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">eDAIS2.3.0r2</Version>
+   </StandardBusinessMessageHeader>
+</acc:AcceptCreateApplicationTransaction>

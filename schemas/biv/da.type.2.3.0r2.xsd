@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:dadt="http://xml.gov.au/edais/dt/qdt/da.type.2.3.0r2" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xml.gov.au/edais/dt/qdt/da.type.2.3.0r2" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.3.0r2">
+	<xs:annotation>
+		<xs:documentation>
+			<artefact id="D9F7381D_6B57_44b5_8448_95812C03B943" name="Development Assessment" stereotype="QDTLibrary"/>
+			<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+			<notes/>
+		</xs:documentation>
+	</xs:annotation>
+	<xs:simpleType name="ApplicationType_Code">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Amendment"/>
+			<xs:enumeration value="Historical"/>
+			<xs:enumeration value="Previous"/>
+			<xs:enumeration value="Reconsideration"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="ApplicationType_CodeType">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="07F7C799_878C_4c38_8562_7E2479A82F59" name="ApplicationType_Code" stereotype="QDT"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>A Code QDT qualified by a list of valid ApplicationType codes.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="dadt:ApplicationType_Code">
+				<xs:attribute name="codeName" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>
+							<artefact id="D16BEB62_1C24_40f0_8AE2_BC8FD8DC6B38" name="codeName" stereotype="SUP"/>
+							<notes>A textual representation of the content value.  Useful for providing an expanded version of a code (i.e. for AU content, you could provide Australia in its CodeName attribute).
+</notes>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="codeListURI" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>
+							<artefact id="652AF8C4_8FF8_4371_9869_C4193066AA29" name="codeListURI" stereotype="SUP"/>
+							<notes>The URI of this content's codelist.
+</notes>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="codeListAgency" type="xs:string" use="optional" default="NCO">
+					<xs:annotation>
+						<xs:documentation>
+							<artefact id="55E1B3FD_419B_488e_BF58_7E6A46057C27" name="codeListAgency" stereotype="SUP"/>
+							<notes>The name of the agency that is responsible for maintaining this content's codelist.
+</notes>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="codeListName" type="xs:string" use="optional" default="ApplicationType">
+					<xs:annotation>
+						<xs:documentation>
+							<artefact id="0D4188D4_3C7D_4a37_A268_8DD0D8AF2115" name="codeListName" stereotype="SUP"/>
+							<notes>The name of the code list the content is taken from.
+</notes>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="codeListVersion" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>
+							<artefact id="278DBAE2_DC71_4def_87FA_C2A77563D4E8" name="codeListVersion" stereotype="SUP"/>
+							<notes>The unique version of this content's codelist.
+</notes>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="ConditionClass_Code">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="NSC"/>
+			<xs:enumeration value="SCT"/>
+			<xs:enumeration value="SCU"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="ConditionClass_CodeType">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="252F064E_CBF2_4fd1_B53E_FEC3EBEDD529" name="ConditionClass_Code" stereotype="QDT"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>A Code QDT qualified by a list of valid ConditionClass codes.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="dadt:ConditionClass_Code">
+				<xs:attribute name="codeName" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>
+							<artefact id="D16BEB62_1C24_40f0_8AE2_BC8FD8DC6B38" name="codeName" stereotype="SUP"/>
+							<notes>A textual representation of the content value.  Useful for providing an expanded version of a code (i.e. for AU content, you could provide Australia in its CodeName attribute).
+</notes>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="codeListURI" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>
+							<artefact id="652AF8C4_8FF8_4371_9869_C4193066AA29" name="codeListURI" stereotype="SUP"/>
+							<notes>The URI of this content's codelist.
+</notes>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="codeListAgency" type="xs:string" use="optional" default="NCO">
+					<xs:annotation>
+						<xs:documentation>
+							<artefact id="E274BB24_F291_4db5_938A_C0E6728FA985" name="codeListAgency" stereotype="SUP"/>
+							<notes>The name of the agency that is responsible for maintaining this content's codelist.
+</notes>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="codeListName" type="xs:string" use="optional" default="ConditionClassType">
+					<xs:annotation>
+						<xs:documentation>
+							<artefact id="81D27CDA_AC72_40f8_9A37_046D0BC72AF1" name="codeListName" stereotype="SUP"/>
+							<notes/>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="codeListVersion" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>
+							<artefact id="278DBAE2_DC71_4def_87FA_C2A77563D4E8" name="codeListVersion" stereotype="SUP"/>
+							<notes>The unique version of this content's codelist.
+</notes>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="PartyRole_Code">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Agent"/>
+			<xs:enumeration value="Applicant"/>
+			<xs:enumeration value="AssessmentAuthority"/>
+			<xs:enumeration value="ConsentAuthority"/>
+			<xs:enumeration value="Other"/>
+			<xs:enumeration value="Owner"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="PartyRole_CodeType">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="77CD0269_311B_4896_9FBA_682F34940837" name="PartyRole_Code" stereotype="QDT"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>A Code QDT qualified by a list of valid PartyRole codes.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="dadt:PartyRole_Code">
+				<xs:attribute name="codeName" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>
+							<artefact id="D16BEB62_1C24_40f0_8AE2_BC8FD8DC6B38" name="codeName" stereotype="SUP"/>
+							<notes>A textual representation of the content value.  Useful for providing an expanded version of a code (i.e. for AU content, you could provide Australia in its CodeName attribute).
+</notes>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="codeListURI" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>
+							<artefact id="652AF8C4_8FF8_4371_9869_C4193066AA29" name="codeListURI" stereotype="SUP"/>
+							<notes>The URI of this content's codelist.
+</notes>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="codeListAgency" type="xs:string" use="optional" default="NCO">
+					<xs:annotation>
+						<xs:documentation>
+							<artefact id="B11F2E01_13F1_48be_8756_821A94A4FF72" name="codeListAgency" stereotype="SUP"/>
+							<notes>The name of the agency that is responsible for maintaining this content's codelist.
+</notes>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="codeListName" type="xs:string" use="optional" default="PartyRole">
+					<xs:annotation>
+						<xs:documentation>
+							<artefact id="A28CE2F6_4032_48ac_A229_A9A67AB7BE6F" name="codeListName" stereotype="SUP"/>
+							<notes>The name of the code list the content is taken from.
+</notes>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="codeListVersion" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>
+							<artefact id="278DBAE2_DC71_4def_87FA_C2A77563D4E8" name="codeListVersion" stereotype="SUP"/>
+							<notes>The unique version of this content's codelist.
+</notes>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="PaymentMethod_Code">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="BPAY"/>
+			<xs:enumeration value="CASH"/>
+			<xs:enumeration value="CHEQUE"/>
+			<xs:enumeration value="CREDIT"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="PaymentMethod_CodeType">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="C8857067_4480_47be_BBDB_25C49942F92B" name="PaymentMethod_Code" stereotype="QDT"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>A Code QDT qualified by a list of valid PaymentMethod codes.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="dadt:PaymentMethod_Code">
+				<xs:attribute name="codeName" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>
+							<artefact id="D16BEB62_1C24_40f0_8AE2_BC8FD8DC6B38" name="codeName" stereotype="SUP"/>
+							<notes>A textual representation of the content value.  Useful for providing an expanded version of a code (i.e. for AU content, you could provide Australia in its CodeName attribute).
+</notes>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="codeListURI" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>
+							<artefact id="652AF8C4_8FF8_4371_9869_C4193066AA29" name="codeListURI" stereotype="SUP"/>
+							<notes>The URI of this content's codelist.
+</notes>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="codeListAgency" type="xs:string" use="optional" default="NCO">
+					<xs:annotation>
+						<xs:documentation>
+							<artefact id="B7F178EB_7401_4603_A9D9_96A4E4834DB4" name="codeListAgency" stereotype="SUP"/>
+							<notes>The name of the agency that is responsible for maintaining this content's codelist.
+</notes>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="codeListName" type="xs:string" use="optional" default="PaymentMethod">
+					<xs:annotation>
+						<xs:documentation>
+							<artefact id="F8AE9C3B_2D43_48d5_A16D_FB4E33B0A30C" name="codeListName" stereotype="SUP"/>
+							<notes>The name of the code list the content is taken from.
+</notes>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="codeListVersion" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>
+							<artefact id="278DBAE2_DC71_4def_87FA_C2A77563D4E8" name="codeListVersion" stereotype="SUP"/>
+							<notes>The unique version of this content's codelist.
+</notes>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="ReferralClass_Code">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Advice"/>
+			<xs:enumeration value="Direction"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="ReferralClass_CodeType">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="A55C3398_9DF8_4eab_82C9_FE195BD68C58" name="ReferralClass_Code" stereotype="QDT"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>A Code QDT qualified by a list of valid ReferralClass codes.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="dadt:ReferralClass_Code">
+				<xs:attribute name="codeName" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>
+							<artefact id="D16BEB62_1C24_40f0_8AE2_BC8FD8DC6B38" name="codeName" stereotype="SUP"/>
+							<notes>A textual representation of the content value.  Useful for providing an expanded version of a code (i.e. for AU content, you could provide Australia in its CodeName attribute).
+</notes>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="codeListURI" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>
+							<artefact id="652AF8C4_8FF8_4371_9869_C4193066AA29" name="codeListURI" stereotype="SUP"/>
+							<notes>The URI of this content's codelist.
+</notes>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="codeListAgency" type="xs:string" use="optional" default="NCO">
+					<xs:annotation>
+						<xs:documentation>
+							<artefact id="96FFEC2E_8F3F_475d_B72D_104D58F0E3CC" name="codeListAgency" stereotype="SUP"/>
+							<notes>The name of the agency that is responsible for maintaining this content's codelist.
+</notes>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="codeListName" type="xs:string" use="optional" default="ReferralType">
+					<xs:annotation>
+						<xs:documentation>
+							<artefact id="647E5298_07C7_4272_A1C0_0AE1D0DD867C" name="codeListName" stereotype="SUP"/>
+							<notes>The name of the code list the content is taken from.
+</notes>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="codeListVersion" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>
+							<artefact id="278DBAE2_DC71_4def_87FA_C2A77563D4E8" name="codeListVersion" stereotype="SUP"/>
+							<notes>The unique version of this content's codelist.
+</notes>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+</xs:schema>

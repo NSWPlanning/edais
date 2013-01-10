@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:cdt="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2" xmlns:msgdt="http://xml.gov.au/edais/dt/qdt/msg.type.2.3.0r2" xmlns:sbmh="http://xml.gov.au/edais/core/msg.data.2.3.0r2" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xml.gov.au/edais/core/msg.data.2.3.0r2" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.3.0r2">
+	<xs:import namespace="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2" schemaLocation="cdt.type.2.3.0r2.xsd"/>
+	<xs:import namespace="http://xml.gov.au/edais/dt/qdt/msg.type.2.3.0r2" schemaLocation="msg.type.2.3.0r2.xsd"/>
+	<xs:annotation>
+		<xs:documentation>
+			<artefact id="AA778F85_B6F1_4203_9D12_1F6B928AD161" name="Message Components" stereotype="CCLibrary"/>
+			<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+			<notes/>
+		</xs:documentation>
+	</xs:annotation>
+	<xs:element name="BusinessScope" type="sbmh:BusinessScope"/>
+	<xs:complexType name="BusinessScope">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="7EFC071D_170C_4ce1_A8E7_5EDC8192FF0B" name="BusinessScope" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>The definition/description of the business environment, circumstances, or scenarios, in which trading partners conduct business.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CorrelationInformation" type="sbmh:CorrelationInformation" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ID" type="cdt:IdentifierType" minOccurs="0"/>
+			<xs:element name="InstanceID" type="cdt:IdentifierType" minOccurs="0"/>
+			<xs:element name="Type" type="msgdt:BusinessScope_CodeType"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="Contact" type="sbmh:Contact"/>
+	<xs:complexType name="Contact">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="342697EF_3730_47dc_B1AF_C1590022DE07" name="Contact" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>Details about the (business) contact for this document (message).
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Contact" type="cdt:TextType"/>
+			<xs:element name="ContactTypeIdentifier" type="cdt:CodeType"/>
+			<xs:element name="EmailAddress" type="xs:anyURI" minOccurs="0"/>
+			<xs:element name="TelephoneNumber" type="cdt:TextType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="CorrelationInformation" type="sbmh:CorrelationInformation"/>
+	<xs:complexType name="CorrelationInformation">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="A3031C16_87A4_4e33_8140_9074AFEDB737" name="CorrelationInformation" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>A "container" for business information that allows the current message to be related to other messages in a sequence.  A block of information used to correlate a requesting SBD (message/system) to a responding SBD (message/system) and to the contract in an executing choreography.  A requesting document in the choreography could have: no response, a notification, or a response document. Therefore, the requesting and responding part of the choreography is not always one unit of activity. \Using the correlation block, parties explicitly identify the document being responded to, rather than having only the content of the document to identify the requesting document.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ExpectedResponseDateTime" type="cdt:DateTimeType" minOccurs="0"/>
+			<xs:element name="RequestingDocumentCreationDateTime" type="cdt:DateTimeType"/>
+			<xs:element name="RequestingDocumentInstanceID" type="cdt:IdentifierType"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="DocumentIdentification" type="sbmh:DocumentIdentification"/>
+	<xs:complexType name="DocumentIdentification">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="18BD10B4_C6E1_4266_90E1_D45CF3E58857" name="DocumentIdentification" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>Characteristics containing identification about the document (which constitutes this message).
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CreationDateTime" type="cdt:DateTimeType"/>
+			<xs:element name="InstanceID" type="cdt:IdentifierType"/>
+			<xs:element name="Standard" type="msgdt:Standard_CodeType"/>
+			<xs:element name="Type" type="cdt:CodeType"/>
+			<xs:element name="TypeVersion" type="cdt:TextType"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="Partner" type="sbmh:Partner"/>
+	<xs:complexType name="Partner">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="8349087A_3678_42a0_84DB_3A0CB8C7F094" name="Partner" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>Logical party which sends and/or receives messages.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Authority" type="cdt:TextType"/>
+			<xs:element name="Contact" type="sbmh:Contact" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ID" type="cdt:IdentifierType"/>
+			<xs:element name="ProcessRole" type="cdt:CodeType"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="ReceiptAcknowledgement" type="sbmh:ReceiptAcknowledgement"/>
+	<xs:complexType name="ReceiptAcknowledgement">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="088E6669_BA0D_4d09_AF4B_57C222657A68" name="ReceiptAcknowledgement" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>An acknowledgement of receipt of a message.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Identification" type="cdt:IdentifierType" minOccurs="0"/>
+			<xs:element name="Timestamp" type="cdt:DateTimeType"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="ReceiptException" type="sbmh:ReceiptException"/>
+	<xs:complexType name="ReceiptException">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="D5788632_A88F_4d35_85F6_09BD1F584DEB" name="ReceiptException" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>Business Signal provided in place of an acknowledgement if an exception is to be returned instead.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Identification" type="cdt:IdentifierType" minOccurs="0"/>
+			<xs:element name="Message" type="cdt:TextType"/>
+			<xs:element name="Reason" type="cdt:TextType"/>
+			<xs:element name="Type" type="cdt:CodeType"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="SoftwareInformation" type="sbmh:SoftwareInformation"/>
+	<xs:complexType name="SoftwareInformation">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="FB1A473F_2485_49f0_A093_40322F04E63F" name="SoftwareInformation" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>Details about the software product used in processing this message.  May also be used as an indicator of the software system used for development application processing (overall).
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ProductID" type="cdt:IdentifierType"/>
+			<xs:element name="ProductName" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="ProductVersion" type="cdt:TextType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="StandardBusinessMessageHeader" type="sbmh:StandardBusinessMessageHeader"/>
+	<xs:complexType name="StandardBusinessMessageHeader">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="5CA5F524_151E_477d_9798_F165836E0E14" name="StandardBusinessMessageHeader" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>The Standard Business Message Header enables integration of documents between internal applications, enterprise applications, and business-to-business infrastructure by providing a consistent interface between applications.  The standard header provides the semantic information needed for the routing, processing and business domain context of documents, regardless of the data format of the document.
+
+Further details can be found in the Standard Business Document Header (SBDH) specification version 1.3.  This document is available from the eDAIS collaboration site via Govdex (https://www.govdex.gov.au/confluence/display/eDASpec/Home).
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="BusinessScope" type="sbmh:BusinessScope" maxOccurs="unbounded"/>
+			<xs:element name="DocumentIdentification" type="sbmh:DocumentIdentification"/>
+			<xs:element name="ReceiverPartner" type="sbmh:Partner"/>
+			<xs:element name="SenderPartner" type="sbmh:Partner"/>
+			<xs:element name="SoftwareInformation" type="sbmh:SoftwareInformation" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Version" type="cdt:IdentifierType"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+</xs:schema>

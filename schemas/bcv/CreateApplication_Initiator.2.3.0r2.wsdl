@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:accept="http://xml.gov.au/edais/bm/AcceptCreateApplicationTransaction.msg.2.3.0r2" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:propose="http://xml.gov.au/edais/bm/ProposeCreateApplicationTransaction.msg.2.3.0r2"
+xmlns:reject="http://xml.gov.au/edais/bm/RejectCreateApplicationTransaction.msg.2.3.0r2" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy" xmlns:tns="http://example.xml.gov.au/CreateApplication_Initiator.2.3.0r2" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+xmlns:ack="http://xml.gov.au/edais/bs/ReceiptAcknowledgementSignal.msg.2.3.0r2" xmlns:exc="http://xml.gov.au/edais/bs/ReceiptExceptionSignal.msg.2.3.0r2" targetNamespace="http://example.xml.gov.au/CreateApplication_Initiator.2.3.0r2">
+	<wsdl:types>
+		<xs:schema xmlns:msg="http://xml.gov.au/edais/bs/ReceiptExceptionSignal.msg.2.3.0r2" targetNamespace="http://example.xml.gov.au/CreateApplication_Initiator.2.3.0r2" elementFormDefault="qualified">
+			<xs:import schemaLocation="../biv/AcceptCreateApplicationTransaction.msg.2.3.0r2.xsd" namespace="http://xml.gov.au/edais/bm/AcceptCreateApplicationTransaction.msg.2.3.0r2"/>
+			<xs:import schemaLocation="../biv/ReceiptAcknowledgementSignal.msg.2.3.0r2.xsd" namespace="http://xml.gov.au/edais/bs/ReceiptAcknowledgementSignal.msg.2.3.0r2"/>
+			<xs:import schemaLocation="../biv/ReceiptExceptionSignal.msg.2.3.0r2.xsd" namespace="http://xml.gov.au/edais/bs/ReceiptExceptionSignal.msg.2.3.0r2" />
+			<xs:import schemaLocation="../biv/da.data.2.3.0r2.xsd" namespace="http://xml.gov.au/edais/core/da.data.2.3.0r2"/>
+			<xs:import schemaLocation="../biv/naa.data.2.3.0r2.xsd" namespace="http://xml.gov.au/edais/core/naa.data.2.3.0r2"/>
+			<xs:import schemaLocation="../biv/lab.data.2.3.0r2.xsd" namespace="http://xml.gov.au/edais/core/lab.data.2.3.0r2"/>
+			<xs:import schemaLocation="../biv/specialisation.data.2.3.0r2.xsd" namespace="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2"/>
+			<xs:import schemaLocation="../biv/da.data.1.0.xsd" namespace="http://edais.daf.gov.au/nsw/da.data.1.0"/>
+			<xs:import schemaLocation="../biv/msg.data.2.3.0r2.xsd" namespace="http://xml.gov.au/edais/core/msg.data.2.3.0r2"/>
+			<xs:import schemaLocation="../biv/msg.type.2.3.0r2.xsd" namespace="http://xml.gov.au/edais/dt/qdt/msg.type.2.3.0r2"/>
+			<xs:import schemaLocation="../biv/ExternalServices.EHC.xsd" namespace="http://schemas.datacontract.org/2004/07/ExternalServices.EHC"/>
+			<xs:import schemaLocation="../biv/RejectCreateApplicationTransaction.msg.2.3.0r2.xsd" namespace="http://xml.gov.au/edais/bm/RejectCreateApplicationTransaction.msg.2.3.0r2"/>
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="PositiveResponseMsg">
+		<wsdl:part name="AcceptCreateApplicationTransaction" element="accept:AcceptCreateApplicationTransaction"/>
+	</wsdl:message>
+	<wsdl:message name="NegativeResponseMsg">
+		<wsdl:part name="RejectCreateApplicationTransaction" element="reject:RejectCreateApplicationTransaction"/>
+	</wsdl:message>
+	<wsdl:message name="ReceiptAcknowledgementSignal">
+		<wsdl:part name="ReceiptAcknowledgement" element="ack:ReceiptAcknowledgementSignal"/>
+	</wsdl:message>
+	<wsdl:message name="ReceiptExceptionSignal">
+		<wsdl:part name="ReceiptException" element="exc:ReceiptExceptionSignal"/>
+	</wsdl:message>
+	<wsdl:portType name="Initiator_CreateApplicationTransaction.2.3.0r2">
+		<wsdl:operation name="Accept">
+			<wsdl:input message="tns:PositiveResponseMsg"/>
+			<wsdl:output message="tns:ReceiptAcknowledgementSignal"/>
+			<wsdl:fault name="ReceiptException" message="tns:ReceiptExceptionSignal"/>
+		</wsdl:operation>
+		<wsdl:operation name="Reject">
+			<wsdl:input message="tns:NegativeResponseMsg"/>
+			<wsdl:output message="tns:ReceiptAcknowledgementSignal"/>
+			<wsdl:fault name="ReceiptException" message="tns:ReceiptExceptionSignal"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="Initiator_CreateApplicationTransaction_Binding.2.3.0r2" type="tns:Initiator_CreateApplicationTransaction.2.3.0r2">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="Accept">
+			<soap:operation soapAction="http://example.xml.gov.au/CreateApplication_Initiator.2.3.0r2/Accept" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="ReceiptException">
+				<soap:fault name="ReceiptException" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="Reject">
+			<soap:operation soapAction="http://example.xml.gov.au/CreateApplication_Initiator.2.3.0r2/Reject" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="ReceiptException">
+				<soap:fault name="ReceiptException" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="Initiator_CreateApplicationTransaction_Service.2.3.0r2">
+		<wsdl:port name="Initiator_CreateApplicationTransaction_Port.2.3.0r2" binding="tns:Initiator_CreateApplicationTransaction_Binding.2.3.0r2">
+			<soap:address location="http://example.xml.gov.au/CreateApplication_Initiator.2.3.0r2"/>
+		</wsdl:port>
+	</wsdl:service>
+	<!--wsdl:portType name="Responder_CreateApplicationTransaction.2.3.0r2">
+		<wsdl:operation name="Propose">
+			<wsdl:input message="tns:RequestMsg"/>
+			<wsdl:output message="tns:ReceiptAcknowledgementSignal"/>
+			<wsdl:fault name="ReceiptException" message="tns:ReceiptExceptionSignal"/>
+		</wsdl:operation>
+	</wsdl:portType-->
+	<!--wsdl:binding name="Responder_CreateApplicationTransaction_Binding.2.3.0r2" type="tns:Responder_CreateApplicationTransaction.2.3.0r2">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="Propose">
+			<soap:operation soapAction="http://example.xml.gov.au/CreateApplication_Initiator.2.3.0r2/Propose" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="ReceiptException">
+				<soap:fault name="ReceiptException" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding-->
+	<!--wsdl:service name="Responder_CreateApplicationTransaction_Service.2.3.0r2">
+		<wsdl:port name="Responder_CreateApplicationTransaction_Port.2.3.0r2" binding="tns:Responder_CreateApplicationTransaction_Binding.2.3.0r2">
+			<soap:address location="http://example.xml.gov.au/CreateApplication_Initiator.2.3.0r2"/>
+		</wsdl:port>
+	</wsdl:service-->
+	<wsp:Policy wsu:Id="PortBindingPolicy">
+		<wsp:ExactlyOne>
+			<wsp:All>
+				<wsaws:UsingAddressing xmlns:wsaws="http://www.w3.org/2006/05/addressing/wsdl"/>
+				<sp:TransportBinding>
+					<wsp:Policy>
+						<sp:TransportToken>
+							<wsp:Policy>
+								<sp:HttpsToken RequireClientCertificate="false"/>
+							</wsp:Policy>
+						</sp:TransportToken>
+						<sp:Layout>
+							<wsp:Policy>
+								<sp:Lax/>
+							</wsp:Policy>
+						</sp:Layout>
+						<sp:IncludeTimestamp/>
+						<sp:AlgorithmSuite>
+							<wsp:Policy>
+								<sp:Basic128/>
+							</wsp:Policy>
+						</sp:AlgorithmSuite>
+					</wsp:Policy>
+				</sp:TransportBinding>
+				<sp:Wss10>
+					<wsp:Policy>
+						<sp:MustSupportRefKeyIdentifier/>
+					</wsp:Policy>
+				</sp:Wss10>
+				<sp:SignedSupportingTokens>
+					<wsp:Policy>
+						<sp:UsernameToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
+							<wsp:Policy>
+								<sp:WssUsernameToken10/>
+								<sp:HashPassword/>
+							</wsp:Policy>
+						</sp:UsernameToken>
+					</wsp:Policy>
+				</sp:SignedSupportingTokens>
+			</wsp:All>
+		</wsp:ExactlyOne>
+	</wsp:Policy>
+</wsdl:definitions>

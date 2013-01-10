@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+ <xs:schema elementFormDefault="qualified" targetNamespace="http://edais.daf.gov.au/nsw/da.data.1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://edais.daf.gov.au/nsw/da.data.1.0">
+	<xs:import schemaLocation="cdt.type.2.3.0r2.xsd" namespace="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2" />
+	<xs:element name="Application" type="tns:Application" />
+	 <xs:complexType name="Application">
+		 <xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="1" name="Type" type="xs:string" />
+			<xs:element minOccurs="1" maxOccurs="1" name="EstimatedValue" type="xs:decimal" />
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="DevelopmentCode" type="xs:string" />
+			<xs:element minOccurs="0" maxOccurs="1" name="BCAClass" type="xs:string" />
+			<xs:element minOccurs="0" maxOccurs="1" name="RefNumber" type="xs:string" />
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" />
+	</xs:complexType>
+	<xs:element name="SubjectLand" type="tns:SubjectLand" />
+	 <xs:complexType name="SubjectLand">
+		 <xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="1" name="ABS_Statistics" type="tns:ABS_StatisticsType" />
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" />
+	</xs:complexType>
+	 <xs:complexType name="ABS_StatisticsType">
+		 <xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="1" name="NumberOfFloors" type="xs:decimal" />
+			<xs:element minOccurs="0" maxOccurs="1" name="GFA" type="xs:decimal" />
+			<xs:element minOccurs="0" maxOccurs="1" name="GSA" type="xs:decimal" />
+			<xs:element minOccurs="0" maxOccurs="1" name="NumberOfNewDwellings" type="xs:decimal" />
+			<xs:element minOccurs="0" maxOccurs="1" name="NumberOfExistingDwellings" type="xs:decimal" />
+			<xs:element minOccurs="0" maxOccurs="1" name="NumberDwellingsDemolished" type="xs:decimal" />
+			<xs:element minOccurs="0" maxOccurs="1" name="NewDwellingAttached" type="xs:boolean" />
+			<xs:element minOccurs="0" maxOccurs="1" name="NewBuildingAttached" type="xs:boolean" />
+			<xs:element minOccurs="0" maxOccurs="1" name="DualOccupancy" type="xs:boolean" />
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="Floor" type="q1:CodeType" xmlns:q1="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2" />
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="Frame" type="q2:CodeType" xmlns:q2="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2" />
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="Roof" type="q3:CodeType" xmlns:q3="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2" />
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="Walls" type="q4:CodeType" xmlns:q4="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2" />
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

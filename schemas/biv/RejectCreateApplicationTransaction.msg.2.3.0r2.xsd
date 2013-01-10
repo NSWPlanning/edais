@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:da="http://xml.gov.au/edais/core/da.data.2.3.0r2" xmlns:msg="http://xml.gov.au/edais/bm/RejectCreateApplicationTransaction.msg.2.3.0r2" xmlns:sbmh="http://xml.gov.au/edais/core/msg.data.2.3.0r2" xmlns:spec="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xml.gov.au/edais/bm/RejectCreateApplicationTransaction.msg.2.3.0r2" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.3.0r2">
+	<xs:import namespace="http://xml.gov.au/edais/core/da.data.2.3.0r2" schemaLocation="da.data.2.3.0r2.xsd"/>
+	<xs:import namespace="http://xml.gov.au/edais/core/msg.data.2.3.0r2" schemaLocation="msg.data.2.3.0r2.xsd"/>
+	<xs:import namespace="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2" schemaLocation="specialisation.data.2.3.0r2.xsd"/>
+	<xs:annotation>
+		<xs:documentation>
+			<artefact id="A31CC6A2_5F38_44e1_A210_A6CE9414C78E" name="RejectCreateApplicationTransaction" stereotype="InfEnvelope"/>
+			<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+			<notes>The Responder sends this business message to the Initiator indicating that their proposal to create a new Application has been rejected.
+</notes>
+		</xs:documentation>
+	</xs:annotation>
+	<xs:element name="RejectCreateApplicationTransaction" type="msg:RejectCreateApplicationTransactionType"/>
+	<xs:complexType name="RejectCreateApplicationTransactionType">
+		<xs:sequence>
+			<xs:element name="Application" type="da:Application"/>
+			<xs:element name="Specialisation" type="spec:Specialisation" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="StandardBusinessMessageHeader" type="sbmh:StandardBusinessMessageHeader"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

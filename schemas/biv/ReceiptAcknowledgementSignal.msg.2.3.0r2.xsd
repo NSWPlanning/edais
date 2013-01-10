@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:msg="http://xml.gov.au/edais/bs/ReceiptAcknowledgementSignal.msg.2.3.0r2" xmlns:sbmh="http://xml.gov.au/edais/core/msg.data.2.3.0r2" xmlns:spec="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xml.gov.au/edais/bs/ReceiptAcknowledgementSignal.msg.2.3.0r2" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.3.0r2">
+	<xs:import namespace="http://xml.gov.au/edais/core/msg.data.2.3.0r2" schemaLocation="msg.data.2.3.0r2.xsd"/>
+	<xs:import namespace="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2" schemaLocation="specialisation.data.2.3.0r2.xsd"/>
+	<xs:annotation>
+		<xs:documentation>
+			<artefact id="9B622A68_B3E9_46b5_B1CA_0569D65DD9F6" name="ReceiptAcknowledgementSignal" stereotype="InfEnvelope"/>
+			<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+			<notes>The Initiator or Responder sends this business signal when a business message they have received passes validation.  This signal is used across all transactions requiring validation (e.g. where the QoS attribute isIntelligibleCheckRequired = true for the Iniating and/or Responding partner respectively).
+</notes>
+		</xs:documentation>
+	</xs:annotation>
+	<xs:element name="ReceiptAcknowledgementSignal" type="msg:ReceiptAcknowledgementSignalType"/>
+	<xs:complexType name="ReceiptAcknowledgementSignalType">
+		<xs:sequence>
+			<xs:element name="ReceiptAcknowledgement" type="sbmh:ReceiptAcknowledgement"/>
+			<xs:element name="Specialisation" type="spec:Specialisation" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="StandardBusinessMessageHeader" type="sbmh:StandardBusinessMessageHeader"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

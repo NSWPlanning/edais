@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:cdt="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2" xmlns:lab="http://xml.gov.au/edais/core/lab.data.2.3.0r2" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xml.gov.au/edais/core/lab.data.2.3.0r2" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.3.0r2">
+	<xs:import namespace="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2" schemaLocation="cdt.type.2.3.0r2.xsd"/>
+	<xs:annotation>
+		<xs:documentation>
+			<artefact id="1C1BDB25_5A34_4f43_B734_7C938F34ED69" name="Land and Building" stereotype="CCLibrary"/>
+			<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+			<notes/>
+		</xs:documentation>
+	</xs:annotation>
+	<xs:element name="AdministrativeArea" type="lab:AdministrativeArea"/>
+	<xs:complexType name="AdministrativeArea">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="4317A19F_37F6_4bfd_9363_1BEFC3C1F88A" name="AdministrativeArea" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>Defines the administrative area(s) associated with a survey plan, representing such concepts as Locality, Parish, County, Local Government, Local Authority, etc in general terms, and can represent other more specific area concepts such as Beach protection zones, etc.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="AdminAreaCode" type="cdt:CodeType" minOccurs="0"/>
+			<xs:element name="AdminAreaName" type="cdt:TextType"/>
+			<xs:element name="AdminAreaType" type="cdt:CodeType"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="Annotation" type="lab:Annotation"/>
+	<xs:complexType name="Annotation">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="9E88199A_ABEF_4337_8759_1F52D5141B03" name="Annotation" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>A descriptive string (text) used to describe an action on the survey (e.g. "Road to be opened", "Area to be excised").
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Desc" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="Name" type="cdt:TextType"/>
+			<xs:element name="Type" type="cdt:CodeType"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="CoordinateSystem" type="lab:CoordinateSystem"/>
+	<xs:complexType name="CoordinateSystem">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="94364AED_115E_431e_A293_00BB969F42DC" name="CoordinateSystem" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>Identifies the coordinate system used to define the survey.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Description" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="HorizontalDatumName" type="cdt:CodeType"/>
+			<xs:element name="VerticalDatumName" type="cdt:CodeType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="Document" type="lab:Document"/>
+	<xs:complexType name="Document">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="819608AB_CF66_4b20_BF7C_2E1FC311BECB" name="Document" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>A document used in relation to defining a survey plan.  In the first instance, generally simply describes the survey plan itself (hence the Document No. equates to a Plan No.), and thus has a one-to-one relationship with Survey Document, but has been identified to allow additional documents (or document types) to be described in relation to (survey) plans.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="DocumentNo" type="cdt:IdentifierType"/>
+			<xs:element name="DocumentStatus" type="cdt:CodeType" minOccurs="0"/>
+			<xs:element name="Jurisdiction" type="cdt:CodeType"/>
+			<xs:element name="SubmissionDate" type="cdt:DateTimeType" minOccurs="0"/>
+			<xs:element name="SurveyDocument" type="lab:SurveyDocument"/>
+			<xs:element name="VersionDate" type="cdt:DateTimeType" minOccurs="0"/>
+			<xs:element name="VersionNumber" type="cdt:NumericType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="Encroachment" type="lab:Encroachment"/>
+	<xs:complexType name="Encroachment">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="9751DECB_8CBA_4039_9699_FEBBB57A9210" name="Encroachment" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>Identifies the improvement which encroaches on its neighbour.  This element contains a 3dpoint list which describes the extent of the encroachment.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Desc" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="Name" type="cdt:TextType"/>
+			<xs:element name="PointList" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="Type" type="cdt:CodeType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="ExclusionAreas" type="lab:ExclusionAreas"/>
+	<xs:complexType name="ExclusionAreas">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="9ACFBDA0_E519_4997_A4D3_C08733916793" name="ExclusionAreas" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>Some parcels have exclusions from its area, either specified (such as an internal road, or an included lot). or as an area excluded from the title but is spatially un-described (i.e. Reserved Areas).  Most jurisdictions have a defined list of exclusions.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Area" type="cdt:NumericType"/>
+			<xs:element name="ExclusionType" type="cdt:CodeType"/>
+			<xs:element name="Pclref" type="cdt:TextType"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="Line" type="lab:Line"/>
+	<xs:complexType name="Line">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="56945329_03C9_4753_ACC5_69B9A8DD4DDB" name="Line" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>Defines the properties of a Line in a coordinate Geometry collection.  The Start and End points define the line.  This is related to the Line Element in LandXML.  This model (as does LandXML) make a distinction between a line (which joins two points) and a observation.  In this model, a line could have several observations, e.g. mean terrain height or spheroidal distance.  Further, this model allows for an observation between points which are not part of a survey polygon, e.g. a connection to a reference mark or to a control station.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Desc" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="Dir" type="cdt:NumericType" minOccurs="0"/>
+			<xs:element name="Length" type="cdt:MeasureType" minOccurs="0"/>
+			<xs:element name="Name" type="cdt:TextType"/>
+			<xs:element name="Note" type="cdt:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="OID" type="cdt:IdentifierType"/>
+			<xs:element name="PointList" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="Radius" type="cdt:NumericType" minOccurs="0"/>
+			<xs:element name="Rot" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="Source" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="State" type="cdt:CodeType"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="Parcel" type="lab:Parcel"/>
+	<xs:complexType name="Parcel">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="ED6743A6_39E4_416a_94F7_2E1FBA3E44F7" name="Parcel" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>A parcel is the unit over which a single interest can be created.  A parcel may have a specific parcel type (for example, in Queensland the parcel over which an indefeasible title can be issued is called a lot).  A parcel can be made up of a number of sub parcels; each sub parcel must be a closed figure (but the superordinate parcel may consist of non-contiguous subordinate parcels).  The total area of a parcel is the sum of the areas of the sub parcels. For example a parcel (lot) on a Building Format Plan (Stratum Plan) may have several parts on different floors in the complex, i.e. a car park, a balcony and the main unit. The parcel class holds the non-geometric elements relating to a parcel.  The term parcel here has a different meaning to the parcel in the Harmonised Data Model.  In the HDM a parcel refers to a cadastral lot for which a title can be issued.  This model uses a much broader definition of parcel in that it is a polygon (or volumetric figure) for which a right or obligation (or some other consistent definition) can be defined.  It includes base cadastral lots as well as easements and secondary interests.  This package models the administrative and metadata information about parcels, with the term parcel meaning a polygon created for some administrative purpose.  Most of these classes map to the parcel class in LandXML except for specialise elements for volumetric and Stratum parcels.  These classes map to the HDM class of PrivateLawObjects of Parcel, Easement, Secondary Interest, Road Reserve and Reserve. The other part of a parcel is that it has an "is related to" association.  This relationship assists in defining and structuring:  (i) If a parcel is made up of several parts (i.e. stratum lot over serveral floors); )ii) Creating historical associations and allocations, to bring forward existing title encumbrances, rights and obligations; (iii) Creating historical linkages to link parcels to their ancestors (as in historical survey searching or native title investigations); (iv) Linking an admistrative area to cadastral polygons, which represent parcels, allowing the allocation of new parcels to existing administrative areas, e.g. allocation of areas to local governments for rating purposes.  This is accomplished by using an embedded Parcels/Parcel relationship to show the relationship between existing parcels and those parcels being created.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="BuildingLevelNo" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="BuildingNo" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="Classification" type="cdt:CodeType"/>
+			<xs:element name="Desc" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="Encroachment" type="lab:Encroachment" minOccurs="0"/>
+			<xs:element name="ExclusionAreas" type="lab:ExclusionAreas" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Name" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="Note" type="cdt:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="OID" type="cdt:IdentifierType" minOccurs="0"/>
+			<xs:element name="Parcel" type="lab:Parcel" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ParcelFormat" type="cdt:CodeType" minOccurs="0"/>
+			<xs:element name="Polygon" type="lab:Polygon" minOccurs="0"/>
+			<xs:element name="SchemeLand" type="lab:SchemeLand" minOccurs="0"/>
+			<xs:element name="State" type="cdt:CodeType" minOccurs="0"/>
+			<xs:element name="TitleReference" type="lab:TitleReference" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="UseOfParcel" type="cdt:CodeType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Volume" type="cdt:NumericType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="Polygon" type="lab:Polygon"/>
+	<xs:complexType name="Polygon">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="B5AE4B85_DE26_44d8_B1FA_B88020DA6912" name="Polygon" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>A Polygon is a closed figure that can be made up of 2 or more lines (which may be either Regular Lines, Curves or Irregular lines).  A parcel only needs to be defined by a Polygon if the survey needs to be spatially dealt with by the survey i.e. as a created or cancelled parcel.  Some parcels may not require to be spatial defined for the purpose of the survey, specifically where the parcel is defining an administrative area etc.  These elements are mapped to the LandXML Coordinate Geometry elements.  This element maps to the HDM Survey Polygon element.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Centroid" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="Desc" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="Line" type="lab:Line" minOccurs="2" maxOccurs="unbounded"/>
+			<xs:element name="Name" type="cdt:TextType"/>
+			<xs:element name="OID" type="cdt:IdentifierType"/>
+			<xs:element name="State" type="cdt:CodeType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="SchemeLand" type="lab:SchemeLand"/>
+	<xs:complexType name="SchemeLand">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="38003730_D1CD_480b_95BC_8A200E10A307" name="SchemeLand" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>The recording of special attributes relating to the apportionment of rights and obligations of the Body Corporate.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="LiabilityApportionment" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="LotEntitlements" type="cdt:TextType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="Survey" type="lab:Survey"/>
+	<xs:complexType name="Survey">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="12CAE0AB_976D_4a82_A3D2_3A3001DF1378" name="Survey" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>The generic survey data.  The survey description is the standard form for a description of what the survey is achieving.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CoordinateSystem" type="lab:CoordinateSystem"/>
+			<xs:element name="FieldNoteFlag" type="cdt:IndicatorType" minOccurs="0"/>
+			<xs:element name="FieldNoteReference" type="cdt:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="FieldReport" type="cdt:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="FileReference" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="Parcel" type="lab:Parcel" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="PurposeOfSurvey" type="cdt:CodeType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="SurveyCancDesc" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="SurveyDesc" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="SurveyPoint" type="lab:SurveyPoint" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="SurveyType" type="cdt:CodeType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="SurveyDocument" type="lab:SurveyDocument"/>
+	<xs:complexType name="SurveyDocument">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="588E9BBE_894F_498d_8497_E911A83622C1" name="SurveyDocument" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>This class contains the administrative and textual data associated with the metadata of the plan and the administrative actions displayed on the plan.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="AdministrativeArea" type="lab:AdministrativeArea" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="AdministrativeDate" type="cdt:CodeType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Annotation" type="lab:Annotation" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="HeadOfPower" type="cdt:CodeType" minOccurs="0"/>
+			<xs:element name="Note" type="cdt:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Status" type="cdt:CodeType" minOccurs="0"/>
+			<xs:element name="Survey" type="lab:Survey" maxOccurs="unbounded"/>
+			<xs:element name="SurveyFormat" type="cdt:CodeType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="SurveyPoint" type="lab:SurveyPoint"/>
+	<xs:complexType name="SurveyPoint">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="5F2D5756_8A9B_481c_9DEB_1164B27E7631" name="SurveyPoint" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>The survey nodes within the file.  A node is any point of interest in the Survey and may relate to Boundary Points, Traverse Point or Reference Mark. A Permanent Survey Mark is also a Node.
+This element maps to the LandXML Element of cgpoint.  This element also maps to the ICSM HDM Element of Survey Point.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Code" type="cdt:CodeType" minOccurs="0"/>
+			<xs:element name="Desc" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="Line" type="lab:Line" minOccurs="2" maxOccurs="2"/>
+			<xs:element name="Name" type="cdt:TextType"/>
+			<xs:element name="OID" type="cdt:IdentifierType"/>
+			<xs:element name="PntSurv" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="Role" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="State" type="cdt:CodeType" minOccurs="0"/>
+			<xs:element name="SurveyOrder" type="cdt:NumericType" minOccurs="0"/>
+			<xs:element name="ThreeDPoint" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="TwoDPoint" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="ZoneNumber" type="cdt:NumericType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="TitleReference" type="lab:TitleReference"/>
+	<xs:complexType name="TitleReference">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="31C40EBC_6C4B_4c83_A36D_F7BF1C7D9C4A" name="TitleReference" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>The references to Titles relevant to a parcel.  A parcel may have several interests created by different documents which will need to be dealt with.  For example, a lot may have several Certificates of Title and some mortgages which will need to be allocated to new parcels, and thus, from a definitional perspective, each of the title details must be known.  This model uses a simple textual description of the Title, consistent with the LIXI/NECSDS standards but not using those standards at this stage.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="cdt:TextType"/>
+			<xs:element name="TitleType" type="cdt:CodeType"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="Volume" type="lab:Volume"/>
+	<xs:complexType name="Volume">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="68A383D7_C6F5_4df3_B235_D096EFB94F80" name="Volume" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>A cubic space made up of polygons, which are its faces.  Where the parcel being defined is a volumetric lot then the volume must be specifically defined by its faces.  These faces are regular or irregular polygons.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Centroid" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="Desc" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="Name" type="cdt:TextType"/>
+			<xs:element name="OID" type="cdt:IdentifierType"/>
+			<xs:element name="Polygon" type="lab:Polygon" minOccurs="0" maxOccurs="2"/>
+			<xs:element name="State" type="cdt:CodeType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+</xs:schema>

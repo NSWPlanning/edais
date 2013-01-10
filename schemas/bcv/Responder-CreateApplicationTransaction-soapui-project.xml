@@ -1,0 +1,2067 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project name="Responder_CreateApplicationTransaction" resourceRoot="" soapui-version="3.6.1" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="Responder_CreateApplicationTransaction_Port.2.3.0r2" type="wsdl" bindingName="{http://example.xml.gov.au/CreateApplication_Responder.2.3.0r2}Responder_CreateApplicationTransaction_Port.2.3.0r2" soapVersion="1_1" anonymous="optional" definition="http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?wsdl"><con:part><con:url>http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="Responder_CreateApplicationTransaction_Service.2.3.0r2" targetNamespace="http://example.xml.gov.au/CreateApplication_Responder.2.3.0r2" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://example.xml.gov.au/CreateApplication_Responder.2.3.0r2" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata">
+  <wsp:Policy wsu:Id="Responder_CreateApplicationTransaction_Port.2.3.0r2_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false"/>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256/>
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Lax/>
+              </wsp:Policy>
+            </sp:Layout>
+            <sp:IncludeTimestamp/>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <sp:SignedSupportingTokens xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:UsernameToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
+              <wsp:Policy>
+                <sp:WssUsernameToken10/>
+              </wsp:Policy>
+            </sp:UsernameToken>
+          </wsp:Policy>
+        </sp:SignedSupportingTokens>
+        <sp:Wss10 xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy/>
+        </sp:Wss10>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://example.xml.gov.au/CreateApplication_Responder.2.3.0r2/Imports">
+      <xsd:import schemaLocation="http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd0" namespace="http://xml.gov.au/edais/bm/ProposeCreateApplicationTransaction.msg.2.3.0r2"/>
+      <xsd:import schemaLocation="http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd8" namespace="http://xml.gov.au/edais/bs/ReceiptAcknowledgementSignal.msg.2.3.0r2"/>
+      <xsd:import schemaLocation="http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd11" namespace="http://xml.gov.au/edais/bs/ReceiptExceptionSignal.msg.2.3.0r2"/>
+      <xsd:import schemaLocation="http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd1" namespace="http://xml.gov.au/edais/core/da.data.2.3.0r2"/>
+      <xsd:import schemaLocation="http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd2" namespace="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xsd:import schemaLocation="http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd3" namespace="http://xml.gov.au/edais/core/naa.data.2.3.0r2"/>
+      <xsd:import schemaLocation="http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd4" namespace="http://xml.gov.au/edais/core/lab.data.2.3.0r2"/>
+      <xsd:import schemaLocation="http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd5" namespace="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2"/>
+      <xsd:import schemaLocation="http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd6" namespace="http://xml.gov.au/edais/core/msg.data.2.3.0r2"/>
+      <xsd:import schemaLocation="http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd7" namespace="http://xml.gov.au/edais/dt/qdt/msg.type.2.3.0r2"/>
+      <xsd:import schemaLocation="http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/ExternalServices.EHC"/>
+      <xsd:import schemaLocation="http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd10" namespace="http://edais.daf.gov.au/nsw/da.data.1.0"/>
+      <xsd:import schemaLocation="http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd12" namespace="http://xml.gov.au/edais/bm/RejectCreateApplicationTransaction.msg.2.3.0r2"/>
+      <xsd:import schemaLocation="http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd13" namespace="http://xml.gov.au/edais/bm/RejectChangeApplicationTransaction.msg.2.3.0r2"/>
+      <xsd:import schemaLocation="http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd14" namespace="http://xml.gov.au/edais/bm/AcceptCreateApplicationTransaction.msg.2.3.0r2"/>
+      <xsd:import schemaLocation="http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd15" namespace="http://schemas.microsoft.com/2003/10/Serialization/"/>
+      <xsd:import schemaLocation="http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd16" namespace="http://schemas.datacontract.org/2004/07/Buildaform.eDAIS"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ProposeRequest">
+    <wsdl:part name="ProposeCreateApplicationTransaction" element="q1:ProposeCreateApplicationTransaction" xmlns:q1="http://xml.gov.au/edais/bm/ProposeCreateApplicationTransaction.msg.2.3.0r2"/>
+  </wsdl:message>
+  <wsdl:message name="ProposeResponse">
+    <wsdl:part name="ReceiptAcknowledgementSignal" element="q2:ReceiptAcknowledgementSignal" xmlns:q2="http://xml.gov.au/edais/bs/ReceiptAcknowledgementSignal.msg.2.3.0r2"/>
+  </wsdl:message>
+  <wsdl:message name="Responder_CreateApplicationTransaction.2.3.0r2_Propose_ReceiptExceptionSignal_FaultMessage">
+    <wsdl:part name="detail" element="q3:ReceiptExceptionSignal" xmlns:q3="http://xml.gov.au/edais/bs/ReceiptExceptionSignal.msg.2.3.0r2"/>
+  </wsdl:message>
+  <wsdl:portType name="Responder_CreateApplicationTransaction.2.3.0r2">
+    <wsdl:operation name="Propose">
+      <wsdl:input wsaw:Action="http://example.xml.gov.au/CreateApplication_Responder.2.3.0r2/Propose" name="ProposeRequest" message="tns:ProposeRequest"/>
+      <wsdl:output wsaw:Action="http://example.xml.gov.au/CreateApplication_Responder.2.3.0r2/Responder_CreateApplicationTransaction.2.3.0r2/ProposeResponse" name="ProposeResponse" message="tns:ProposeResponse"/>
+      <wsdl:fault wsaw:Action="http://example.xml.gov.au/CreateApplication_Responder.2.3.0r2/Propose" name="ReceiptExceptionSignal" message="tns:Responder_CreateApplicationTransaction.2.3.0r2_Propose_ReceiptExceptionSignal_FaultMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Responder_CreateApplicationTransaction_Port.2.3.0r2" type="tns:Responder_CreateApplicationTransaction.2.3.0r2">
+    <wsp:PolicyReference URI="#Responder_CreateApplicationTransaction_Port.2.3.0r2_policy"/>
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="Propose">
+      <soap:operation soapAction="http://example.xml.gov.au/CreateApplication_Responder.2.3.0r2/Propose" style="document"/>
+      <wsdl:input name="ProposeRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="ProposeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ReceiptExceptionSignal">
+        <soap:fault name="ReceiptExceptionSignal" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Responder_CreateApplicationTransaction_Service.2.3.0r2">
+    <wsdl:port name="Responder_CreateApplicationTransaction_Port.2.3.0r2" binding="tns:Responder_CreateApplicationTransaction_Port.2.3.0r2">
+      <soap:address location="https://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd0</con:url><con:content><![CDATA[<xs:schema elementFormDefault="qualified" targetNamespace="http://xml.gov.au/edais/bm/ProposeCreateApplicationTransaction.msg.2.3.0r2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://xml.gov.au/edais/bm/ProposeCreateApplicationTransaction.msg.2.3.0r2">
+  <xs:import schemaLocation="http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd1" namespace="http://xml.gov.au/edais/core/da.data.2.3.0r2"/>
+  <xs:import schemaLocation="http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd5" namespace="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2"/>
+  <xs:import schemaLocation="http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd6" namespace="http://xml.gov.au/edais/core/msg.data.2.3.0r2"/>
+  <xs:element name="ProposeCreateApplicationTransaction" type="tns:ProposeCreateApplicationTransactionType"/>
+  <xs:complexType name="ProposeCreateApplicationTransactionType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Application" type="q1:Application" xmlns:q1="http://xml.gov.au/edais/core/da.data.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Specialisation" type="q2:Specialisation" xmlns:q2="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="StandardBusinessMessageHeader" type="q3:StandardBusinessMessageHeader" xmlns:q3="http://xml.gov.au/edais/core/msg.data.2.3.0r2"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd1</con:url><con:content><![CDATA[<xs:schema elementFormDefault="qualified" targetNamespace="http://xml.gov.au/edais/core/da.data.2.3.0r2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://xml.gov.au/edais/core/da.data.2.3.0r2">
+  <xs:import schemaLocation="http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd2" namespace="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+  <xs:import schemaLocation="http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd3" namespace="http://xml.gov.au/edais/core/naa.data.2.3.0r2"/>
+  <xs:import schemaLocation="http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd4" namespace="http://xml.gov.au/edais/core/lab.data.2.3.0r2"/>
+  <xs:complexType name="Application">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AdditionalInformation" type="tns:AdditionalInformation"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Appeal" type="tns:Appeal"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="ApplicationNumber" type="q1:IdentifierType" xmlns:q1="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Assessment" type="tns:Assessment"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Attachment" type="tns:Attachment"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Authorisation" type="tns:Authorisation"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Comments" type="q2:TextType" xmlns:q2="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="CreatedDate" type="q3:DateTimeType" xmlns:q3="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Determination" type="tns:Determination"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Event" type="tns:Event"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="FeeOrLevy" type="tns:FeeOrLevy"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="LastUpdated" type="q4:DateTimeType" xmlns:q4="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="LodgementDate" type="q5:DateTimeType" xmlns:q5="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="NationalApplicationNumber" type="q6:IdentifierType" xmlns:q6="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PartyRole" type="tns:PartyRole"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Payment" type="tns:Payment"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PublicInspection" type="tns:PublicInspection"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PublicNotificationObligation" type="tns:PublicNotificationObligation"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReasonDetails" type="tns:ReasonDetails"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReferencedApplication" type="tns:ReferencedApplication"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReferralObligation" type="tns:ReferralObligation"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Status" type="q7:CodeType" xmlns:q7="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SubjectLand" type="tns:SubjectLand"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="AdditionalInformation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Attachment" type="tns:Attachment"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Comments" type="q8:TextType" xmlns:q8="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="DueDate" type="q9:DateTimeType" xmlns:q9="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Identification" type="q10:IdentifierType" xmlns:q10="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Purpose" type="q11:TextType" xmlns:q11="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="ReceivedDate" type="q12:DateTimeType" xmlns:q12="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="RequestedDate" type="q13:DateTimeType" xmlns:q13="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RequestingAuthorityPartyRole" type="tns:PartyRole"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ResponsiblePartyRole" type="tns:PartyRole"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Status" type="q14:CodeType" xmlns:q14="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="Attachment">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contributor" type="q15:TextType" xmlns:q15="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Coverage" type="q16:TextType" xmlns:q16="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Creator" type="q17:TextType" xmlns:q17="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Date" type="q18:DateTimeType" xmlns:q18="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Description" type="q19:TextType" xmlns:q19="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Format" type="q20:TextType" xmlns:q20="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Identification" type="q21:IdentifierType" xmlns:q21="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Language" type="q22:TextType" xmlns:q22="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Publisher" type="q23:TextType" xmlns:q23="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Relation" type="q24:TextType" xmlns:q24="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Rights" type="q25:TextType" xmlns:q25="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Size" type="q26:MeasureType" xmlns:q26="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Source" type="q27:TextType" xmlns:q27="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Subject" type="q28:TextType" xmlns:q28="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Title" type="q29:TextType" xmlns:q29="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Type" type="q30:TextType" xmlns:q30="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Version" type="q31:TextType" xmlns:q31="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:choice minOccurs="1" maxOccurs="1">
+        <xs:element minOccurs="0" maxOccurs="1" name="URI" type="xs:anyURI"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="Attachment" type="q32:BinaryObjectType" xmlns:q32="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      </xs:choice>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="PartyRole">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="DateTime" type="q33:DateTimeType" xmlns:q33="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Party" type="q34:Party" xmlns:q34="http://xml.gov.au/edais/core/naa.data.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Type" type="q35:CodeType" xmlns:q35="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="Appeal">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="AppealDate" type="q36:DateTimeType" xmlns:q36="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="AppealDecisionDate" type="q37:DateTimeType" xmlns:q37="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="AppealReference" type="q38:IdentifierType" xmlns:q38="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Comments" type="q39:TextType" xmlns:q39="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Condition" type="tns:Condition"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Outcome" type="q40:CodeType" xmlns:q40="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PartyRole" type="tns:PartyRole"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Type" type="q41:CodeType" xmlns:q41="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="Condition">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Classification" type="q42:CodeType" xmlns:q42="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="ConditionReference" type="q43:IdentifierType" xmlns:q43="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Detail" type="q44:TextType" xmlns:q44="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Identification" type="q45:IdentifierType" xmlns:q45="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Type" type="q46:CodeType" xmlns:q46="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="Assessment">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AssessmentIssue" type="tns:AssessmentIssue"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Attachment" type="tns:Attachment"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="ComplianceWithPlan" type="q47:TextType" xmlns:q47="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Effort" type="q48:TextType" xmlns:q48="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PartyRole" type="tns:PartyRole"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="AssessmentIssue">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="AdvisedDate" type="q49:DateTimeType" xmlns:q49="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Comments" type="q50:TextType" xmlns:q50="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Description" type="q51:TextType" xmlns:q51="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Identification" type="q52:IdentifierType" xmlns:q52="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="ReportingPartyRole" type="tns:PartyRole"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="ResponsiblePartyRole" type="tns:PartyRole"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="Authorisation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Attachment" type="tns:Attachment"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Date" type="q53:DateTimeType" xmlns:q53="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PartyRole" type="tns:PartyRole"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Type" type="q54:CodeType" xmlns:q54="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="Determination">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Attachment" type="tns:Attachment"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Comments" type="q55:TextType" xmlns:q55="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Condition" type="tns:Condition"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="DeterminationDate" type="q56:DateTimeType" xmlns:q56="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Identification" type="q57:IdentifierType" xmlns:q57="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PartyRole" type="tns:PartyRole"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Period" type="q58:Period" xmlns:q58="http://xml.gov.au/edais/core/naa.data.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="SystemRecordedDate" type="q59:DateTimeType" xmlns:q59="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Type" type="q60:CodeType" xmlns:q60="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="Event">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="DateTime" type="q61:DateTimeType" xmlns:q61="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Description" type="q62:TextType" xmlns:q62="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="EventCode" type="q63:CodeType" xmlns:q63="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Period" type="q64:Period" xmlns:q64="http://xml.gov.au/edais/core/naa.data.2.3.0r2"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="FeeOrLevy">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="DateDue" type="q65:DateTimeType" xmlns:q65="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Description" type="q66:TextType" xmlns:q66="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Identification" type="q67:IdentifierType" xmlns:q67="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Payment" type="tns:Payment"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="ValuePayable" type="q68:AmountType" xmlns:q68="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="Payment">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="AmountPaid" type="q69:AmountType" xmlns:q69="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="CreationDate" type="q70:DateTimeType" xmlns:q70="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="DatePaid" type="q71:DateTimeType" xmlns:q71="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="DiscountPercent" type="q72:NumericType" xmlns:q72="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Identification" type="q73:IdentifierType" xmlns:q73="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="InstructionCode" type="q74:TextType" xmlns:q74="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="PayeeName" type="q75:TextType" xmlns:q75="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="PaymentMethod" type="q76:CodeType" xmlns:q76="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="PenaltyPercent" type="q77:NumericType" xmlns:q77="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="PriorityCode" type="q78:TextType" xmlns:q78="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="ReasonCode" type="q79:TextType" xmlns:q79="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="ReceiptNumber" type="q80:TextType" xmlns:q80="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="StatusCode" type="q81:TextType" xmlns:q81="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="TaxAmount" type="q82:AmountType" xmlns:q82="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="TaxInvoiceNumber" type="q83:TextType" xmlns:q83="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="PublicInspection">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Indicator" type="q84:CodeType" xmlns:q84="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="PublicNotificationObligation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Attachment" type="tns:Attachment"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="ComplianceDate" type="q85:DateTimeType" xmlns:q85="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Description" type="q86:TextType" xmlns:q86="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Identification" type="q87:IdentifierType" xmlns:q87="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PartyRole" type="tns:PartyRole"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Period" type="q88:Period" xmlns:q88="http://xml.gov.au/edais/core/naa.data.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PublicOpinion" type="tns:PublicOpinion"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Type" type="q89:CodeType" xmlns:q89="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="PublicOpinion">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Attachment" type="tns:Attachment"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Comments" type="q90:TextType" xmlns:q90="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Reported" type="q91:DateTimeType" xmlns:q91="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="ReasonDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="DateTime" type="q92:DateTimeType" xmlns:q92="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Description" type="q93:TextType" xmlns:q93="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="ReasonCode" type="q94:CodeType" xmlns:q94="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReasonText" type="q95:TextType" xmlns:q95="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="ReferencedApplication">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ApplicationNumber" type="q96:IdentifierType" xmlns:q96="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Type" type="q97:CodeType" xmlns:q97="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="ReferralObligation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Classification" type="q98:CodeType" xmlns:q98="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="ComplianceDate" type="q99:DateTimeType" xmlns:q99="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Description" type="q100:TextType" xmlns:q100="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Identification" type="q101:IdentifierType" xmlns:q101="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Period" type="q102:Period" xmlns:q102="http://xml.gov.au/edais/core/naa.data.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReferralAuthorityPartyRole" type="tns:PartyRole"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReferralResponse" type="tns:ReferralResponse"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReferrerPartyRole" type="tns:PartyRole"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Type" type="q103:CodeType" xmlns:q103="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="ReferralResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Attachment" type="tns:Attachment"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Comments" type="q104:TextType" xmlns:q104="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Condition" type="tns:Condition"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="ResponseDate" type="q105:DateTimeType" xmlns:q105="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Type" type="q106:CodeType" xmlns:q106="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="SubjectLand">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Address" type="q107:Address" xmlns:q107="http://xml.gov.au/edais/core/naa.data.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Attachment" type="tns:Attachment"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Comments" type="q108:TextType" xmlns:q108="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Document" type="q109:Document" xmlns:q109="http://xml.gov.au/edais/core/lab.data.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Parcel" type="q110:Parcel" xmlns:q110="http://xml.gov.au/edais/core/lab.data.2.3.0r2"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd2</con:url><con:content><![CDATA[<xs:schema elementFormDefault="qualified" targetNamespace="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2">
+  <xs:complexType name="TextType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="LanguageIdentifier" type="xs:string"/>
+        <xs:attribute name="LanguageLocaleIdentifier" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="DateTimeType">
+    <xs:simpleContent>
+      <xs:extension base="xs:dateTime">
+        <xs:attribute name="Format" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="IdentifierType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="identificationSchemeName" type="xs:string"/>
+        <xs:attribute name="identificationSchemeURI" type="xs:string"/>
+        <xs:attribute name="identificationSchemeVersion" type="xs:string"/>
+        <xs:attribute name="identificationSchemeAgency" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="MeasureType">
+    <xs:simpleContent>
+      <xs:extension base="xs:decimal">
+        <xs:attribute name="UnitCode" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="BinaryObjectType">
+    <xs:simpleContent>
+      <xs:extension base="xs:base64Binary">
+        <xs:attribute name="Format" type="xs:string"/>
+        <xs:attribute name="MimeCode" type="xs:string"/>
+        <xs:attribute name="CharacterSetCode" type="xs:string"/>
+        <xs:attribute name="EncodingCode" type="xs:string"/>
+        <xs:attribute name="UniformResourceIdentifier" type="xs:string"/>
+        <xs:attribute name="Filename" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="CodeType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="codeName" type="xs:string"/>
+        <xs:attribute name="codeListURI" type="xs:string"/>
+        <xs:attribute name="codeListAgency" type="xs:string"/>
+        <xs:attribute name="codeListName" type="xs:string"/>
+        <xs:attribute name="codeListVersion" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="IndicatorType">
+    <xs:simpleContent>
+      <xs:extension base="xs:boolean">
+        <xs:attribute name="Format" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="NumericType">
+    <xs:simpleContent>
+      <xs:extension base="xs:decimal">
+        <xs:attribute name="Format" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="AmountType">
+    <xs:simpleContent>
+      <xs:extension base="xs:decimal">
+        <xs:attribute name="CurrencyCode" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd3</con:url><con:content><![CDATA[<xs:schema elementFormDefault="qualified" targetNamespace="http://xml.gov.au/edais/core/naa.data.2.3.0r2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">
+  <xs:import schemaLocation="http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd2" namespace="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+  <xs:complexType name="Party">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="AccessRights" type="q1:CodeType" xmlns:q1="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Description" type="q2:TextType" xmlns:q2="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:choice minOccurs="1" maxOccurs="1">
+        <xs:element minOccurs="0" maxOccurs="1" name="Organisation" type="tns:Organisation"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="Person" type="tns:Person"/>
+      </xs:choice>
+      <xs:element minOccurs="0" maxOccurs="1" name="Identification" type="q3:IdentifierType" xmlns:q3="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Language" type="q4:CodeType" xmlns:q4="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Name" type="q5:TextType" xmlns:q5="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Type" type="q6:TextType" xmlns:q6="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="Organisation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contact" type="tns:Contact"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Description" type="q7:TextType" xmlns:q7="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Identification" type="q8:IdentifierType" xmlns:q8="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="IndustryClassification" type="q9:CodeType" xmlns:q9="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Internet" type="tns:Internet"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="IsActive" type="q10:IndicatorType" xmlns:q10="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="LegalClassification" type="q11:CodeType" xmlns:q11="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Organisation" type="tns:Organisation"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="OrganisationName" type="tns:OrganisationName"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PhysicalAddress" type="tns:Address"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PostalAddress" type="tns:Address"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Registration" type="tns:Registration"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Status" type="tns:Status"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Telephone" type="tns:Telephone"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Type" type="q12:CodeType" xmlns:q12="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="Contact">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="DepartmentName" type="q13:TextType" xmlns:q13="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Description" type="q14:TextType" xmlns:q14="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Identification" type="q15:IdentifierType" xmlns:q15="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Internet" type="tns:Internet"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="IsPrimary" type="q16:IndicatorType" xmlns:q16="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="JobTitle" type="q17:TextType" xmlns:q17="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="PersonName" type="tns:PersonName"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Responsibility" type="q18:TextType" xmlns:q18="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Telephone" type="tns:Telephone"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Type" type="q19:CodeType" xmlns:q19="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="Internet">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Type" type="q20:CodeType" xmlns:q20="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="URI" type="xs:anyURI"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="PersonName">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Classification" type="q21:CodeType" xmlns:q21="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="FamilyName" type="q22:TextType" xmlns:q22="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="FamilyNamePrefix" type="q23:TextType" xmlns:q23="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="GivenName" type="q24:TextType" xmlns:q24="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="MiddleName" type="q25:TextType" xmlns:q25="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Name" type="q26:TextType" xmlns:q26="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="NameSuffix" type="q27:CodeType" xmlns:q27="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Salutation" type="q28:TextType" xmlns:q28="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Title" type="q29:CodeType" xmlns:q29="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="ValidityPeriod" type="tns:Period"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="Period">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Complete" type="q30:DateTimeType" xmlns:q30="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Description" type="q31:TextType" xmlns:q31="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Duration" type="q32:MeasureType" xmlns:q32="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="End" type="q33:DateTimeType" xmlns:q33="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Identification" type="q34:IdentifierType" xmlns:q34="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Inclusive" type="q35:IndicatorType" xmlns:q35="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Name" type="q36:TextType" xmlns:q36="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Sequence" type="q37:IdentifierType" xmlns:q37="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Start" type="q38:DateTimeType" xmlns:q38="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="Telephone">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="AreaCode" type="q39:CodeType" xmlns:q39="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryCode" type="q40:CodeType" xmlns:q40="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension" type="q41:TextType" xmlns:q41="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Number" type="q42:IdentifierType" xmlns:q42="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Type" type="q43:CodeType" xmlns:q43="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="OrganisationName">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Classification" type="q44:CodeType" xmlns:q44="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Name" type="q45:TextType" xmlns:q45="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="ValidityPeriod" type="tns:Period"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="Address">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Address" type="tns:Address"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="BlockName" type="q46:TextType" xmlns:q46="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="BuildingName" type="q47:TextType" xmlns:q47="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="BuildingNumber" type="q48:TextType" xmlns:q48="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="CityName" type="q49:TextType" xmlns:q49="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Code" type="q50:CodeType" xmlns:q50="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryName" type="q51:CodeType" xmlns:q51="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="CountrySubDivision" type="q52:CodeType" xmlns:q52="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Geocode" type="tns:Geocode"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Identification" type="q53:IdentifierType" xmlns:q53="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="LineFive" type="q54:TextType" xmlns:q54="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="LineFour" type="q55:TextType" xmlns:q55="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="LineOne" type="q56:TextType" xmlns:q56="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="LineSix" type="q57:TextType" xmlns:q57="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="LineThree" type="q58:TextType" xmlns:q58="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="LineTwo" type="q59:TextType" xmlns:q59="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="PostOfficeBox" type="q60:TextType" xmlns:q60="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Postcode" type="q61:TextType" xmlns:q61="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="StreetName" type="q62:TextType" xmlns:q62="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="StreetSuffix" type="q63:CodeType" xmlns:q63="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="StreetType" type="q64:CodeType" xmlns:q64="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Usage" type="q65:CodeType" xmlns:q65="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="UsagePeriod" type="tns:Period"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="Geocode">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="AltimetricSystem" type="q66:CodeType" xmlns:q66="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Altitude" type="q67:NumericType" xmlns:q67="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Identification" type="q68:IdentifierType" xmlns:q68="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Latitude" type="q69:NumericType" xmlns:q69="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="LatitudeDirection" type="q70:CodeType" xmlns:q70="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Longitude" type="q71:NumericType" xmlns:q71="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="LongitudeDirection" type="q72:CodeType" xmlns:q72="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="System" type="q73:CodeType" xmlns:q73="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="Registration">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Category" type="q74:CodeType" xmlns:q74="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Country" type="q75:CodeType" xmlns:q75="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Identification" type="q76:IdentifierType" xmlns:q76="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Licence" type="q77:IdentifierType" xmlns:q77="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Recorded" type="q78:DateTimeType" xmlns:q78="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Type" type="q79:CodeType" xmlns:q79="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="ValidityPeriod" type="tns:Period"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="Status">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Code" type="q80:CodeType" xmlns:q80="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Description" type="q81:TextType" xmlns:q81="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="ValidityPeriod" type="tns:Period"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="Person">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Description" type="q82:TextType" xmlns:q82="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Identification" type="q83:IdentifierType" xmlns:q83="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Internet" type="tns:Internet"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PersonName" type="tns:PersonName"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PostalAddress" type="tns:Address"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Registration" type="tns:Registration"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ResidentialAddress" type="tns:Address"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Status" type="tns:Status"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Telephone" type="tns:Telephone"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd4</con:url><con:content><![CDATA[<xs:schema elementFormDefault="qualified" targetNamespace="http://xml.gov.au/edais/core/lab.data.2.3.0r2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://xml.gov.au/edais/core/lab.data.2.3.0r2">
+  <xs:import schemaLocation="http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd2" namespace="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+  <xs:complexType name="Document">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="DocumentNo" type="q1:IdentifierType" xmlns:q1="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="DocumentStatus" type="q2:CodeType" xmlns:q2="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Jurisdiction" type="q3:CodeType" xmlns:q3="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="SubmissionDate" type="q4:DateTimeType" xmlns:q4="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="SurveyDocument" type="tns:SurveyDocument"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="VersionDate" type="q5:DateTimeType" xmlns:q5="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="VersionNumber" type="q6:NumericType" xmlns:q6="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="SurveyDocument">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AdministrativeArea" type="tns:AdministrativeArea"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AdministrativeDate" type="q7:CodeType" xmlns:q7="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Annotation" type="tns:Annotation"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="HeadOfPower" type="q8:CodeType" xmlns:q8="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Note" type="q9:TextType" xmlns:q9="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Status" type="q10:CodeType" xmlns:q10="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Survey" type="tns:Survey"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="SurveyFormat" type="q11:CodeType" xmlns:q11="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="AdministrativeArea">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="AdminAreaCode" type="q12:CodeType" xmlns:q12="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="AdminAreaName" type="q13:TextType" xmlns:q13="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="AdminAreaType" type="q14:CodeType" xmlns:q14="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="Annotation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Desc" type="q15:TextType" xmlns:q15="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Name" type="q16:TextType" xmlns:q16="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Type" type="q17:CodeType" xmlns:q17="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="Survey">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CoordinateSystem" type="tns:CoordinateSystem"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="FieldNoteFlag" type="q18:IndicatorType" xmlns:q18="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="FieldNoteReference" type="q19:TextType" xmlns:q19="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="FieldReport" type="q20:TextType" xmlns:q20="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="FileReference" type="q21:TextType" xmlns:q21="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Parcel" type="tns:Parcel"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PurposeOfSurvey" type="q22:CodeType" xmlns:q22="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="SurveyCancDesc" type="q23:TextType" xmlns:q23="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="SurveyDesc" type="q24:TextType" xmlns:q24="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SurveyPoint" type="tns:SurveyPoint"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="SurveyType" type="q25:CodeType" xmlns:q25="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="CoordinateSystem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Description" type="q26:TextType" xmlns:q26="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="HorizontalDatumName" type="q27:CodeType" xmlns:q27="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="VerticalDatumName" type="q28:CodeType" xmlns:q28="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="Parcel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="BuildingLevelNo" type="q29:TextType" xmlns:q29="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="BuildingNo" type="q30:TextType" xmlns:q30="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Classification" type="q31:CodeType" xmlns:q31="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Desc" type="q32:TextType" xmlns:q32="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Encroachment" type="tns:Encroachment"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ExclusionAreas" type="tns:ExclusionAreas"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Name" type="q33:TextType" xmlns:q33="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Note" type="q34:TextType" xmlns:q34="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="OID" type="q35:IdentifierType" xmlns:q35="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Parcel" type="tns:Parcel"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="ParcelFormat" type="q36:CodeType" xmlns:q36="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Polygon" type="tns:Polygon"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="SchemeLand" type="tns:SchemeLand"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="State" type="q37:CodeType" xmlns:q37="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TitleReference" type="tns:TitleReference"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UseOfParcel" type="q38:CodeType" xmlns:q38="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Volume" type="q39:NumericType" xmlns:q39="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="Encroachment">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Desc" type="q40:TextType" xmlns:q40="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Name" type="q41:TextType" xmlns:q41="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="PointList" type="q42:TextType" xmlns:q42="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Type" type="q43:CodeType" xmlns:q43="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="ExclusionAreas">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Area" type="q44:NumericType" xmlns:q44="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="ExclusionType" type="q45:CodeType" xmlns:q45="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Pclref" type="q46:TextType" xmlns:q46="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="Polygon">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Centroid" type="q47:TextType" xmlns:q47="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Desc" type="q48:TextType" xmlns:q48="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Line" type="tns:Line"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Name" type="q49:TextType" xmlns:q49="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="OID" type="q50:IdentifierType" xmlns:q50="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="State" type="q51:CodeType" xmlns:q51="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="Line">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Desc" type="q52:TextType" xmlns:q52="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Dir" type="q53:NumericType" xmlns:q53="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Length" type="q54:MeasureType" xmlns:q54="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Name" type="q55:TextType" xmlns:q55="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Note" type="q56:TextType" xmlns:q56="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="OID" type="q57:IdentifierType" xmlns:q57="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="PointList" type="q58:TextType" xmlns:q58="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Radius" type="q59:NumericType" xmlns:q59="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Rot" type="q60:TextType" xmlns:q60="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Source" type="q61:TextType" xmlns:q61="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="State" type="q62:CodeType" xmlns:q62="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="SchemeLand">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="LiabilityApportionment" type="q63:TextType" xmlns:q63="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="LotEntitlements" type="q64:TextType" xmlns:q64="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="TitleReference">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Name" type="q65:TextType" xmlns:q65="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="TitleType" type="q66:CodeType" xmlns:q66="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="SurveyPoint">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Code" type="q67:CodeType" xmlns:q67="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Desc" type="q68:TextType" xmlns:q68="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Line" type="tns:Line"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Name" type="q69:TextType" xmlns:q69="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="OID" type="q70:IdentifierType" xmlns:q70="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="PntSurv" type="q71:TextType" xmlns:q71="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Role" type="q72:TextType" xmlns:q72="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="State" type="q73:CodeType" xmlns:q73="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="SurveyOrder" type="q74:NumericType" xmlns:q74="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="ThreeDPoint" type="q75:TextType" xmlns:q75="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="TwoDPoint" type="q76:TextType" xmlns:q76="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="ZoneNumber" type="q77:NumericType" xmlns:q77="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="Volume">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Centroid" type="q78:TextType" xmlns:q78="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Desc" type="q79:TextType" xmlns:q79="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Name" type="q80:TextType" xmlns:q80="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="OID" type="q81:IdentifierType" xmlns:q81="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Polygon" type="tns:Polygon"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="State" type="q82:CodeType" xmlns:q82="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd5</con:url><con:content><![CDATA[<xs:schema elementFormDefault="qualified" targetNamespace="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2">
+  <xs:import schemaLocation="http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd2" namespace="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+  <xs:complexType name="Specialisation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="DomainId" type="q1:IdentifierType" xmlns:q1="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Extension"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Jurisdiction" type="q2:CodeType" xmlns:q2="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Version" type="q3:IdentifierType" xmlns:q3="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd6</con:url><con:content><![CDATA[<xs:schema elementFormDefault="qualified" targetNamespace="http://xml.gov.au/edais/core/msg.data.2.3.0r2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+  <xs:import schemaLocation="http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd2" namespace="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+  <xs:import schemaLocation="http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd7" namespace="http://xml.gov.au/edais/dt/qdt/msg.type.2.3.0r2"/>
+  <xs:complexType name="StandardBusinessMessageHeader">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BusinessScope" type="tns:BusinessScope"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="DocumentIdentification" type="tns:DocumentIdentification"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="ReceiverPartner" type="tns:Partner"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="SenderPartner" type="tns:Partner"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SoftwareInformation" type="tns:SoftwareInformation"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Version" type="q1:IdentifierType" xmlns:q1="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="BusinessScope">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CorrelationInformation" type="tns:CorrelationInformation"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="ID" type="q2:IdentifierType" xmlns:q2="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="InstanceID" type="q3:IdentifierType" xmlns:q3="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Type" type="q4:BusinessScope_CodeType" xmlns:q4="http://xml.gov.au/edais/dt/qdt/msg.type.2.3.0r2"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="CorrelationInformation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ExpectedResponseDateTime" type="q5:DateTimeType" xmlns:q5="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="RequestingDocumentCreationDateTime" type="q6:DateTimeType" xmlns:q6="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="RequestingDocumentInstanceID" type="q7:IdentifierType" xmlns:q7="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="DocumentIdentification">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CreationDateTime" type="q8:DateTimeType" xmlns:q8="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="InstanceID" type="q9:IdentifierType" xmlns:q9="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Standard" type="q10:Standard_CodeType" xmlns:q10="http://xml.gov.au/edais/dt/qdt/msg.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Type" type="q11:CodeType" xmlns:q11="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="TypeVersion" type="q12:TextType" xmlns:q12="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="Partner">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Authority" type="q13:TextType" xmlns:q13="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contact" type="tns:Contact"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="ID" type="q14:IdentifierType" xmlns:q14="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="ProcessRole" type="q15:CodeType" xmlns:q15="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="Contact">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Contact" type="q16:TextType" xmlns:q16="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="ContactTypeIdentifier" type="q17:CodeType" xmlns:q17="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="EmailAddress" type="xs:anyURI"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="TelephoneNumber" type="q18:TextType" xmlns:q18="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="SoftwareInformation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ProductID" type="q19:IdentifierType" xmlns:q19="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="ProductName" type="q20:TextType" xmlns:q20="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="ProductVersion" type="q21:TextType" xmlns:q21="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="ReceiptAcknowledgement">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Identification" type="q22:IdentifierType" xmlns:q22="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Timestamp" type="q23:DateTimeType" xmlns:q23="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="ReceiptException">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Identification" type="q24:IdentifierType" xmlns:q24="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Message" type="q25:TextType" xmlns:q25="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Reason" type="q26:TextType" xmlns:q26="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Type" type="q27:CodeType" xmlns:q27="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd7</con:url><con:content><![CDATA[<xs:schema elementFormDefault="qualified" targetNamespace="http://xml.gov.au/edais/dt/qdt/msg.type.2.3.0r2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://xml.gov.au/edais/dt/qdt/msg.type.2.3.0r2">
+  <xs:complexType name="BusinessScope_CodeType">
+    <xs:simpleContent>
+      <xs:extension base="tns:BusinessScope_Code">
+        <xs:attribute name="codeName" type="xs:string"/>
+        <xs:attribute name="codeListURI" type="xs:string"/>
+        <xs:attribute default="NCO" name="codeListAgency" type="xs:string"/>
+        <xs:attribute default="BusinessScope" name="codeListName" type="xs:string"/>
+        <xs:attribute name="codeListVersion" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:simpleType name="BusinessScope_Code">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="BusinessCollaboration"/>
+      <xs:enumeration value="BusinessProcess"/>
+      <xs:enumeration value="BusinessTransaction"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="Standard_CodeType">
+    <xs:simpleContent>
+      <xs:extension base="tns:Standard_Code">
+        <xs:attribute name="codeName" type="xs:string"/>
+        <xs:attribute name="codeListURI" type="xs:string"/>
+        <xs:attribute default="NCO" name="codeListAgency" type="xs:string"/>
+        <xs:attribute default="StandardType" name="codeListName" type="xs:string"/>
+        <xs:attribute name="codeListVersion" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:simpleType name="Standard_Code">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="eDAIS"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd8</con:url><con:content><![CDATA[<xs:schema elementFormDefault="qualified" targetNamespace="http://xml.gov.au/edais/bs/ReceiptAcknowledgementSignal.msg.2.3.0r2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://xml.gov.au/edais/bs/ReceiptAcknowledgementSignal.msg.2.3.0r2">
+  <xs:import schemaLocation="http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd6" namespace="http://xml.gov.au/edais/core/msg.data.2.3.0r2"/>
+  <xs:import schemaLocation="http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd5" namespace="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2"/>
+  <xs:complexType name="ReceiptAcknowledgementSignalType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ReceiptAcknowledgement" type="q1:ReceiptAcknowledgement" xmlns:q1="http://xml.gov.au/edais/core/msg.data.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Specialisation" type="q2:Specialisation" xmlns:q2="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="StandardBusinessMessageHeader" type="q3:StandardBusinessMessageHeader" xmlns:q3="http://xml.gov.au/edais/core/msg.data.2.3.0r2"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReceiptAcknowledgementSignal" type="tns:ReceiptAcknowledgementSignalType"/>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd11</con:url><con:content><![CDATA[<xs:schema elementFormDefault="qualified" targetNamespace="http://xml.gov.au/edais/bs/ReceiptExceptionSignal.msg.2.3.0r2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://xml.gov.au/edais/bs/ReceiptExceptionSignal.msg.2.3.0r2">
+  <xs:import schemaLocation="http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd6" namespace="http://xml.gov.au/edais/core/msg.data.2.3.0r2"/>
+  <xs:import schemaLocation="http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd5" namespace="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2"/>
+  <xs:import schemaLocation="http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd16" namespace="http://schemas.datacontract.org/2004/07/Buildaform.eDAIS"/>
+  <xs:complexType name="ReceiptExceptionSignalType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ReceiptException" type="q1:ReceiptException" xmlns:q1="http://xml.gov.au/edais/core/msg.data.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Specialisation" type="q2:Specialisation" xmlns:q2="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="StandardBusinessMessageHeader" type="q3:StandardBusinessMessageHeader" xmlns:q3="http://xml.gov.au/edais/core/msg.data.2.3.0r2"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReceiptExceptionSignal" nillable="true" type="q4:ReceiptExceptionSignalType" xmlns:q4="http://schemas.datacontract.org/2004/07/Buildaform.eDAIS"/>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd16</con:url><con:content><![CDATA[<xs:schema elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Buildaform.eDAIS" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.datacontract.org/2004/07/Buildaform.eDAIS">
+  <xs:complexType name="ReceiptExceptionSignalType">
+    <xs:sequence>
+      <xs:element name="receiptExceptionFieldField" nillable="true" type="tns:ReceiptException1"/>
+      <xs:element name="specialisationFieldField" nillable="true" type="tns:ArrayOfSpecialisation1"/>
+      <xs:element name="standardBusinessMessageHeaderFieldField" nillable="true" type="tns:StandardBusinessMessageHeader1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReceiptExceptionSignalType" nillable="true" type="tns:ReceiptExceptionSignalType"/>
+  <xs:complexType name="ReceiptException1">
+    <xs:sequence>
+      <xs:element name="identificationFieldField" nillable="true" type="tns:IdentifierType1"/>
+      <xs:element name="messageFieldField" nillable="true" type="tns:TextType1"/>
+      <xs:element name="reasonFieldField" nillable="true" type="tns:TextType1"/>
+      <xs:element name="refFieldField" nillable="true" type="xs:string"/>
+      <xs:element name="typeFieldField" nillable="true" type="tns:CodeType1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReceiptException1" nillable="true" type="tns:ReceiptException1"/>
+  <xs:complexType name="IdentifierType1">
+    <xs:sequence>
+      <xs:element name="identificationSchemeAgencyFieldField" nillable="true" type="xs:string"/>
+      <xs:element name="identificationSchemeNameFieldField" nillable="true" type="xs:string"/>
+      <xs:element name="identificationSchemeURIFieldField" nillable="true" type="xs:string"/>
+      <xs:element name="identificationSchemeVersionFieldField" nillable="true" type="xs:string"/>
+      <xs:element name="valueFieldField" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="IdentifierType1" nillable="true" type="tns:IdentifierType1"/>
+  <xs:complexType name="TextType1">
+    <xs:sequence>
+      <xs:element name="languageIdentifierFieldField" nillable="true" type="xs:string"/>
+      <xs:element name="languageLocaleIdentifierFieldField" nillable="true" type="xs:string"/>
+      <xs:element name="valueFieldField" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TextType1" nillable="true" type="tns:TextType1"/>
+  <xs:complexType name="CodeType1">
+    <xs:sequence>
+      <xs:element name="codeListAgencyFieldField" nillable="true" type="xs:string"/>
+      <xs:element name="codeListNameFieldField" nillable="true" type="xs:string"/>
+      <xs:element name="codeListURIFieldField" nillable="true" type="xs:string"/>
+      <xs:element name="codeListVersionFieldField" nillable="true" type="xs:string"/>
+      <xs:element name="codeNameFieldField" nillable="true" type="xs:string"/>
+      <xs:element name="valueFieldField" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CodeType1" nillable="true" type="tns:CodeType1"/>
+  <xs:complexType name="ArrayOfSpecialisation1">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Specialisation1" nillable="true" type="tns:Specialisation1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSpecialisation1" nillable="true" type="tns:ArrayOfSpecialisation1"/>
+  <xs:complexType name="Specialisation1">
+    <xs:sequence>
+      <xs:element name="domainIdFieldField" nillable="true" type="tns:IdentifierType1"/>
+      <xs:element name="extensionFieldField" nillable="true" type="xs:anyType"/>
+      <xs:element name="jurisdictionFieldField" nillable="true" type="tns:CodeType1"/>
+      <xs:element name="refFieldField" nillable="true" type="xs:string"/>
+      <xs:element name="versionFieldField" nillable="true" type="tns:IdentifierType1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Specialisation1" nillable="true" type="tns:Specialisation1"/>
+  <xs:complexType name="StandardBusinessMessageHeader1">
+    <xs:sequence>
+      <xs:element name="businessScopeFieldField" nillable="true" type="tns:ArrayOfBusinessScope1"/>
+      <xs:element name="documentIdentificationFieldField" nillable="true" type="tns:DocumentIdentification1"/>
+      <xs:element name="receiverPartnerFieldField" nillable="true" type="tns:Partner1"/>
+      <xs:element name="refFieldField" nillable="true" type="xs:string"/>
+      <xs:element name="senderPartnerFieldField" nillable="true" type="tns:Partner1"/>
+      <xs:element name="softwareInformationFieldField" nillable="true" type="tns:ArrayOfSoftwareInformation1"/>
+      <xs:element name="versionFieldField" nillable="true" type="tns:IdentifierType1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="StandardBusinessMessageHeader1" nillable="true" type="tns:StandardBusinessMessageHeader1"/>
+  <xs:complexType name="ArrayOfBusinessScope1">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BusinessScope1" nillable="true" type="tns:BusinessScope1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBusinessScope1" nillable="true" type="tns:ArrayOfBusinessScope1"/>
+  <xs:complexType name="BusinessScope1">
+    <xs:sequence>
+      <xs:element name="correlationInformationFieldField" nillable="true" type="tns:ArrayOfCorrelationInformation1"/>
+      <xs:element name="idFieldField" nillable="true" type="tns:IdentifierType1"/>
+      <xs:element name="instanceIDFieldField" nillable="true" type="tns:IdentifierType1"/>
+      <xs:element name="refFieldField" nillable="true" type="xs:string"/>
+      <xs:element name="typeFieldField" nillable="true" type="tns:BusinessScope_CodeType1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BusinessScope1" nillable="true" type="tns:BusinessScope1"/>
+  <xs:complexType name="ArrayOfCorrelationInformation1">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CorrelationInformation1" nillable="true" type="tns:CorrelationInformation1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCorrelationInformation1" nillable="true" type="tns:ArrayOfCorrelationInformation1"/>
+  <xs:complexType name="CorrelationInformation1">
+    <xs:sequence>
+      <xs:element name="expectedResponseDateTimeFieldField" nillable="true" type="tns:DateTimeType1"/>
+      <xs:element name="refFieldField" nillable="true" type="xs:string"/>
+      <xs:element name="requestingDocumentCreationDateTimeFieldField" nillable="true" type="tns:DateTimeType1"/>
+      <xs:element name="requestingDocumentInstanceIDFieldField" nillable="true" type="tns:IdentifierType1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CorrelationInformation1" nillable="true" type="tns:CorrelationInformation1"/>
+  <xs:complexType name="DateTimeType1">
+    <xs:sequence>
+      <xs:element name="formatFieldField" nillable="true" type="xs:string"/>
+      <xs:element name="valueFieldField" type="xs:dateTime"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DateTimeType1" nillable="true" type="tns:DateTimeType1"/>
+  <xs:complexType name="BusinessScope_CodeType1">
+    <xs:sequence>
+      <xs:element name="codeListAgencyFieldField" nillable="true" type="xs:string"/>
+      <xs:element name="codeListNameFieldField" nillable="true" type="xs:string"/>
+      <xs:element name="codeListURIFieldField" nillable="true" type="xs:string"/>
+      <xs:element name="codeListVersionFieldField" nillable="true" type="xs:string"/>
+      <xs:element name="codeNameFieldField" nillable="true" type="xs:string"/>
+      <xs:element name="valueFieldField" type="tns:BusinessScope_Code1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BusinessScope_CodeType1" nillable="true" type="tns:BusinessScope_CodeType1"/>
+  <xs:simpleType name="BusinessScope_Code1">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="BusinessCollaboration"/>
+      <xs:enumeration value="BusinessProcess"/>
+      <xs:enumeration value="BusinessTransaction"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="BusinessScope_Code1" nillable="true" type="tns:BusinessScope_Code1"/>
+  <xs:complexType name="DocumentIdentification1">
+    <xs:sequence>
+      <xs:element name="creationDateTimeFieldField" nillable="true" type="tns:DateTimeType1"/>
+      <xs:element name="instanceIDFieldField" nillable="true" type="tns:IdentifierType1"/>
+      <xs:element name="refFieldField" nillable="true" type="xs:string"/>
+      <xs:element name="standardFieldField" nillable="true" type="tns:Standard_CodeType1"/>
+      <xs:element name="typeFieldField" nillable="true" type="tns:CodeType1"/>
+      <xs:element name="typeVersionFieldField" nillable="true" type="tns:TextType1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DocumentIdentification1" nillable="true" type="tns:DocumentIdentification1"/>
+  <xs:complexType name="Standard_CodeType1">
+    <xs:sequence>
+      <xs:element name="codeListAgencyFieldField" nillable="true" type="xs:string"/>
+      <xs:element name="codeListNameFieldField" nillable="true" type="xs:string"/>
+      <xs:element name="codeListURIFieldField" nillable="true" type="xs:string"/>
+      <xs:element name="codeListVersionFieldField" nillable="true" type="xs:string"/>
+      <xs:element name="codeNameFieldField" nillable="true" type="xs:string"/>
+      <xs:element name="valueFieldField" type="tns:Standard_Code1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Standard_CodeType1" nillable="true" type="tns:Standard_CodeType1"/>
+  <xs:simpleType name="Standard_Code1">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="eDAIS"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="Standard_Code1" nillable="true" type="tns:Standard_Code1"/>
+  <xs:complexType name="Partner1">
+    <xs:sequence>
+      <xs:element name="authorityFieldField" nillable="true" type="tns:TextType1"/>
+      <xs:element name="contactFieldField" nillable="true" type="tns:ArrayOfContact11"/>
+      <xs:element name="idFieldField" nillable="true" type="tns:IdentifierType1"/>
+      <xs:element name="processRoleFieldField" nillable="true" type="tns:CodeType1"/>
+      <xs:element name="refFieldField" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Partner1" nillable="true" type="tns:Partner1"/>
+  <xs:complexType name="ArrayOfContact11">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contact11" nillable="true" type="tns:Contact11"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContact11" nillable="true" type="tns:ArrayOfContact11"/>
+  <xs:complexType name="Contact11">
+    <xs:sequence>
+      <xs:element name="contactFieldField" nillable="true" type="tns:TextType1"/>
+      <xs:element name="contactTypeIdentifierFieldField" nillable="true" type="tns:CodeType1"/>
+      <xs:element name="emailAddressFieldField" nillable="true" type="xs:string"/>
+      <xs:element name="refFieldField" nillable="true" type="xs:string"/>
+      <xs:element name="telephoneNumberFieldField" nillable="true" type="tns:TextType1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contact11" nillable="true" type="tns:Contact11"/>
+  <xs:complexType name="ArrayOfSoftwareInformation1">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SoftwareInformation1" nillable="true" type="tns:SoftwareInformation1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSoftwareInformation1" nillable="true" type="tns:ArrayOfSoftwareInformation1"/>
+  <xs:complexType name="SoftwareInformation1">
+    <xs:sequence>
+      <xs:element name="productIDFieldField" nillable="true" type="tns:IdentifierType1"/>
+      <xs:element name="productNameFieldField" nillable="true" type="tns:TextType1"/>
+      <xs:element name="productVersionFieldField" nillable="true" type="tns:TextType1"/>
+      <xs:element name="refFieldField" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SoftwareInformation1" nillable="true" type="tns:SoftwareInformation1"/>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd9</con:url><con:content><![CDATA[<xs:schema elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ExternalServices.EHC" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.datacontract.org/2004/07/ExternalServices.EHC">
+  <xs:complexType name="ReceiptExceptionSignalType">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="receiptExceptionField" nillable="true" type="tns:ReceiptException"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="specialisationField" nillable="true" type="tns:ArrayOfSpecialisation"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="standardBusinessMessageHeaderField" nillable="true" type="tns:StandardBusinessMessageHeader"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReceiptException">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="identificationField" nillable="true" type="tns:IdentifierType"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="messageField" nillable="true" type="tns:TextType"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="reasonField" nillable="true" type="tns:TextType"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="refField" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="typeField" nillable="true" type="tns:CodeType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="IdentifierType">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="identificationSchemeAgencyField" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="identificationSchemeNameField" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="identificationSchemeURIField" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="identificationSchemeVersionField" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="valueField" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TextType">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="languageIdentifierField" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="languageLocaleIdentifierField" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="valueField" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CodeType">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="codeListAgencyField" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="codeListNameField" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="codeListURIField" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="codeListVersionField" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="codeNameField" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="valueField" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfSpecialisation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Specialisation" nillable="true" type="tns:Specialisation"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Specialisation">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="domainIdField" nillable="true" type="tns:IdentifierType"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="extensionField" nillable="true"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="jurisdictionField" nillable="true" type="tns:CodeType"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="refField" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="versionField" nillable="true" type="tns:IdentifierType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StandardBusinessMessageHeader">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="businessScopeField" nillable="true" type="tns:ArrayOfBusinessScope"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="documentIdentificationField" nillable="true" type="tns:DocumentIdentification"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="receiverPartnerField" nillable="true" type="tns:Partner"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="refField" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="senderPartnerField" nillable="true" type="tns:Partner"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="softwareInformationField" nillable="true" type="tns:ArrayOfSoftwareInformation"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="versionField" nillable="true" type="tns:IdentifierType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfBusinessScope">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BusinessScope" nillable="true" type="tns:BusinessScope"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BusinessScope">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="correlationInformationField" nillable="true" type="tns:ArrayOfCorrelationInformation"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="idField" nillable="true" type="tns:IdentifierType"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="instanceIDField" nillable="true" type="tns:IdentifierType"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="refField" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="typeField" nillable="true" type="tns:BusinessScope_CodeType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfCorrelationInformation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CorrelationInformation" nillable="true" type="tns:CorrelationInformation"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CorrelationInformation">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="expectedResponseDateTimeField" nillable="true" type="tns:DateTimeType"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="refField" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="requestingDocumentCreationDateTimeField" nillable="true" type="tns:DateTimeType"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="requestingDocumentInstanceIDField" nillable="true" type="tns:IdentifierType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DateTimeType">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="formatField" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="valueField" type="xs:dateTime"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BusinessScope_CodeType">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="codeListAgencyField" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="codeListNameField" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="codeListURIField" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="codeListVersionField" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="codeNameField" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="valueField" type="tns:BusinessScope_Code"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="BusinessScope_Code">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="BusinessCollaboration"/>
+      <xs:enumeration value="BusinessProcess"/>
+      <xs:enumeration value="BusinessTransaction"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="DocumentIdentification">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="creationDateTimeField" nillable="true" type="tns:DateTimeType"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="instanceIDField" nillable="true" type="tns:IdentifierType"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="refField" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="standardField" nillable="true" type="tns:Standard_CodeType"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="typeField" nillable="true" type="tns:CodeType"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="typeVersionField" nillable="true" type="tns:TextType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Standard_CodeType">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="codeListAgencyField" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="codeListNameField" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="codeListURIField" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="codeListVersionField" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="codeNameField" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="valueField" type="tns:Standard_Code"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="Standard_Code">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="eDAIS"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="Partner">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="authorityField" nillable="true" type="tns:TextType"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="contactField" nillable="true" type="tns:ArrayOfContact1"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="idField" nillable="true" type="tns:IdentifierType"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="processRoleField" nillable="true" type="tns:CodeType"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="refField" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfContact1">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contact1" nillable="true" type="tns:Contact1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Contact1">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="contactField" nillable="true" type="tns:TextType"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="contactTypeIdentifierField" nillable="true" type="tns:CodeType"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="emailAddressField" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="refField" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="telephoneNumberField" nillable="true" type="tns:TextType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfSoftwareInformation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SoftwareInformation" nillable="true" type="tns:SoftwareInformation"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SoftwareInformation">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="productIDField" nillable="true" type="tns:IdentifierType"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="productNameField" nillable="true" type="tns:TextType"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="productVersionField" nillable="true" type="tns:TextType"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="refField" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd10</con:url><con:content><![CDATA[<xs:schema elementFormDefault="qualified" targetNamespace="http://edais.daf.gov.au/nsw/da.data.1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://edais.daf.gov.au/nsw/da.data.1.0">
+  <xs:import schemaLocation="http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd2" namespace="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+  <xs:complexType name="Application">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Type" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="EstimatedValue" type="xs:decimal"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DevelopmentCode" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="BCAClass" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="RefNumber" type="xs:string"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="SubjectLand">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ABS_Statistics" type="tns:ABS_StatisticsType"/>
+    </xs:sequence>
+    <xs:attribute name="ref" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="ABS_StatisticsType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="NumberOfFloors" type="xs:decimal"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="GFA" type="xs:decimal"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="GSA" type="xs:decimal"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="NumberOfNewDwellings" type="xs:decimal"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="NumberOfExistingDwellings" type="xs:decimal"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="NumberDwellingsDemolished" type="xs:decimal"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="NewDwellingAttached" type="xs:boolean"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="NewBuildingAttached" type="xs:boolean"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="DualOccupancy" type="xs:boolean"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Floor" type="q1:CodeType" xmlns:q1="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Frame" type="q2:CodeType" xmlns:q2="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Roof" type="q3:CodeType" xmlns:q3="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Walls" type="q4:CodeType" xmlns:q4="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd12</con:url><con:content><![CDATA[<xs:schema elementFormDefault="qualified" targetNamespace="http://xml.gov.au/edais/bm/RejectCreateApplicationTransaction.msg.2.3.0r2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://xml.gov.au/edais/bm/RejectCreateApplicationTransaction.msg.2.3.0r2">
+  <xs:import schemaLocation="http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd1" namespace="http://xml.gov.au/edais/core/da.data.2.3.0r2"/>
+  <xs:import schemaLocation="http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd5" namespace="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2"/>
+  <xs:import schemaLocation="http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd6" namespace="http://xml.gov.au/edais/core/msg.data.2.3.0r2"/>
+  <xs:complexType name="RejectCreateApplicationTransactionType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Application" type="q1:Application" xmlns:q1="http://xml.gov.au/edais/core/da.data.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Specialisation" type="q2:Specialisation" xmlns:q2="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="StandardBusinessMessageHeader" type="q3:StandardBusinessMessageHeader" xmlns:q3="http://xml.gov.au/edais/core/msg.data.2.3.0r2"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd13</con:url><con:content><![CDATA[<xs:schema elementFormDefault="qualified" targetNamespace="http://xml.gov.au/edais/bm/RejectChangeApplicationTransaction.msg.2.3.0r2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://xml.gov.au/edais/bm/RejectChangeApplicationTransaction.msg.2.3.0r2">
+  <xs:import schemaLocation="http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd1" namespace="http://xml.gov.au/edais/core/da.data.2.3.0r2"/>
+  <xs:import schemaLocation="http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd5" namespace="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2"/>
+  <xs:import schemaLocation="http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd6" namespace="http://xml.gov.au/edais/core/msg.data.2.3.0r2"/>
+  <xs:complexType name="RejectChangeApplicationTransactionType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Application" type="q1:Application" xmlns:q1="http://xml.gov.au/edais/core/da.data.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Specialisation" type="q2:Specialisation" xmlns:q2="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="StandardBusinessMessageHeader" type="q3:StandardBusinessMessageHeader" xmlns:q3="http://xml.gov.au/edais/core/msg.data.2.3.0r2"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd14</con:url><con:content><![CDATA[<xs:schema elementFormDefault="qualified" targetNamespace="http://xml.gov.au/edais/bm/AcceptCreateApplicationTransaction.msg.2.3.0r2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://xml.gov.au/edais/bm/AcceptCreateApplicationTransaction.msg.2.3.0r2">
+  <xs:import schemaLocation="http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd1" namespace="http://xml.gov.au/edais/core/da.data.2.3.0r2"/>
+  <xs:import schemaLocation="http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd5" namespace="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2"/>
+  <xs:import schemaLocation="http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd6" namespace="http://xml.gov.au/edais/core/msg.data.2.3.0r2"/>
+  <xs:complexType name="AcceptCreateApplicationTransactionType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Application" type="q1:Application" xmlns:q1="http://xml.gov.au/edais/core/da.data.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Specialisation" type="q2:Specialisation" xmlns:q2="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="StandardBusinessMessageHeader" type="q3:StandardBusinessMessageHeader" xmlns:q3="http://xml.gov.au/edais/core/msg.data.2.3.0r2"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc?xsd=xsd15</con:url><con:content><![CDATA[<xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/">
+  <xs:element name="anyType" nillable="true" type="xs:anyType"/>
+  <xs:element name="anyURI" nillable="true" type="xs:anyURI"/>
+  <xs:element name="base64Binary" nillable="true" type="xs:base64Binary"/>
+  <xs:element name="boolean" nillable="true" type="xs:boolean"/>
+  <xs:element name="byte" nillable="true" type="xs:byte"/>
+  <xs:element name="dateTime" nillable="true" type="xs:dateTime"/>
+  <xs:element name="decimal" nillable="true" type="xs:decimal"/>
+  <xs:element name="double" nillable="true" type="xs:double"/>
+  <xs:element name="float" nillable="true" type="xs:float"/>
+  <xs:element name="int" nillable="true" type="xs:int"/>
+  <xs:element name="long" nillable="true" type="xs:long"/>
+  <xs:element name="QName" nillable="true" type="xs:QName"/>
+  <xs:element name="short" nillable="true" type="xs:short"/>
+  <xs:element name="string" nillable="true" type="xs:string"/>
+  <xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte"/>
+  <xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt"/>
+  <xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong"/>
+  <xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort"/>
+  <xs:element name="char" nillable="true" type="tns:char"/>
+  <xs:simpleType name="char">
+    <xs:restriction base="xs:int"/>
+  </xs:simpleType>
+  <xs:element name="duration" nillable="true" type="tns:duration"/>
+  <xs:simpleType name="duration">
+    <xs:restriction base="xs:duration">
+      <xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?"/>
+      <xs:minInclusive value="-P10675199DT2H48M5.4775808S"/>
+      <xs:maxInclusive value="P10675199DT2H48M5.4775807S"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="guid" nillable="true" type="tns:guid"/>
+  <xs:simpleType name="guid">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:attribute name="FactoryType" type="xs:QName"/>
+  <xs:attribute name="Id" type="xs:ID"/>
+  <xs:attribute name="Ref" type="xs:IDREF"/>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc</con:endpoint></con:endpoints><con:operation isOneWay="false" action="http://example.xml.gov.au/CreateApplication_Responder.2.3.0r2/Propose" name="Propose" bindingOperationName="Propose" type="Request-Response" outputName="ProposeResponse" inputName="ProposeRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1" wssPasswordType=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:prop="http://xml.gov.au/edais/bm/ProposeCreateApplicationTransaction.msg.2.3.0r2" xmlns:da="http://xml.gov.au/edais/core/da.data.2.3.0r2" xmlns:naa="http://xml.gov.au/edais/core/naa.data.2.3.0r2" xmlns:lab="http://xml.gov.au/edais/core/lab.data.2.3.0r2" xmlns:spec="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2" xmlns:msg="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ProposeCreateApplicationTransactionType xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://xml.gov.au/edais/bm/ProposeCreateApplicationTransaction.msg.2.3.0r2">
+         <Application ref="APP-0000060681">
+            <ApplicationNumber xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">APP-0000060683</ApplicationNumber>
+            <Comments xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">sea</Comments>
+            <CreatedDate xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">2011-10-26T13:55:33.3770429+11:00</CreatedDate>
+            <LodgementDate xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">2011-10-26T13:55:33.3770429+11:00</LodgementDate>
+            <PartyRole xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">
+               <Party>
+                  <Person xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">
+                     <Identification/>
+                     <Internet>
+                        <Type>Email</Type>
+                        <URI>nick.gabb@infor.com</URI>
+                     </Internet>
+                     <PersonName>
+                        <Classification>Official Name</Classification>
+                        <FamilyName>gabb</FamilyName>
+                        <GivenName>nik</GivenName>
+                        <MiddleName/>
+                        <Name>Mr gabb, nik</Name>
+                        <Title>Mr</Title>
+                        <ValidityPeriod>
+                           <Identification/>
+                           <Start>2011-10-26T00:00:00+11:00</Start>
+                        </ValidityPeriod>
+                     </PersonName>
+                     <PostalAddress>
+                        <CityName>BONDI</CityName>
+                        <CountryName>AUS</CountryName>
+                        <CountrySubDivision>NSW</CountrySubDivision>
+                        <Identification identificationSchemeName="TitleRef"/>
+                        <LineOne>22 New St</LineOne>
+                        <LineTwo/>
+                        <Postcode>2026</Postcode>
+                     </PostalAddress>
+                     <Telephone>
+                        <Number>3566766</Number>
+                        <Type>BusinessHours</Type>
+                     </Telephone>
+                  </Person>
+                  <Identification xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2"/>
+                  <Name xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">Mr gabb, nik</Name>
+                  <Type xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">APPLICANT</Type>
+               </Party>
+               <Type>APPLICANT</Type>
+            </PartyRole>
+            <PartyRole xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">
+               <Party>
+                  <Person xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">
+                     <Identification/>
+                     <Internet>
+                        <Type>Email</Type>
+                        <URI>nick.gabb@infor.com</URI>
+                     </Internet>
+                     <PersonName>
+                        <Classification>Official Name</Classification>
+                        <FamilyName>gabb</FamilyName>
+                        <GivenName>nik</GivenName>
+                        <MiddleName/>
+                        <Name>Mr gabb, nik</Name>
+                        <Title>Mr</Title>
+                        <ValidityPeriod>
+                           <Identification/>
+                           <Start>2011-10-26T00:00:00+11:00</Start>
+                        </ValidityPeriod>
+                     </PersonName>
+                     <PostalAddress>
+                        <CityName>BONDI</CityName>
+                        <CountryName>AUS</CountryName>
+                        <CountrySubDivision>NSW</CountrySubDivision>
+                        <Identification identificationSchemeName="TitleRef"/>
+                        <LineOne>22 New St</LineOne>
+                        <LineTwo/>
+                        <Postcode>2026</Postcode>
+                     </PostalAddress>
+                     <Telephone>
+                        <Number>3566766</Number>
+                        <Type>BusinessHours</Type>
+                     </Telephone>
+                  </Person>
+                  <Identification xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2"/>
+                  <Name xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2"/>
+                  <Type xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">OWNER</Type>
+               </Party>
+               <Type>OWNER</Type>
+            </PartyRole>
+            <PartyRole xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">
+               <Party>
+                  <Organisation xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">
+                     <Contact>
+                        <Identification>1-GRSWDF</Identification>
+                        <IsPrimary>true</IsPrimary>
+                        <JobTitle>"Contact Person"</JobTitle>
+                        <PersonName>
+                           <Classification>Official Name</Classification>
+                           <FamilyName>Gabb</FamilyName>
+                           <GivenName>Nick</GivenName>
+                           <MiddleName/>
+                           <Name>Mr Gabb, Nick</Name>
+                           <Title>Mr</Title>
+                           <ValidityPeriod>
+                              <Identification/>
+                              <Start>2011-10-26T00:00:00+11:00</Start>
+                           </ValidityPeriod>
+                        </PersonName>
+                        <Responsibility>"Contact Person"</Responsibility>
+                     </Contact>
+                     <Identification identificationSchemeName="ABN"/>
+                     <Internet>
+                        <Type>Website</Type>
+                     </Internet>
+                     <IsActive>true</IsActive>
+                     <OrganisationName>
+                        <Classification>Official Name</Classification>
+                        <Name>INFOR TESTING</Name>
+                        <ValidityPeriod>
+                           <Identification/>
+                           <Start>2011-10-26T00:00:00+11:00</Start>
+                        </ValidityPeriod>
+                     </OrganisationName>
+                     <OrganisationName>
+                        <Classification>Registered Trading Name</Classification>
+                        <Name/>
+                        <ValidityPeriod>
+                           <Identification/>
+                           <Start>2011-10-26T00:00:00+11:00</Start>
+                        </ValidityPeriod>
+                     </OrganisationName>
+                  </Organisation>
+                  <Identification xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2"/>
+                  <Name xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2"/>
+                  <Type xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">CERTIFIER</Type>
+               </Party>
+               <Type>CERTIFIER</Type>
+            </PartyRole>
+            <PartyRole xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">
+               <Party>
+                  <Person xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">
+                     <Identification>1-GRSWDF</Identification>
+                     <Internet>
+                        <Type>Email</Type>
+                        <URI>nick.gabb@infor.com</URI>
+                     </Internet>
+                     <PersonName>
+                        <Classification>Official Name</Classification>
+                        <FamilyName>Gabb</FamilyName>
+                        <GivenName>Nick</GivenName>
+                        <MiddleName/>
+                        <Name>Mr Gabb, Nick</Name>
+                        <Title>Mr</Title>
+                        <ValidityPeriod>
+                           <Identification/>
+                           <Start>2011-10-26T00:00:00+11:00</Start>
+                        </ValidityPeriod>
+                     </PersonName>
+                     <PostalAddress>
+                        <CityName>HAYMARKET</CityName>
+                        <CountryName>AUS</CountryName>
+                        <CountrySubDivision>NSW</CountrySubDivision>
+                        <Identification identificationSchemeName="TitleRef"/>
+                        <LineOne>L 22 2-24 Rawson Pl</LineOne>
+                        <LineTwo/>
+                        <Postcode>2000</Postcode>
+                     </PostalAddress>
+                  </Person>
+                  <Identification xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2"/>
+                  <Name xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2"/>
+                  <Type xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">NOTDEFINEDINCONFIGURATION</Type>
+               </Party>
+               <Type>NOTDEFINEDINCONFIGURATION</Type>
+            </PartyRole>
+            <Status xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">Lodged</Status>
+            <SubjectLand ref="land1" xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">
+               <Address>
+                  <CityName xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">WEST PENNANT HILLS</CityName>
+                  <CountryName xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">AUS</CountryName>
+                  <CountrySubDivision xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">NSW</CountrySubDivision>
+                  <Identification identificationSchemeName="TitleRef" xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">102//DP871027</Identification>
+                  <LineOne xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">133 Aiken Road</LineOne>
+                  <LineTwo xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2"/>
+                  <Postcode xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">2125</Postcode>
+               </Address>
+               <Document>
+                  <DocumentNo xmlns="http://xml.gov.au/edais/core/lab.data.2.3.0r2">871027</DocumentNo>
+                  <Jurisdiction xmlns="http://xml.gov.au/edais/core/lab.data.2.3.0r2">NSW</Jurisdiction>
+                  <SurveyDocument xmlns="http://xml.gov.au/edais/core/lab.data.2.3.0r2">
+                     <Survey>
+                        <CoordinateSystem>
+                           <HorizontalDatumName/>
+                        </CoordinateSystem>
+                     </Survey>
+                  </SurveyDocument>
+               </Document>
+               <Parcel>
+                  <Classification xmlns="http://xml.gov.au/edais/core/lab.data.2.3.0r2"/>
+                  <Name xmlns="http://xml.gov.au/edais/core/lab.data.2.3.0r2">102</Name>
+                  <OID xmlns="http://xml.gov.au/edais/core/lab.data.2.3.0r2">The Hills Shire Council</OID>
+               </Parcel>
+            </SubjectLand>
+         </Application>
+         <Specialisation>
+            <DomainId xmlns="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2">EHC</DomainId>
+            <Extension xmlns="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2">
+               <Application ref="APP-0000060681" xmlns="http://edais.daf.gov.au/nsw/da.data.1.0">
+                  <Type/>
+                  <EstimatedValue>55555</EstimatedValue>
+                  <DevelopmentCode>New dwelling house -- Driveway</DevelopmentCode>
+                  <BCAClass/>
+                  <RefNumber/>
+               </Application>
+            </Extension>
+            <Jurisdiction xmlns="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2">NSW</Jurisdiction>
+            <Version xmlns="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2">1.0</Version>
+         </Specialisation>
+         <Specialisation>
+            <DomainId xmlns="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2">EHC</DomainId>
+            <Extension xmlns="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2">
+               <SubjectLand ref="land1" xmlns="http://edais.daf.gov.au/nsw/da.data.1.0">
+                  <ABS_Statistics>
+                     <NumberOfFloors>1</NumberOfFloors>
+                     <GFA>1</GFA>
+                     <GSA>1</GSA>
+                     <NumberOfNewDwellings>1</NumberOfNewDwellings>
+                     <NumberOfExistingDwellings>1</NumberOfExistingDwellings>
+                     <NumberDwellingsDemolished>1</NumberDwellingsDemolished>
+                  </ABS_Statistics>
+               </SubjectLand>
+            </Extension>
+            <Jurisdiction xmlns="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2">NSW</Jurisdiction>
+            <Version xmlns="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2">1.0</Version>
+         </Specialisation>
+         <StandardBusinessMessageHeader>
+            <BusinessScope xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+               <CorrelationInformation>
+                  <ExpectedResponseDateTime>2011-11-02T13:55:33.7989395+11:00</ExpectedResponseDateTime>
+                  <RequestingDocumentCreationDateTime>2011-11-02T13:55:33.7989395+11:00</RequestingDocumentCreationDateTime>
+                  <RequestingDocumentInstanceID identificationSchemeName="ApplicationNo">APP-0000060681</RequestingDocumentInstanceID>
+               </CorrelationInformation>
+               <ID identificationSchemeName="ApplicationNo">APP-0000060681</ID>
+               <InstanceID identificationSchemeName="ApplicationNo">APP-0000060681</InstanceID>
+               <Type>BusinessCollaboration</Type>
+            </BusinessScope>
+            <DocumentIdentification xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+               <CreationDateTime>2011-10-26T13:55:33.7989395+11:00</CreationDateTime>
+               <InstanceID identificationSchemeName="ApplicationNo">APP-0000060681</InstanceID>
+               <Standard>eDAIS</Standard>
+               <Type>ProposeCreateApplication</Type>
+               <TypeVersion>2.3.0</TypeVersion>
+            </DocumentIdentification>
+            <ReceiverPartner xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+               <Authority>ConsentAuthority</Authority>
+               <Contact>
+                  <Contact>INFOR TESTING</Contact>
+                  <ContactTypeIdentifier/>
+                  <EmailAddress>hunter.wall+ehc@envoyat.com</EmailAddress>
+                  <TelephoneNumber/>
+               </Contact>
+               <ID>Council Name</ID>
+               <ProcessRole>CONSENT_AUTH</ProcessRole>
+            </ReceiverPartner>
+            <SenderPartner xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+               <Authority>EHC</Authority>
+               <Contact>
+                  <Contact>EHC HelpDesk</Contact>
+                  <ContactTypeIdentifier>EHC Support</ContactTypeIdentifier>
+                  <EmailAddress>EHC@planning.nsw.gov.au</EmailAddress>
+                  <TelephoneNumber>9228 6100</TelephoneNumber>
+               </Contact>
+               <ID>NSWDoP</ID>
+               <ProcessRole>APP_LODGE</ProcessRole>
+            </SenderPartner>
+            <SoftwareInformation xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+               <ProductID>EHCv1</ProductID>
+               <ProductName>NSW Electronic Housing Code</ProductName>
+               <ProductVersion>v1.0</ProductVersion>
+            </SoftwareInformation>
+            <Version xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">eDAIS2.3.0r2</Version>
+         </StandardBusinessMessageHeader>
+      </ProposeCreateApplicationTransactionType>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:username/><con:password/></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://example.xml.gov.au/CreateApplication_Responder.2.3.0r2/Propose"/><con:wsrmConfig version="1.2"/></con:call><con:call name="Request 2" wssPasswordType="PasswordText"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting><con:setting id="com.eviware.soapui.impl.support.AbstractHttpRequest@follow-redirects">true</con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://edais.buildaform.com.localhost.test/Responder_CreateApplicationTransaction.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:prop="http://xml.gov.au/edais/bm/ProposeCreateApplicationTransaction.msg.2.3.0r2" xmlns:da="http://xml.gov.au/edais/core/da.data.2.3.0r2" xmlns:naa="http://xml.gov.au/edais/core/naa.data.2.3.0r2" xmlns:lab="http://xml.gov.au/edais/core/lab.data.2.3.0r2" xmlns:spec="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2" xmlns:msg="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ProposeCreateApplicationTransaction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"  xmlns="http://xml.gov.au/edais/bm/ProposeCreateApplicationTransaction.msg.2.3.0r2">
+  <Application ref="APP-0000125080" xmlns="http://xml.gov.au/edais/bm/ProposeCreateApplicationTransaction.msg.2.3.0r2">
+    <ApplicationNumber xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">APP-0000125080</ApplicationNumber>
+    <Attachment xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">
+      <Date>2012-06-14T12:42:22.3067962+10:00</Date>
+      <Description>Investigation Report</Description>
+      <Identification>EHC_Complying_Report.pdf</Identification>
+      <Size UnitCode="bytes">164368</Size>
+      <Type>Investigation Report</Type>
+      <URI>https://uat.licence.nsw.gov.au/gls_portal/Attachment.mvc/Download?fid=58804&amp;s=CSAWx6X1TjlJtC4oJAUoJg</URI>
+    </Attachment>
+    <Attachment xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">
+      <Date>2012-06-14T12:42:22.3067962+10:00</Date>
+      <Description>SITE PLAN</Description>
+      <Identification>Blue_hills.jpg</Identification>
+      <Size UnitCode="bytes">28521</Size>
+      <Type>SITE PLAN</Type>
+      <URI>https://uat.licence.nsw.gov.au/gls_portal/Attachment.mvc/Download?fid=58805&amp;s=YirAYNKHRLp6jSeATvx38A</URI>
+    </Attachment>
+    <Attachment xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">
+      <Date>2012-06-14T12:42:22.3067962+10:00</Date>
+      <Description>SystemGeneratedApplicationPDF</Description>
+      <Identification>application.pdf</Identification>
+      <Size UnitCode="bytes">20401</Size>
+      <Type>SystemGeneratedApplicationPDF</Type>
+      <URI>https://uat.licence.nsw.gov.au/gls_portal/Attachment.mvc/Download?fid=58806&amp;s=wdQD0Nhvnvngq7URIC9kw</URI>
+    </Attachment>
+    <Comments xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">hrejkshfksjhfjkashfjkasdf</Comments>
+    <CreatedDate xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">2012-06-14T15:32:41.2958364+10:00</CreatedDate>
+    <LodgementDate xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">2012-06-14T15:32:41.2958364+10:00</LodgementDate>
+    <PartyRole xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">
+      <Party>
+        <Person xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">
+          <Identification />
+          <Internet>
+            <Type>Email</Type>
+            <URI>john.kazanis@planning.nsw.gov.au</URI>
+          </Internet>
+          <PersonName>
+            <Classification>Official Name</Classification>
+            <FamilyName>Bocking</FamilyName>
+            <GivenName>Mitch</GivenName>
+            <MiddleName />
+            <Name>Mr Bocking, Mitch</Name>
+            <Title>Mr</Title>
+            <ValidityPeriod>
+              <Identification />
+              <Start>2012-06-14T00:00:00+10:00</Start>
+            </ValidityPeriod>
+          </PersonName>
+          <PostalAddress>
+            <BuildingNumber />
+            <CityName>WEST PENNANT HILLS</CityName>
+            <CountryName>AUS</CountryName>
+            <CountrySubDivision>NSW</CountrySubDivision>
+            <Identification identificationSchemeName="TitleRef" />
+            <LineFour />
+            <LineOne>16 Range Road</LineOne>
+            <LineThree />
+            <LineTwo />
+            <Postcode>2125</Postcode>
+            <StreetName />
+            <StreetSuffix />
+            <StreetType />
+          </PostalAddress>
+          <Telephone>
+            <Number>92286154</Number>
+            <Type>BusinessHours</Type>
+          </Telephone>
+        </Person>
+        <Identification xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2" />
+        <Name xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">Mr Bocking, Mitch</Name>
+        <Type xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">APPLICANT</Type>
+      </Party>
+      <Type>APPLICANT</Type>
+    </PartyRole>
+    <PartyRole xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">
+      <Party>
+        <Person xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">
+          <Identification />
+          <Internet>
+            <Type>Email</Type>
+            <URI>john.kazanis@planning.nsw.gov.au</URI>
+          </Internet>
+          <PersonName>
+            <Classification>Official Name</Classification>
+            <FamilyName>Bocking</FamilyName>
+            <GivenName>Mitch</GivenName>
+            <MiddleName />
+            <Name>Mr Bocking, Mitch</Name>
+            <Title>Mr</Title>
+            <ValidityPeriod>
+              <Identification />
+              <Start>2012-06-14T00:00:00+10:00</Start>
+            </ValidityPeriod>
+          </PersonName>
+          <PostalAddress>
+            <BuildingNumber />
+            <CityName>WEST PENNANT HILLS</CityName>
+            <CountryName>AUS</CountryName>
+            <CountrySubDivision>NSW</CountrySubDivision>
+            <Identification identificationSchemeName="TitleRef" />
+            <LineFour />
+            <LineOne>16 Range Road</LineOne>
+            <LineThree />
+            <LineTwo />
+            <Postcode>2125</Postcode>
+            <StreetName />
+            <StreetSuffix />
+            <StreetType />
+          </PostalAddress>
+          <Telephone>
+            <Number>92286154</Number>
+            <Type>BusinessHours</Type>
+          </Telephone>
+        </Person>
+        <Identification xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2" />
+        <Name xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2" />
+        <Type xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">OWNER</Type>
+      </Party>
+      <Type>OWNER</Type>
+    </PartyRole>
+    <PartyRole xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">
+      <Party>
+        <Organisation xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">
+          <Contact>
+            <Identification>1-HLDJVI</Identification>
+            <IsPrimary>true</IsPrimary>
+            <JobTitle>"Contact Person"</JobTitle>
+            <PersonName>
+              <Classification>Official Name</Classification>
+              <FamilyName>VIABUILDAFORM</FamilyName>
+              <GivenName>EDAIS</GivenName>
+              <MiddleName />
+              <Name>Mr VIABUILDAFORM, EDAIS</Name>
+              <Title>Mr</Title>
+              <ValidityPeriod>
+                <Identification />
+                <Start>2012-06-14T00:00:00+10:00</Start>
+              </ValidityPeriod>
+            </PersonName>
+            <Responsibility>"Contact Person"</Responsibility>
+          </Contact>
+          <Identification identificationSchemeName="ABN" />
+          <Internet>
+            <Type>Website</Type>
+          </Internet>
+          <IsActive>true</IsActive>
+          <OrganisationName>
+            <Classification>Official Name</Classification>
+            <Name>Test with Buidaform</Name>
+            <ValidityPeriod>
+              <Identification />
+              <Start>2012-06-14T00:00:00+10:00</Start>
+            </ValidityPeriod>
+          </OrganisationName>
+          <OrganisationName>
+            <Classification>Registered Trading Name</Classification>
+            <Name />
+            <ValidityPeriod>
+              <Identification />
+              <Start>2012-06-14T00:00:00+10:00</Start>
+            </ValidityPeriod>
+          </OrganisationName>
+        </Organisation>
+        <Identification xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2" />
+        <Name xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2" />
+        <Type xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">CERTIFIER</Type>
+      </Party>
+      <Type>CERTIFIER</Type>
+    </PartyRole>
+    <PartyRole xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">
+      <Party>
+        <Person xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">
+          <Identification>1-HLDJVI</Identification>
+          <Internet>
+            <Type>Email</Type>
+            <URI>hunter.wall+ehc@envoyat.com</URI>
+          </Internet>
+          <PersonName>
+            <Classification>Official Name</Classification>
+            <FamilyName>VIABUILDAFORM</FamilyName>
+            <GivenName>EDAIS</GivenName>
+            <MiddleName />
+            <Name>Mr VIABUILDAFORM, EDAIS</Name>
+            <Title>Mr</Title>
+            <ValidityPeriod>
+              <Identification />
+              <Start>2012-06-14T00:00:00+10:00</Start>
+            </ValidityPeriod>
+          </PersonName>
+          <PostalAddress>
+            <BuildingNumber />
+            <CityName>NORTH SYDNEY</CityName>
+            <CountryName>AUS</CountryName>
+            <CountrySubDivision>NSW</CountrySubDivision>
+            <Identification identificationSchemeName="TitleRef" />
+            <LineFour />
+            <LineOne>213 Miller St</LineOne>
+            <LineThree />
+            <LineTwo />
+            <Postcode>2060</Postcode>
+            <StreetName />
+            <StreetSuffix />
+            <StreetType />
+          </PostalAddress>
+        </Person>
+        <Identification xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2" />
+        <Name xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2" />
+        <Type xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">NOTDEFINEDINCONFIGURATION</Type>
+      </Party>
+      <Type>NOTDEFINEDINCONFIGURATION</Type>
+    </PartyRole>
+    <Status xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">Lodged</Status>
+    <SubjectLand ref="land1" xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">
+      <Address>
+        <BuildingNumber xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2" />
+        <CityName xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">WEST PENNANT HILLS</CityName>
+        <CountryName xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">AUS</CountryName>
+        <CountrySubDivision xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">NSW</CountrySubDivision>
+        <Identification identificationSchemeName="TitleRef" xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">11//DP258381</Identification>
+        <LineFour xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2" />
+        <LineOne xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">16 Range Road</LineOne>
+        <LineThree xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">16</LineThree>
+        <LineTwo xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2" />
+        <Postcode xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">2125</Postcode>
+        <StreetName xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">Range</StreetName>
+        <StreetSuffix xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2" />
+        <StreetType xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">Road</StreetType>
+      </Address>
+      <Document>
+        <DocumentNo xmlns="http://xml.gov.au/edais/core/lab.data.2.3.0r2">258381</DocumentNo>
+        <Jurisdiction xmlns="http://xml.gov.au/edais/core/lab.data.2.3.0r2">NSW</Jurisdiction>
+        <SurveyDocument xmlns="http://xml.gov.au/edais/core/lab.data.2.3.0r2">
+          <Survey>
+            <CoordinateSystem>
+              <HorizontalDatumName />
+            </CoordinateSystem>
+          </Survey>
+        </SurveyDocument>
+      </Document>
+      <Parcel>
+        <Classification xmlns="http://xml.gov.au/edais/core/lab.data.2.3.0r2" />
+        <Name xmlns="http://xml.gov.au/edais/core/lab.data.2.3.0r2">11</Name>
+        <OID xmlns="http://xml.gov.au/edais/core/lab.data.2.3.0r2">The Hills Shire Council</OID>
+      </Parcel>
+    </SubjectLand>
+  </Application>
+  <Specialisation xmlns="http://xml.gov.au/edais/bm/ProposeCreateApplicationTransaction.msg.2.3.0r2">
+    <DomainId xmlns="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2">EHC</DomainId>
+    <Extension xmlns="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2">
+      <Application ref="APP-0000125080" xmlns="http://edais.daf.gov.au/nsw/da.data.1.0">
+        <Type />
+        <EstimatedValue>501000</EstimatedValue>
+        <DevelopmentCode>New dwelling house -- Fence</DevelopmentCode>
+        <DevelopmentCode>New dwelling house -- Single storey dwelling house</DevelopmentCode>
+        <BCAClass />
+        <RefNumber />
+      </Application>
+    </Extension>
+    <Jurisdiction xmlns="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2">NSW</Jurisdiction>
+    <Version xmlns="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2">1.0</Version>
+  </Specialisation>
+  <Specialisation xmlns="http://xml.gov.au/edais/bm/ProposeCreateApplicationTransaction.msg.2.3.0r2">
+    <DomainId xmlns="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2">EHC</DomainId>
+    <Extension xmlns="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2">
+      <SubjectLand ref="land1" xmlns="http://edais.daf.gov.au/nsw/da.data.1.0">
+        <ABS_Statistics>
+          <NumberOfFloors>1</NumberOfFloors>
+          <GFA>700</GFA>
+          <GSA>700</GSA>
+          <NumberOfNewDwellings>1</NumberOfNewDwellings>
+          <NumberOfExistingDwellings>0</NumberOfExistingDwellings>
+          <NumberDwellingsDemolished>0</NumberDwellingsDemolished>
+          <NewDwellingAttached>false</NewDwellingAttached>
+          <NewBuildingAttached>false</NewBuildingAttached>
+          <DualOccupancy>false</DualOccupancy>
+        </ABS_Statistics>
+      </SubjectLand>
+    </Extension>
+    <Jurisdiction xmlns="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2">NSW</Jurisdiction>
+    <Version xmlns="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2">1.0</Version>
+  </Specialisation>
+  <StandardBusinessMessageHeader xmlns="http://xml.gov.au/edais/bm/ProposeCreateApplicationTransaction.msg.2.3.0r2">
+    <BusinessScope xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+      <CorrelationInformation>
+        <ExpectedResponseDateTime>2012-06-21T15:32:41.3114621+10:00</ExpectedResponseDateTime>
+        <RequestingDocumentCreationDateTime>2012-06-21T15:32:41.3114621+10:00</RequestingDocumentCreationDateTime>
+        <RequestingDocumentInstanceID identificationSchemeName="ApplicationNo">APP-0000125080</RequestingDocumentInstanceID>
+      </CorrelationInformation>
+      <ID identificationSchemeName="ApplicationNo">APP-0000125080</ID>
+      <InstanceID identificationSchemeName="ApplicationNo">APP-0000125080</InstanceID>
+      <Type>BusinessCollaboration</Type>
+    </BusinessScope>
+    <DocumentIdentification xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+      <CreationDateTime>2012-06-14T15:32:41.3114621+10:00</CreationDateTime>
+      <InstanceID identificationSchemeName="ApplicationNo">APP-0000125080</InstanceID>
+      <Standard>eDAIS</Standard>
+      <Type>ProposeCreateApplication</Type>
+      <TypeVersion>2.3.0</TypeVersion>
+    </DocumentIdentification>
+    <ReceiverPartner xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+      <Authority>ConsentAuthority</Authority>
+      <Contact>
+        <Contact>Test with Buidaform</Contact>
+        <ContactTypeIdentifier />
+        <EmailAddress>hunter.wall+ehc@envoyat.com</EmailAddress>
+        <TelephoneNumber />
+      </Contact>
+      <ID>Council Name</ID>
+      <ProcessRole>CONSENT_AUTH</ProcessRole>
+    </ReceiverPartner>
+    <SenderPartner xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+      <Authority>EHC</Authority>
+      <Contact>
+        <Contact>EHC HelpDesk</Contact>
+        <ContactTypeIdentifier>EHC Support</ContactTypeIdentifier>
+        <EmailAddress>EHC@planning.nsw.gov.au</EmailAddress>
+        <TelephoneNumber>9228 6100</TelephoneNumber>
+      </Contact>
+      <ID>0001</ID>
+      <ProcessRole>APP_LODGE</ProcessRole>
+    </SenderPartner>
+    <SoftwareInformation xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+      <ProductID>EHCv1</ProductID>
+      <ProductName>NSW Electronic Housing Code</ProductName>
+      <ProductVersion>v1.0</ProductVersion>
+    </SoftwareInformation>
+    <Version xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">eDAIS2.3.0r2</Version>
+  </StandardBusinessMessageHeader>
+</ProposeCreateApplicationTransaction>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:username>buildaform_ehc</con:username><con:password>printer1978@</con:password></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://example.xml.gov.au/CreateApplication_Responder.2.3.0r2/Propose"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/></con:soapui-project>

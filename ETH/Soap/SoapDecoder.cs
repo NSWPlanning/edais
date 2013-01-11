@@ -44,10 +44,7 @@ namespace ETH.Soap
 
 		public static Message ToMessage(this HttpWebResponse response)
 		{
-			var contentType = GetContentType(response.ContentType);
-			var message = GetMessage(response.GetResponseStream());
-			SetAction(message, contentType, response.Headers);
-			return message;
+			return GetMessage(response.GetResponseStream());
 		}
 
 		/// <summary>
@@ -131,6 +128,7 @@ namespace ETH.Soap
 		{
 			// TODO: refactor to share code with other FromMessage
 			request.ContentType = SoapContentType;
+			request.Method = "POST";
 
 			using (var stream = request.GetRequestStream())
 			using (var writer = XmlDictionaryWriter.CreateTextWriter(stream))

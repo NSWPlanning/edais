@@ -46,6 +46,7 @@ namespace ETH.CommandLine
 				if (options.Scenario != null)
 				{
 					endpointProvider.ServerBaseUrl = options.ListenUrl;
+					endpointProvider.ClientEndpoint = options.ClientUrl;
 					if (options.UseSoap11)
 					{
 						endpointProvider.MessageVersion = MessageVersion.Soap11WSAddressingAugust2004;
@@ -60,7 +61,6 @@ namespace ETH.CommandLine
 						output.WriteLine(e.ToString());
 						return 1;
 					}
-
 					
 				}
 				else if (options.Results)

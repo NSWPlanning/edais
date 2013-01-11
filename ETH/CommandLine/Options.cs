@@ -33,6 +33,9 @@ namespace ETH.CommandLine
 		[Option("u", "listen", HelpText = "URL to listen on.", DefaultValue = defaultUrl)]
 		public string ListenUrl { get; set; }
 
+		[Option("c", "client-url", HelpText = "Endpoint for client", DefaultValue = null)]
+		public string ClientUrl { get; set; }
+
 		[Option("m", null, HelpText = "Use SOAP 1.1 instead of 1.2.")]
 		public bool UseSoap11 { get; set; }
 

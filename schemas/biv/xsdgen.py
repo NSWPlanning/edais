@@ -12,6 +12,6 @@ for xsd in xsds:
 
 args[-1] = ".\\" + args[-1]
 
-args.extend(['/c', '/n:eDAIS'])
+args.extend(['/c', '/n:eDAIS', '/order'])
 
 subprocess.call(args, shell=True)

@@ -2,6 +2,7 @@
 using System.IO;
 using Autofac;
 using ETH.CommandLine;
+using ETH.OutputModels;
 using ETH.ScenarioRunner;
 using FluentAssertions;
 using Moq;
@@ -16,8 +17,9 @@ namespace ETH.Tests.CommandLine
 			[Fact]
 			public void NoOptions()
 			{
-				var program = new Program(null, null);
-				program.Run(new Options(), new StringWriter()).Should().Be(1);
+				var injector = new MockInjector();
+				var program = injector.Create<Program>();
+				program.Run(new Options()).Should().Be(1);
 			}
 
 			public class TestRunGiven
@@ -25,32 +27,35 @@ namespace ETH.Tests.CommandLine
 				[Fact]
 				public void NoSubOptions()
 				{
-					var program = new Program(null, null);
+					var injector = new MockInjector();
+					var program = injector.Create<Program>();
+					var output = injector.GetMock<IOutput>();
 					var options = new Options
 					{
 						TestRun = "testrun1"
 					};
-					var output = new StringWriter();
 
-					program.Run(options, output)
+					program.Run(options)
 					       .Should().Be(1);
 
-					output.ToString()
-					      .Should().Contain("additional argument");
+					output.Verify(o => 
+						o.String(It.Is<string>(s => 
+							s.Contains("additional argument"))));
 				}
 
 				[Fact]
 				public void ScenarioOption()
 				{
-					var runner = new Mock<IRunner>();
-					var program = new Program(runner.Object, new Mock<IEndpointProvider>().Object);
+					var injector = new MockInjector();
+					var program = injector.Create<Program>();
+					var runner = injector.GetMock<IRunner>();
 					var options = new Options
 					{
 						TestRun = "butts",
 						Scenario = "whee"
 					};
 
-					program.Run(options, null)
+					program.Run(options)
 					       .Should().Be(0);
 
 					runner.Verify(r => r.Run("butts", "whee", null));
@@ -59,8 +64,9 @@ namespace ETH.Tests.CommandLine
 				[Fact]
 				public void ScenarioOptionWithArguments()
 				{
-					var runner = new Mock<IRunner>();
-					var program = new Program(runner.Object, new Mock<IEndpointProvider>().Object);
+					var injector = new MockInjector();
+					var program = injector.Create<Program>();
+					var runner = injector.GetMock<IRunner>();
 					var options = new Options
 					{
 						TestRun = "heh",
@@ -68,7 +74,7 @@ namespace ETH.Tests.CommandLine
 						ScenarioArguments = new[] {"a1", "a2"}
 					};
 
-					program.Run(options, null)
+					program.Run(options)
 					       .Should().Be(0);
 
 					runner.Verify(r => r.Run("heh", "moo", new[] {"a1", "a2"}));
@@ -77,26 +83,28 @@ namespace ETH.Tests.CommandLine
 				[Fact]
 				public void ScenarioOptionThrowingException()
 				{
-					var runner = new Mock<IRunner>();
-					var program = new Program(runner.Object, new Mock<IEndpointProvider>().Object);
+					var injector = new MockInjector();
+					var program = injector.Create<Program>();
+					var runner = injector.GetMock<IRunner>();
+					var output = injector.GetMock<IOutput>();
 					var options = new Options
 					{
 						TestRun = "r",
 						Scenario = "s"
 					};
-					var output = new StringWriter();
 
+					var exception = new InvalidOperationException("moo");
 					runner.Setup(r =>
 					             r.Run(It.IsAny<string>(),
 					                   It.IsAny<string>(),
 					                   It.IsAny<string[]>()))
-					      .Throws(new InvalidOperationException("moo"));
+					      .Throws(exception);
 
-					program.Run(options, output)
+					program.Run(options)
 					       .Should().Be(1);
 
-					output.ToString()
-					      .Should().Contain("moo");
+					output.Verify(o => o.Display(It.Is<ResultModel>(r =>
+						r.Result == Result.Fail && r.Message == exception.ToString())));
 				}
 			}
 		}

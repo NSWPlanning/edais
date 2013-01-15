@@ -13,16 +13,25 @@ There are three categories of actor in NSW:
 * Council systems, provided by commercial vendors
 * Private Certifier systems, also provided by commercial vendors
 
-Complying Development can be certified by either the Council of the area the development is being undertaken in, or by a Private Certifer who operates in that area. Private Certifiers do not need Council approval to Approve or Refuse an application, but they must notify Council two days prior to the commencement of building works.
+Complying Development can be certified by either the local Council, or by a Private Certifer that operates in that area. Private Certifiers do not need Council approval to Approve or Refuse an application, but they must notify Council two days prior to the commencement of building works.
 
 This document uses the terms 'MUST', 'SHOULD' and 'MAY', and their negatives, in the manner described in [RFC 2119](http://tools.ietf.org/html/rfc2119).
 
 ### Glossary
 
-* Applicant: a person submitting an application for work, such as a new swimming pool, or adding an extension to a house. Often an architect or a home building company.
-* System: a software system participating in the exchange of eDAIS messages.
-* EHC: the system that accepts applications from applicants and initiates the eDAIS message flow.
-* Council System: the system installed at Council to manage 
+Term                     | Definition
+-------------------------|------------
+Applicant                | The person submitting an application for work, such as a new swimming pool, or adding an extension to a house. Sometimes the owner, but often an architect or a home building company.
+Owner                    | The person that owns the land parcel development is happening on.
+Land Parcel              | A single piece of land, identified by a Land Title Reference.
+Complying Development    | An alternative to Development Applications for fairly simple, non-controversial development. 10 day approvals. Can be approved by Council or by Private Certifiers.
+Certifier                | The person or organisation responsible for approving or refusing a Complying Development Application.
+Council Certifier        | The local Council can approve or refuse a Complying Development Application.
+Private Certifier        | Private Certifiers can also approve or refuse Complying Development Applications, as long as they are accredited by the [BPB](http://www.bpb.nsw.gov.au/).
+Certifier System         | A software system belonging to a Council or Private Certifier and participating in the exchange of eDAIS messages.
+Council System           | The software system used by a local Council to manage Complying Development Applications.
+Private Certifier System | The software system used by a Private Certifier to manage Complying Development Applications.
+EHC                      | Used by Appliants to submit Complying Development Applications to Councils or Private Certifiers. See the [EHC website](http://www.electronichousingcode.com.au). Where the Council System or Private Certifier System are eDAIS-enabled, eDAIS messages will be used to communicate application creation & status.
 
 
 ## Use Cases
@@ -33,7 +42,7 @@ Number | Step                     | In Plain English
 -------|--------------------------|------------------
 1      | Investigate              | Can I put in a pool?
 2      | Prepare Application      | Upload plans, provide contact details.
-3      | Submit for Consideration | Here's my application; check it over please. Certifier can Accept (take on the work) or Reject (refuse the work)
+3      | Submit for Consideration | Here's my application; check it over please. Certifier can Accept (take on the work) or Reject (refuse the work). Payment normally occurs at this step, and is managed out of band.
 4      | Lodge Application        | Formally start processing this application. This is the point at which the CDC 10-day clock starts.
 5      | Determine Application    | Approve or Refuse the application.
 
@@ -41,45 +50,48 @@ Number | Step                     | In Plain English
 **Note:** A common point of confusion:
 
 * Accept/Reject: Certifier decides if they wish to take on the business.
-* Approve/Refuse: Certifier determines whether the application is allowed or not.
+* Approve/Refuse: Certifier determines whether the development is allowed to proceed or not.
 
 ### Common Configurations
 
 There are two primary configurations:
-1. Council providing CDC.
-2. Private Certifier providing CDC.
+1. Local Council acts as Certifier.
+2. Private Certifier acts as Certifier.
 
-When an applicant Submits for Consideration, they select the Certifier from a list of Accredited Certifers. Council is one of these. 
+When an applicant Submits for Consideration, they select the Certifier from a list of Accredited Certifers. The local Council is always one of these. 
 
 
 ### Council as Certifier
 
 Number | Step                     | eDAIS
 -------|--------------------------|------
-1      | Investigate              | n/a
-2      | Prepare Application      | n/a
-3      | Submit for Consideration | n/a 
+1      | Investigate              | -
+2      | Prepare Application      | -
+3      | Submit for Consideration | - 
 4      | Lodge Application        | EHC sends application to Council system
 5      | Determine Application    | Council system sends determination to the EHC
+
+Detailed message flow is described [later on](#messages-council).
 
 ### EHC with Private Certifier and Council
 
 Number | Step                     | eDAIS
 -------|--------------------------|------
-1      | Investigate              | n/a 
-2      | Prepare Application      | n/a 
-3      | Submit for Consideration | n/a 
+1      | Investigate              | - 
+2      | Prepare Application      | - 
+3      | Submit for Consideration | - 
 4      | Lodge Application        | EHC sends application to Private Certifier system
 5      | Determine Application    | Private Certifier system sends determination to the EHC and the Council system
 
+Detailed message flow is described [later on](#messages-certifier).
 
 ## Transport Layer & Security
 
 The transport layer is SOAP with `BasicHttpBinding`. Messages are sent and acknowledged synchronously.
 
-SSL/TLS is enforced, and the EHC system can only connect to systems on the default SSL port (443). Deployments may terminate SSL at the network perimeter and forward messages over HTTP.
+SSL/TLS is enforced, and the EHC will only connect to systems on the default SSL port (443). Deployments may terminate SSL at the network perimeter and forward messages over HTTP on their internal network.
 
-Messages are additionally secured using [UsernameToken][1]. The username and password are configured on a per-endpoint basis, that is per-Council and per-Private Certifier. These usernames and passwords must be identically configured in any communicating systems.
+Messages are additionally secured using [UsernameToken][1]. The username and password are configured on a per-endpoint basis, that is per-Council and per-Private Certifier instance. These usernames and passwords must be identically configured in any communicating systems.
 
 {% highlight xml %}
 <soapenv:Header>
@@ -105,8 +117,6 @@ Acknowledgements should be sent synchronously on the same connection.
 
 Attachments are in the `ProposeCreateApplication` and `DeclareSaveDetermination` messages. Below is a sample block from a `ProposeCreateApplication`. 
 
-EHC NOTE: Attachments sourced from the EHC will will expire after 3 retrieval attempts. There may also be a time expiry on this link, but that is currently unclear.
-
 {% highlight xml %}
 <Attachment xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">
   <Date>2012-11-29T13:22:10.7104852+11:00</Date>
@@ -119,22 +129,48 @@ EHC NOTE: Attachments sourced from the EHC will will expire after 3 retrieval at
 {% endhighlight %}
 
 * Systems should retrieve attachments as soon as possible and must aim to do so within an hour of receiving a message. 
+* Attachments sourced from the EHC will will expire after 3 retrieval attempts. There may also be a time expiry on this link, but that is currently unclear.
 * Systems should attempt to use the `<Type>` to automatically categorise attachments.
-* Systems must be able to handle the fact that the values in `<Type>` may change without warning.
+* Systems must be able to handle the fact that the values provided in `<Type>` may change without warning.
 * Systems must not notify end users of a new application or of a determination until attachments have been successfully retrieved. 
-* Systems must raise an error for the attention of the appropriate humans if attachments are unable to be downloaded.
+* Systems must raise an error for the attention of the appropriate humans if attachments are unable to be downloaded, either as the client or server.
 
 
 ## Messages
 
-'ProposeCreateApplication' is sent from the EHC to a Council or Private Certifier system. Synchronously, the Council or Private Certifier system should respond with a `ReceiptAcknowledgementSignal'.
+### Message Flow - Council as Certifier {#messages-council}
 
-Council or Private Certifier systems
+TODO: image with flow
+
+Message                                                                                                     | Purpose
+------------------------------------------------------------------------------------------------------------|----------------------------------------------
+[ProposeCreateApplicationTransaction](/edais/messages/council/01_ProposeCreateApplicationTransaction.xml)   | Creates an application in the Council system.
+[ReceiptAcknowledgementSignal](/edais/messages/council/02_ReceiptAcknowledgementSignal.xml)                 | Acknowledges the receipt and creation of the application.
+TODO: ambiguity about AcceptCreateApplication?                                                              | -
+TODO: Receipt for AcceptCreateApplication?                                                                  | -
+[DeclareSaveDeterminationNotification](/edais/messages/council/03_DeclareSaveDeterminationNotification.xml) | Let the EHC know that the application has been approved or refused.
+[ReceiptAcknowledgementSignal](/edais/messages/council/04_ReceiptAcknowledgementSignal.xml)                 | Acknowledges the determination of the application.
+
+### Message Flow - Private Certifer as Certifier {#messages-certifier}
+
+TODO: image with flow
+
+Message                                                                                                                         | Purpose
+--------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------
+[ProposeCreateApplicationTransaction](/edais/messages/private-certifier/01_ProposeCreate_GLS_to_Buildaform.xml)                  | Creates an application in the Private Certifier system.
+[ReceiptAcknowledgementSignal](/edais/messages/private-certifier/01A_ReceiptAcknowledgement.xml)                                | Acknowledges the receipt of the application.
+[AcceptCreateApplication](/edais/messages/private-certifier/02_AcceptCreateApplication_Buildaform_to_GLS.xml)                   | Application has been successfully created with all attachments.
+[ReceiptAcknowledgementSignal](/edais/messages/private-certifier/02A_ReceiptAcknowledgement.xml)                                | Acknowledges the receipt of the `AcceptCreateApplication` message.
+[ProposeCreateApplicationTransaction](/edais/messages/private-certifier/03_ProposeCreateApplication_Buildaform_to_Council.xml)  | -
+[ReceiptAcknowledgementSignal](/edais/messages/private-certifier/03A_ReceiptAcknowledgement.xml)                                | Acknowledges the receipt of the `ProposeCreateApplicationTransaction` message.
+[AcceptCreateApplication](/edais/messages/private-certifier/04_AcceptCreateApplication_Council_to_Buildaform.xml)               | Application has been successfully created with all attachments.
+[ReceiptAcknowledgementSignal](/edais/messages/private-certifier/04A_ReceiptAcknowledgement.xml)                                | Acknowledges the receipt of the `AcceptCreateApplication` message.
+[DeclareSaveDeterminationNotification](/edais/messages/private-certifier/05_DeclareSaveDetermination_Buildaform_to_GLS.xml)     | Let the EHC know that the application has been approved or refused.
+[ReceiptAcknowledgementSignal](/edais/messages/private-certifier/05A_ReceiptAcknowledgement.xml)                               | Acknowledges the determination of the application.
+[DeclareSaveDeterminationNotification](/edais/messages/private-certifier/06_DeclareSaveDetermination_Buildaform_to_Council.xml) | Let the local Council know that the application has been approved. Must not be sent for refusals.
+[ReceiptAcknowledgementSignal](/edais/messages/private-certifier/06A_ReceiptAcknowledgement.xml)                               | Acknowledges the determination of the application.
 
 
-## Private Certifier systems
-
-* PC Systems
 
 
 

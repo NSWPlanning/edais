@@ -90,7 +90,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScenarioRunner\Runner.cs" />
     <Compile Include="ScenarioRunner\ScenarioTypeFinder.cs" />
-    <Compile Include="Scenarios\Initiator_CreateApplication_Attachments.cs" />
+    <Compile Include="Scenarios\Attachments.cs" />
     <Compile Include="Scenarios\Initiator_CreateApplicationTransaction.cs" />
     <Compile Include="Scenarios\TestScenario.cs" />
     <Compile Include="Scenarios\Scenario.cs" />

@@ -8,3 +8,5 @@ _TeamCity.*/
 *.cache
 /schemas/bcv/*.cs
 /schemas/biv/*.cs
+/ETH/CommandLine/*.orig
+/ETH.Tests/CommandLine/*.orig

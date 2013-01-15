@@ -12,23 +12,35 @@ using ETH.OutputModels;
 
 namespace ETH.Scenarios
 {
-	public class Initiator_CreateApplication_Attachments : Scenario
+	public class Attachments : Scenario
 	{
-		public void DownloadAttachments()
+		public void ProposeCreate()
 		{
 			var proposeCreate = Server.Receive()
 				.ToData<ProposeCreateApplicationTransactionType>();
 
-			proposeCreate.Application.Attachment.Count().Should().BeGreaterOrEqualTo(1);
-			foreach (var attachment in proposeCreate.Application.Attachment)
+			TestAttachments(proposeCreate.Application.Attachment);
+		}
+
+		public void DeclareDetermination()
+		{
+			var declareDetermination = Server.Receive()
+				.ToData<DeclareSaveDeterminationNotificationType>();
+			TestAttachments(declareDetermination.Application.Attachment);
+		}
+
+		void TestAttachments(Attachment[] attachments)
+		{
+			attachments.Count().Should().BeGreaterOrEqualTo(1, "At least one attachment is required");
+			foreach (var attachment in attachments)
 			{
-				attachment.Description.Length.Should().BeGreaterOrEqualTo(1);
-				attachment.Description[0].Value.Should().NotBeNullOrEmpty();
-				attachment.Type.Value.Should().NotBeNullOrEmpty();
+				attachment.Description.Length.Should().BeGreaterOrEqualTo(1, "Attachment Description required");
+				attachment.Description[0].Value.Should().NotBeNullOrEmpty("Attachment Description required");
+				attachment.Type.Value.Should().NotBeNullOrEmpty("Attachment Type required");
 				var uri = attachment.Item as string;
-				uri.Should().NotBeNullOrEmpty();
+				uri.Should().NotBeNullOrEmpty("Attachment URI should not be empty");
 				var uriBuilder = new UriBuilder(uri);
-				uriBuilder.Uri.Scheme.Should().Be(Uri.UriSchemeHttps);
+				uriBuilder.Uri.Scheme.Should().Be(Uri.UriSchemeHttps, "URI should use Https");
 				DownloadAttachment(uri, attachment.Size.Value).Should().BeTrue();
 				DownloadAttachment(uri, attachment.Size.Value).Should().BeTrue();
 				DownloadAttachment(uri, attachment.Size.Value).Should().BeTrue();

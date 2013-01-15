@@ -9,6 +9,8 @@ using ETH.ScenarioRunner;
 using ETH.Soap;
 using ETH.Util;
 using ImpromptuInterface;
+using System.Reflection;
+using CommandLine.Text;
 
 namespace ETH.CommandLine
 {
@@ -16,6 +18,7 @@ namespace ETH.CommandLine
 	{
 		readonly IRunner scenarioRunner;
 		readonly IEndpointProvider endpointProvider;
+		readonly IScenarioTypeFinder scenarioTypeFinder;
 
 		public static IContainer Container { get; private set; } // TODO: refactor out
 
@@ -31,10 +34,11 @@ namespace ETH.CommandLine
 			return program.Run(options, Console.Out);
 		}
 
-		public Program(IRunner scenarioRunner, IEndpointProvider endpointProvider)
+		public Program(IRunner scenarioRunner, IEndpointProvider endpointProvider, IScenarioTypeFinder scenarioTypeFinder)
 		{
 			this.scenarioRunner = scenarioRunner;
 			this.endpointProvider = endpointProvider;
+			this.scenarioTypeFinder = scenarioTypeFinder;
 		}
 
 		public int Run(Options options, TextWriter output)
@@ -79,7 +83,18 @@ namespace ETH.CommandLine
 			}
 			else if (options.ListScenarios)
 			{
-				throw new NotImplementedException();
+				var helpText = new HelpText();
+				foreach (var scenario in scenarioTypeFinder.Methods.Keys)
+				{
+					helpText.AddPreOptionsLine(scenario);
+					foreach(var method in scenarioTypeFinder.Methods[scenario])
+					{
+						helpText.AddPreOptionsLine(string.Format("|- {0}", method.Name));
+					}
+					helpText.AddPreOptionsLine(Environment.NewLine);
+				}
+				output.Write(helpText);
+				return 1;
 			}
 			else if (options.ScenarioInfo != null)
 			{

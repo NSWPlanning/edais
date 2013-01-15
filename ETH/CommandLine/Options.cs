@@ -1,5 +1,8 @@
 ﻿using CommandLine;
 using CommandLine.Text;
+using ETH.ScenarioRunner;
+using System;
+using System.Reflection;
 
 namespace ETH.CommandLine
 {	

@@ -2,6 +2,7 @@
 using System.Net;
 using System.ServiceModel.Channels;
 using ETH.CommandLine;
+using ETH.OutputModels;
 using ETH.Soap;
 using ImpromptuInterface;
 
@@ -21,12 +22,16 @@ namespace ETH.Http
 	{
 		// TODO: implement auth
 		readonly IHttpListener listener;
+		readonly IEndpointProvider endpointProvider;
+		readonly IOutput output;
 		IHttpListenerContext currentContext;
 		bool isDisposed;
 
-		public Server(IHttpListener listener, IEndpointProvider endpointProvider)
+		public Server(IHttpListener listener, IEndpointProvider endpointProvider, IOutput output)
 		{
-			this.listener = listener;	
+			this.listener = listener;
+			this.endpointProvider = endpointProvider;
+			this.output = output;
 			listener.Prefixes.Add(endpointProvider.ServerBaseUrl);
 		}
 
@@ -64,7 +69,15 @@ namespace ETH.Http
 				listener.Start();
 			}
 
-			currentContext = listener.GetContextAsync().Result;
+			var listenerContextTask = listener.GetContextAsync();
+
+			output.Display(new StatusModel
+			{
+
+				Endpoint = endpointProvider.ServerBaseUrl
+			});
+
+			currentContext = listenerContextTask.Result;
 			return currentContext.Request;
 		}
 

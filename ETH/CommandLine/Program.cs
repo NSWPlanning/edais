@@ -1,10 +1,10 @@
 ﻿using System;
-using System.IO;
 using System.Net;
 using System.ServiceModel.Channels;
 using Autofac;
 using CommandLine;
 using ETH.Http;
+using ETH.OutputModels;
 using ETH.ScenarioRunner;
 using ETH.Soap;
 using ETH.Util;
@@ -19,6 +19,7 @@ namespace ETH.CommandLine
 		readonly IRunner scenarioRunner;
 		readonly IEndpointProvider endpointProvider;
 		readonly IScenarioTypeFinder scenarioTypeFinder;
+		readonly IOutput output;
 
 		public static IContainer Container { get; private set; } // TODO: refactor out
 
@@ -31,17 +32,18 @@ namespace ETH.CommandLine
 
 			Container = CreateContainer();
 			var program = Container.Resolve<Program>();
-			return program.Run(options, Console.Out);
+			return program.Run(options);
 		}
 
-		public Program(IRunner scenarioRunner, IEndpointProvider endpointProvider, IScenarioTypeFinder scenarioTypeFinder)
+		public Program(IRunner scenarioRunner, IEndpointProvider endpointProvider, IOutput output, IScenarioTypeFinder scenarioTypeFinder)
 		{
 			this.scenarioRunner = scenarioRunner;
 			this.endpointProvider = endpointProvider;
+			this.output = output;
 			this.scenarioTypeFinder = scenarioTypeFinder;
 		}
 
-		public int Run(Options options, TextWriter output)
+		public int Run(Options options)
 		{
 			// TODO: extract output to its own class, so we can handle Json there.
 			// TODO: handle endpoint option
@@ -51,6 +53,7 @@ namespace ETH.CommandLine
 				{
 					endpointProvider.ServerBaseUrl = options.ListenUrl;
 					endpointProvider.ClientEndpoint = options.ClientUrl;
+
 					if (options.UseSoap11)
 					{
 						endpointProvider.MessageVersion = MessageVersion.Soap11WSAddressingAugust2004;
@@ -59,10 +62,18 @@ namespace ETH.CommandLine
 					try
 					{
 						scenarioRunner.Run(options.TestRun, options.Scenario, options.ScenarioArguments);
+						output.Display(new ResultModel
+						{
+							Result = Result.Pass
+						});
 					}
-					catch (Exception e)
+					catch (Exception e)					
 					{
-						output.WriteLine(e.ToString());
+						output.Display(new ResultModel
+						{
+							Result = Result.Fail,
+							Message = e.ToString()
+						});
 						return 1;
 					}
 					
@@ -77,7 +88,7 @@ namespace ETH.CommandLine
 				}
 				else
 				{
-					output.WriteLine("You must provide an additional argument with the run.");				
+					output.String("You must provide an additional argument with the run.");				
 					return 1;
 				}
 			}
@@ -93,7 +104,7 @@ namespace ETH.CommandLine
 					}
 					helpText.AddPreOptionsLine(Environment.NewLine);
 				}
-				output.Write(helpText);
+				output.String(helpText);
 				return 1;
 			}
 			else if (options.ScenarioInfo != null)
@@ -102,7 +113,7 @@ namespace ETH.CommandLine
 			}
 			else
 			{
-				output.Write(options.GetUsage());
+				output.String(options.GetUsage());
 				return 1;
 			}
 
@@ -117,12 +128,20 @@ namespace ETH.CommandLine
 			builder.RegisterType<Client>().As<IClient>();
 			builder.RegisterType<Runner>().As<IRunner>();
 			builder.RegisterType<TestDataLoader>().As<ITestDataLoader>();
+
 			builder.RegisterSource(new ScenarioRegistrationSource());
+
 			builder.Register(context => new HttpListener().ActLike<IHttpListener>())
 			       .As<IHttpListener>();
 			builder.Register(context => new ScenarioTypeFinder(typeof(Program).Assembly))
 			       .As<IScenarioTypeFinder>();
-			builder.RegisterType<Program>().SingleInstance();
+
+			builder.RegisterInstance(new Output(Console.OpenStandardOutput()))
+			       .SingleInstance()
+			       .As<IOutput>();
+
+			builder.RegisterType<Program>()
+			       .SingleInstance();
 			builder.RegisterType<EndpointProvider>()
 			       .SingleInstance()
 				   .As<IEndpointProvider>();

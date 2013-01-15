@@ -2,7 +2,11 @@
 {
 	class StatusModel
 	{
-		public const string Status = "Ready";
+		public string Status
+		{
+			get { return "ready"; }
+		}
+
 		public string Endpoint { get; set; }
 	}
 }

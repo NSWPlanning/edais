@@ -13,6 +13,7 @@
 // 
 namespace eDAIS
 {
+	using System.Xml;
 	using System.Xml.Serialization;
 
 
@@ -1102,7 +1103,7 @@ namespace eDAIS
 
 		private IdentifierType domainIdField;
 
-		private object extensionField;
+		private XmlNode[] extensionField;
 
 		private CodeType jurisdictionField;
 
@@ -1126,7 +1127,7 @@ namespace eDAIS
 
 		/// <remarks/>
 		[System.Xml.Serialization.XmlElementAttribute(Order = 1)]
-		public object Extension
+		public XmlNode[] Extension
 		{
 			get
 			{

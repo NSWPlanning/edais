@@ -8,31 +8,24 @@ using FluentAssertions;
 
 namespace ETH.Scenarios
 {
-	public class Initiator_CreateApplicationTransaction_Accept : Scenario
+	public class AcceptCreateApplication : Scenario
 	{
 		AcceptCreateApplicationTransactionType AcceptCreateApplicationTransactionType
 		{
 			get
 			{
-				return Data.FromXml<AcceptCreateApplicationTransactionType>(
-					"AcceptCreateApplicationTransaction.xml");
-			}
-		}
-
-		ReceiptAcknowledgementSignalType ReceiptAcknowledgementSignalType
-		{
-			get
-			{
-				return Data.FromXml<ReceiptAcknowledgementSignalType>(
-					"ReceiptAcknowledgementSignal.xml");
+				var message = Data.FromXml<AcceptCreateApplicationTransactionType>("AcceptCreateApplicationTransaction.xml");
+				return message;
 			}
 		}
 
 		public void Receive()
 		{
-			Server.Receive()
-				.ToData<AcceptCreateApplicationTransactionType>()
-				.ShouldBeEquivalentTo(AcceptCreateApplicationTransactionType);
+			var result = Server.Receive()
+				.ToData<AcceptCreateApplicationTransactionType>();
+
+			result.Application.RunProposeCreateTests();
+			result.StandardBusinessMessageHeader.RunCommonTests();
 
 			Server.Respond("Accept", ReceiptAcknowledgementSignalType);
 		}
@@ -46,4 +39,4 @@ namespace ETH.Scenarios
 					.ShouldBeEquivalentTo(ReceiptAcknowledgementSignalType);
 		}
 	}
-}
+};

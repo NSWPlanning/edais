@@ -1,12 +1,23 @@
-﻿using ETH.Http;
-using ETH.Util;
+﻿using eDAIS;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace ETH.Scenarios
 {
-	public abstract class Scenario
+	public abstract class Scenario : ScenarioType
 	{
-		public IServer Server { get; set; }
-		public IClient Client { get; set; }
-		public ITestDataLoader Data { get; set; }
+		protected ReceiptAcknowledgementSignalType ReceiptAcknowledgementSignalType
+		{
+			get
+			{
+				var result = Data.FromXml<ReceiptAcknowledgementSignalType>(
+					"ReceiptAcknowledgementSignal.xml");
+				result.ReceiptAcknowledgement.Timestamp.Value = DateTime.Now;
+				return result;
+			}
+		}
 	}
 }

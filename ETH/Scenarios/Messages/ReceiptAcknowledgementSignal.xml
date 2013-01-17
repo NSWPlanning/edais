@@ -19,25 +19,25 @@
       <TypeVersion>2.3.0r2</TypeVersion>
     </DocumentIdentification>
     <ReceiverPartner xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
-      <Authority>ApplicantSystem</Authority>
+      <Authority>Test</Authority>
       <Contact>
-        <Contact>Buildaform Dev</Contact>
-        <ContactTypeIdentifier>Buildaform Support</ContactTypeIdentifier>
-        <EmailAddress>buildaform-dev@envoyat.com</EmailAddress>
-        <TelephoneNumber>8097 7328</TelephoneNumber>
+        <Contact>Test System</Contact>
+        <ContactTypeIdentifier></ContactTypeIdentifier>
+        <EmailAddress></EmailAddress>
+        <TelephoneNumber></TelephoneNumber>
       </Contact>
-      <ID>0002</ID>
+      <ID>Test</ID>
       <ProcessRole>Initiator</ProcessRole>
     </ReceiverPartner>
     <SenderPartner xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
-      <Authority>Infor</Authority>
+      <Authority>Test</Authority>
       <Contact>
-        <Contact>Nick Gabb</Contact>
-        <ContactTypeIdentifier>Senior Analyst</ContactTypeIdentifier>
-        <EmailAddress>nick.gabb@infor.com</EmailAddress>
-        <TelephoneNumber>+61 8 83726111</TelephoneNumber>
+        <Contact>Test System</Contact>
+        <ContactTypeIdentifier></ContactTypeIdentifier>
+        <EmailAddress></EmailAddress>
+        <TelephoneNumber></TelephoneNumber>
       </Contact>
-      <ID>Infor</ID>
+      <ID>Test</ID>
       <ProcessRole>Responder</ProcessRole>
     </SenderPartner>
     <Version xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">2.3.0r2</Version>

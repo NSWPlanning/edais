@@ -91,11 +91,18 @@
     <Compile Include="ScenarioRunner\Runner.cs" />
     <Compile Include="ScenarioRunner\ScenarioTypeFinder.cs" />
     <Compile Include="Scenarios\Attachments.cs" />
-    <Compile Include="Scenarios\Initiator_CreateApplicationTransaction.cs" />
-    <Compile Include="Scenarios\TestScenario.cs" />
+    <Compile Include="Scenarios\Council_EndToEnd.cs" />
+    <Compile Include="Scenarios\AcceptCreateApplication.cs" />
+    <Compile Include="Scenarios\Segments\StandardBusinessMessageHeaderSegment.cs" />
+    <Compile Include="Scenarios\ProposeCreateApplication.cs" />
     <Compile Include="Scenarios\Scenario.cs" />
+    <Compile Include="Scenarios\Segments\AddressSegment.cs" />
+    <Compile Include="Scenarios\Segments\ApplicationSegment.cs" />
+    <Compile Include="Scenarios\TestScenario.cs" />
+    <Compile Include="Scenarios\ScenarioType.cs" />
     <Compile Include="Soap\RequestConversions.cs" />
     <Compile Include="Soap\SoapDecoder.cs" />
+    <Compile Include="Util\Deserialization.cs" />
     <Compile Include="Util\Dumper.cs" />
     <Compile Include="Util\TestData.cs" />
   </ItemGroup>
@@ -108,6 +115,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Scenarios\Messages\ReceiptAcknowledgementSignal.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scenarios\Messages\ProposeCreateApplicationTransaction.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

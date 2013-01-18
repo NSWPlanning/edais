@@ -93,6 +93,9 @@
     <Compile Include="Scenarios\Attachments.cs" />
     <Compile Include="Scenarios\Council_EndToEnd.cs" />
     <Compile Include="Scenarios\AcceptCreateApplication.cs" />
+    <Compile Include="Scenarios\DeclareDetermination.cs" />
+    <Compile Include="Scenarios\EndToEndScenario.cs" />
+    <Compile Include="Scenarios\Segments\ReceiptAcknowledgementSegment.cs" />
     <Compile Include="Scenarios\Segments\StandardBusinessMessageHeaderSegment.cs" />
     <Compile Include="Scenarios\ProposeCreateApplication.cs" />
     <Compile Include="Scenarios\Scenario.cs" />
@@ -102,6 +105,7 @@
     <Compile Include="Scenarios\ScenarioType.cs" />
     <Compile Include="Soap\RequestConversions.cs" />
     <Compile Include="Soap\SoapDecoder.cs" />
+    <Compile Include="Util\ApplicationInformation.cs" />
     <Compile Include="Util\Deserialization.cs" />
     <Compile Include="Util\Dumper.cs" />
     <Compile Include="Util\TestData.cs" />
@@ -117,6 +121,7 @@
     <EmbeddedResource Include="Scenarios\Messages\ReceiptAcknowledgementSignal.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scenarios\Messages\DeclareSaveDeterminationNotification.xml" />
     <Content Include="Scenarios\Messages\ProposeCreateApplicationTransaction.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

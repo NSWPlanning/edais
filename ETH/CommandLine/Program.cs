@@ -124,9 +124,9 @@ namespace ETH.CommandLine
 		{
 			var builder = new ContainerBuilder();
 
-			builder.RegisterType<Server>().As<IServer>();
-			builder.RegisterType<Client>().As<IClient>();
-			builder.RegisterType<Runner>().As<IRunner>();
+			builder.RegisterType<Server>().As<IServer>().SingleInstance();
+			builder.RegisterType<Client>().As<IClient>().SingleInstance();
+			builder.RegisterType<Runner>().As<IRunner>().SingleInstance();
 			builder.RegisterType<TestDataLoader>().As<ITestDataLoader>();
 
 			builder.RegisterSource(new ScenarioRegistrationSource());

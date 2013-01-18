@@ -1,0 +1,69 @@
+﻿<DeclareSaveDeterminationNotification xmlns="http://xml.gov.au/edais/bm/DeclareSaveDeterminationNotification.msg.2.3.0r2">
+  <Application ref="APP-0000123456">
+    <ApplicationNumber xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">APP-0000123456</ApplicationNumber>
+    <Attachment xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">
+      <Date>2012-11-07T12:41:35.164876+11:00</Date>
+      <Description>CDC</Description>
+      <Format>PDF</Format>
+      <Identification>120014_Complying Development Certificate.pdf</Identification>
+      <Size UnitCode="bytes">10906</Size>
+      <URI>https://edais-test.envoyat.com/download_ehc.ashx?ehcattachment=ea804d49-fff8-4e9b-8550-86639651ea35</URI>
+    </Attachment>
+    <Determination xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">
+      <Comments>Compliant</Comments>
+      <DeterminationDate>2012-11-07T12:41:34.696126+11:00</DeterminationDate>
+      <Identification>cebe6d6a-1167-461b-84bf-7c0c3a492d8b</Identification>
+      <PartyRole>
+        <DateTime>2012-11-07T12:41:34.696126+11:00</DateTime>
+        <Party>
+          <AccessRights xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2"/>
+          <Description xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">Test Certifier</Description>
+          <Identification xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">test@test.com</Identification>
+          <Language xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">EN</Language>
+          <Name xmlns="http://xml.gov.au/edais/core/naa.data.2.3.0r2">test@test.com</Name>
+        </Party>
+      </PartyRole>
+      <Type/>
+    </Determination>
+    <Status xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">Approved</Status>
+  </Application>
+  <StandardBusinessMessageHeader>
+    <BusinessScope xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+      <CorrelationInformation>
+        <RequestingDocumentCreationDateTime>2012-11-07T12:41:35.164876+11:00</RequestingDocumentCreationDateTime>
+        <RequestingDocumentInstanceID>cebe6d6a-1167-461b-84bf-7c0c3a492d8b</RequestingDocumentInstanceID>
+      </CorrelationInformation>
+      <Type>BusinessCollaboration</Type>
+    </BusinessScope>
+    <DocumentIdentification xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+      <CreationDateTime>2012-11-07T12:41:35.164876+11:00</CreationDateTime>
+      <InstanceID>cebe6d6a-1167-461b-84bf-7c0c3a492d8b</InstanceID>
+      <Standard>eDAIS</Standard>
+      <Type>DeclareSaveDeterminationNotification</Type>
+      <TypeVersion>2.3.0r2</TypeVersion>
+    </DocumentIdentification>
+    <ReceiverPartner xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+      <Authority>Test</Authority>
+      <Contact>
+        <Contact>Test System</Contact>
+        <ContactTypeIdentifier></ContactTypeIdentifier>
+        <EmailAddress></EmailAddress>
+        <TelephoneNumber></TelephoneNumber>
+      </Contact>
+      <ID>Test</ID>
+      <ProcessRole>Initiator</ProcessRole>
+    </ReceiverPartner>
+    <SenderPartner xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+      <Authority>Test</Authority>
+      <Contact>
+        <Contact>Test System</Contact>
+        <ContactTypeIdentifier></ContactTypeIdentifier>
+        <EmailAddress></EmailAddress>
+        <TelephoneNumber></TelephoneNumber>
+      </Contact>
+      <ID>Test</ID>
+      <ProcessRole>Responder</ProcessRole>
+    </SenderPartner>
+    <Version xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">eDAIS2.3.0r2</Version>
+  </StandardBusinessMessageHeader>
+</DeclareSaveDeterminationNotification>

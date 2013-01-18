@@ -25,14 +25,14 @@ namespace ETH.ScenarioRunner
 		public void Run(string testRunId, string scenarioId, string[] scenarioArguments)
 		{
 			// TODO: use testRunId
-			// TODO: use scenarioArguments
-
 			Type scenarioType;
 			MethodInfo scenarioMethod;
 			FindScenario(scenarioId, out scenarioType, out scenarioMethod);
 		
 			var scenario = container.Resolve(scenarioType);
-			scenarioMethod.Invoke(scenario, new object[0]);
+			var arguments = new object[scenarioMethod.GetParameters().Length];
+			if (arguments.Length > 0) arguments = scenarioArguments;
+			scenarioMethod.Invoke(scenario, arguments);
 		}
 
 		void FindScenario(string scenarioId, out Type scenarioType, out MethodInfo scenarioMethod)
@@ -66,11 +66,6 @@ namespace ETH.ScenarioRunner
 					string.Format("Unable to find test called {0} for {1}.",
 					              scenarioMethodName,
 					              scenarioTypeName));
-			}
-
-			if (scenarioMethod.GetParameters().Any())
-			{
-				throw new NotImplementedException();
 			}
 		}
 	}

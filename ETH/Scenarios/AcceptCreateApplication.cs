@@ -30,13 +30,15 @@ namespace ETH.Scenarios
 			Server.Respond("Accept", ReceiptAcknowledgementSignalType);
 		}
 
-		public void Send()
+		public void Send(string applicationNumber = null)
 		{
-			Client.Send(
-				"http://example.xml.gov.au/CreateApplication_Initiator.2.3.0r2/Accept", 
-				AcceptCreateApplicationTransactionType)
-					.ToData<ReceiptAcknowledgementSignalType>()
-					.ShouldBeEquivalentTo(ReceiptAcknowledgementSignalType);
+			var message = AcceptCreateApplicationTransactionType;
+			if (applicationNumber != null) message.Application.ApplicationNumber.Value = applicationNumber;
+			var receipt = Client.Send(
+				"http://example.xml.gov.au/CreateApplication_Initiator.2.3.0r2/Accept",
+				message)
+					.ToData<ReceiptAcknowledgementSignalType>();
+			receipt.ReceiptAcknowledgement.RunCommonTests();
 		}
 	}
 };

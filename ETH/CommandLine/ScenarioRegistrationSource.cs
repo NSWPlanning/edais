@@ -27,6 +27,7 @@ namespace ETH.CommandLine
 						scenario.Client = args.Context.Resolve<IClient>();
 						scenario.Server = args.Context.Resolve<IServer>();
 						scenario.Data = args.Context.Resolve<ITestDataLoader>();
+						scenario.Container = args.Context.Resolve<ILifetimeScope>();
 					}
 				};
 				yield return registration;

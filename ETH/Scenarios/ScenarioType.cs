@@ -1,4 +1,5 @@
-﻿using ETH.Http;
+﻿using Autofac;
+using ETH.Http;
 using ETH.Util;
 
 namespace ETH.Scenarios
@@ -8,5 +9,6 @@ namespace ETH.Scenarios
 		public IServer Server { get; set; }
 		public IClient Client { get; set; }
 		public ITestDataLoader Data { get; set; }
+		public ILifetimeScope Container { get; set; }
 	}
 }

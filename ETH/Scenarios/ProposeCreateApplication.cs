@@ -16,35 +16,36 @@ namespace ETH.Scenarios
 
 	public class ProposeCreateApplication : Scenario
 	{
-
-		public void Receive()
+		public ApplicationInformation Receive()
 		{
-			var result = Server.Receive()
+			var result = new ApplicationInformation();
+			var proposeCreate = Server.Receive()
 				.ToData<ProposeCreateApplicationTransactionType>();
 
-			result.Application.RunCommonTests();
-			result.StandardBusinessMessageHeader.RunCommonTests();
+			proposeCreate.Application.RunCommonTests();
+			result.ApplicationNumber = proposeCreate.Application.ApplicationNumber.Value;
+			proposeCreate.StandardBusinessMessageHeader.RunCommonTests();
 
-			result.Specialisation.Should().NotBeNull();
-			result.Specialisation.Count().Should().Be(2);
-			result.Specialisation[0].Jurisdiction.Should().NotBeNull();
-			result.Specialisation[0].Version.Should().NotBeNull();
-			result.Specialisation[0].Extension.Should().NotBeNull();
-			result.Specialisation[0].Extension.Length.Should().Be(1);
-			result.Specialisation[0].Extension[0].Name.Should().Be("Application");
-			var applicationExtension = result.Specialisation[0].Extension[0].ConvertNode<Application1>();
+			proposeCreate.Specialisation.Should().NotBeNull();
+			proposeCreate.Specialisation.Count().Should().Be(2);
+			proposeCreate.Specialisation[0].Jurisdiction.Should().NotBeNull();
+			proposeCreate.Specialisation[0].Version.Should().NotBeNull();
+			proposeCreate.Specialisation[0].Extension.Should().NotBeNull();
+			proposeCreate.Specialisation[0].Extension.Length.Should().Be(1);
+			proposeCreate.Specialisation[0].Extension[0].Name.Should().Be("Application");
+			var applicationExtension = proposeCreate.Specialisation[0].Extension[0].ConvertNode<Application1>();
 			applicationExtension.Type.Should().NotBeNull();
 			applicationExtension.DevelopmentCode.Should().NotBeNull();
 			applicationExtension.DevelopmentCode.Length.Should().BeGreaterThan(0);
 			applicationExtension.BCAClass.Should().NotBeNull();
 			applicationExtension.RefNumber.Should().NotBeNull();
 
-			result.Specialisation[1].Jurisdiction.Should().NotBeNull();
-			result.Specialisation[1].Version.Should().NotBeNull();
-			result.Specialisation[1].Extension.Should().NotBeNull();
-			result.Specialisation[1].Extension.Length.Should().Be(1);
-			result.Specialisation[1].Extension[0].Name.Should().Be("SubjectLand");
-			var subjectLandExtension = result.Specialisation[1].Extension[0].ConvertNode<SubjectLand1>();
+			proposeCreate.Specialisation[1].Jurisdiction.Should().NotBeNull();
+			proposeCreate.Specialisation[1].Version.Should().NotBeNull();
+			proposeCreate.Specialisation[1].Extension.Should().NotBeNull();
+			proposeCreate.Specialisation[1].Extension.Length.Should().Be(1);
+			proposeCreate.Specialisation[1].Extension[0].Name.Should().Be("SubjectLand");
+			var subjectLandExtension = proposeCreate.Specialisation[1].Extension[0].ConvertNode<SubjectLand1>();
 			subjectLandExtension.Should().NotBeNull();
 			subjectLandExtension.ABS_Statistics.Should().NotBeNull();
 			subjectLandExtension.ABS_Statistics.Floor.Should().NotBeNull();
@@ -61,17 +62,18 @@ namespace ETH.Scenarios
 			subjectLandExtension.ABS_Statistics.Walls[0].Value.Should().NotBeNullOrEmpty();
 
 			Server.Respond("ProposeCreate", ReceiptAcknowledgementSignalType);
+			return result;
 		}
 
 		
 
 		public void Send()
 		{
-			Client.Send(
+			var receipt = Client.Send(
 				"http://example.xml.gov.au/CreateApplication_Initiator.2.3.0r2/ProposeCreate",
 				ProposeCreateApplicationTransactionType)
-					.ToData<ReceiptAcknowledgementSignalType>()
-					.ShouldBeEquivalentTo(ReceiptAcknowledgementSignalType);
+					.ToData<ReceiptAcknowledgementSignalType>();
+			receipt.ReceiptAcknowledgement.RunCommonTests();
 		}
 		
 		ProposeCreateApplicationTransactionType ProposeCreateApplicationTransactionType

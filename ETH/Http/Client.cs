@@ -42,9 +42,18 @@ namespace ETH.Http
 
 		public HttpWebResponse Send(Action<HttpWebRequest> modifyRequest)
 		{
-			var request = WebRequest.CreateHttp(endpointProvider.ClientEndpoint);
-			modifyRequest(request);
-			return (HttpWebResponse) request.GetResponse();
+			HttpWebResponse response;
+			try
+			{
+				var request = WebRequest.CreateHttp(endpointProvider.ClientEndpoint);
+				modifyRequest(request);
+				response = (HttpWebResponse)request.GetResponse();
+			}
+			catch (WebException ex)
+			{
+				response = (HttpWebResponse)ex.Response;
+			}
+			return response;
 		}
 	}
 }

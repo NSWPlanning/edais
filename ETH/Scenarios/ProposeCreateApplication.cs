@@ -67,8 +67,10 @@ namespace ETH.Scenarios
 
 		
 
-		public void Send()
+		public void Send(string applicationNumber = null)
 		{
+			var message = ProposeCreateApplicationTransactionType;
+			if (applicationNumber != null) message.Application.ApplicationNumber.Value = applicationNumber;
 			var receipt = Client.Send(
 				"http://example.xml.gov.au/CreateApplication_Initiator.2.3.0r2/ProposeCreate",
 				ProposeCreateApplicationTransactionType)

@@ -94,6 +94,7 @@
     <Compile Include="Scenarios\Council_EndToEnd.cs" />
     <Compile Include="Scenarios\AcceptCreateApplication.cs" />
     <Compile Include="Scenarios\DeclareDetermination.cs" />
+    <Compile Include="Scenarios\EHC_EndToEnd.cs" />
     <Compile Include="Scenarios\EndToEndScenario.cs" />
     <Compile Include="Scenarios\RejectCreateApplication.cs" />
     <Compile Include="Scenarios\Segments\ReceiptAcknowledgementSegment.cs" />

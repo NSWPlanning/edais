@@ -24,7 +24,7 @@ namespace ETH.Scenarios
 			var result = Server.Receive()
 				.ToData<AcceptCreateApplicationTransactionType>();
 
-			result.Application.RunProposeCreateTests();
+			result.Application.RunCommonTests();
 			result.StandardBusinessMessageHeader.RunCommonTests();
 
 			Server.Respond("Accept", ReceiptAcknowledgementSignalType);

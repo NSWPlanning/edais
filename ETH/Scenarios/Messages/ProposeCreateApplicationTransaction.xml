@@ -1,5 +1,5 @@
-﻿<prop:ProposeCreateApplicationTransaction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Application ref="APP-0000123456" xmlns="http://xml.gov.au/edais/bm/ProposeCreateApplicationTransaction.msg.2.3.0r2">
+﻿<ProposeCreateApplicationTransaction xmlns="http://xml.gov.au/edais/bm/ProposeCreateApplicationTransaction.msg.2.3.0r2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Application ref="APP-0000123456">
     <ApplicationNumber xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">APP-0000123456</ApplicationNumber>
     <Attachment xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">
       <Date>2012-12-14T13:12:28.9789532+11:00</Date>
@@ -336,4 +336,4 @@
     </SoftwareInformation>
     <Version xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">eDAIS2.3.0r2</Version>
   </StandardBusinessMessageHeader>
-</prop:ProposeCreateApplicationTransaction>
+</ProposeCreateApplicationTransaction>

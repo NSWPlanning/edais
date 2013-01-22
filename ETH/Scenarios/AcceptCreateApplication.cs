@@ -1,5 +1,5 @@
-﻿using System;
-using System.Reflection;
+﻿using System.Reflection;
+using System.ServiceModel;
 using System.Xml.Serialization;
 using ETH.Util;
 using eDAIS;
@@ -21,8 +21,7 @@ namespace ETH.Scenarios
 
 		public void Receive()
 		{
-			var result = Server.Receive()
-				.ToData<AcceptCreateApplicationTransactionType>();
+			var result = Soap.ToData<AcceptCreateApplicationTransactionType>(Server.Receive());
 
 			result.Application.RunCommonTests();
 			result.StandardBusinessMessageHeader.RunCommonTests();
@@ -34,11 +33,12 @@ namespace ETH.Scenarios
 		{
 			var message = AcceptCreateApplicationTransactionType;
 			if (applicationNumber != null) message.Application.ApplicationNumber.Value = applicationNumber;
-			var receipt = Client.Send(
+			var response = Client.Send(
 				"http://example.xml.gov.au/CreateApplication_Initiator.2.3.0r2/Accept",
-				message)
-					.ToData<ReceiptAcknowledgementSignalType>();
-			receipt.ReceiptAcknowledgement.RunCommonTests();
+				AcceptCreateApplicationTransactionType);
+
+			Soap.ToData<ReceiptAcknowledgementSignalType>(response)
+			    .ReceiptAcknowledgement.RunCommonTests();
 		}
 	}
 };

@@ -3,55 +3,73 @@ using System.Net;
 using System.ServiceModel.Channels;
 using ETH.CommandLine;
 using ETH.Soap;
+using ImpromptuInterface;
 
 namespace ETH.Http
 {
 	public interface IClient
 	{		
-		HttpWebResponse Send(Message message);
-		HttpWebResponse Send(string action, object data);
-		HttpWebResponse Send(string xml);
-		HttpWebResponse Send(Action<HttpWebRequest> modifyRequest);
+		IHttpWebResponse Send(Message message);
+		IHttpWebResponse Send(string action, object data);
+		IHttpWebResponse Send(string xml);
+		IHttpWebResponse Send(Action<IHttpWebRequest> modifyRequest);
 	}
 
 	public class Client : IClient
 	{
-		const string contentType = "application/soap+xml";
+		const string ContentType = "application/soap+xml";
 
 		readonly IEndpointProvider endpointProvider;
+		readonly ISoapDecoder soapDecoder;
+		readonly IWebRequestFactory webRequestFactory;
+		readonly ISecurityHeaderFactory securityHeaderFactory;
 
-		public Client(IEndpointProvider endpointProvider)
+		public Client(
+			IEndpointProvider endpointProvider, 
+			ISoapDecoder soapDecoder,
+			IWebRequestFactory webRequestFactory,
+			ISecurityHeaderFactory securityHeaderFactory)
 		{
 			this.endpointProvider = endpointProvider;
+			this.soapDecoder = soapDecoder;
+			this.webRequestFactory = webRequestFactory;
+			this.securityHeaderFactory = securityHeaderFactory;
 		}
 
-		public HttpWebResponse Send(Message message)
+		public IHttpWebResponse Send(Message message)
 		{
-			return Send(r => r.FromMessage(message));
+			return Send(r =>
+			{
+				var securityHeader = securityHeaderFactory.Create();
+				message.Headers.Add(securityHeader);
+
+				r.ContentType = ContentType;
+				soapDecoder.FromMessage(r, message);
+			});
 		}
 
-		public HttpWebResponse Send(string action, object data)
+		public IHttpWebResponse Send(string action, object data)
 		{
-			return Send(r => r.FromData(action, data));
+			return Send(soapDecoder.ToMessage(action, data));
 		}
 
-		public HttpWebResponse Send(string xml)
+		public IHttpWebResponse Send(string xml)
 		{
 			throw new NotImplementedException();
 		}
 
-		public HttpWebResponse Send(Action<HttpWebRequest> modifyRequest)
+		public IHttpWebResponse Send(Action<IHttpWebRequest> modifyRequest)
 		{
-			HttpWebResponse response;
+			IHttpWebResponse response;
 			try
 			{
-				var request = WebRequest.CreateHttp(endpointProvider.ClientEndpoint);
+				var request = webRequestFactory.CreateHttp(endpointProvider.ClientEndpoint);
 				modifyRequest(request);
-				response = (HttpWebResponse)request.GetResponse();
+				response = request.GetResponse();
 			}
 			catch (WebException ex)
 			{
-				response = (HttpWebResponse)ex.Response;
+				response = ex.Response.ActLike<IHttpWebResponse>();
 			}
 			return response;
 		}

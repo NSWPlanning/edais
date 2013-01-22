@@ -5,6 +5,7 @@ using System.ServiceModel.Channels;
 using System.Text;
 using ETH.CommandLine;
 using ETH.Http;
+using ETH.Soap;
 using FluentAssertions;
 using Moq;
 using Xunit;
@@ -206,25 +207,18 @@ namespace ETH.Tests.Http
 				var injector = new MockInjector();
 				var listener = injector.SetupAndGetListener();
 				var server = injector.Create<Server>();
+				var soapDecoder = injector.GetMock<ISoapDecoder>();
 				var request = new Mock<IHttpListenerRequest>();
 				var response = new Mock<IHttpListenerResponse>();
-				var responseStream = new MemoryStream();
 				var message = Message.CreateMessage(MessageVersion.Default, "moo");
 
 				listener.Setup(l => l.GetContextAsync().Result.Request).Returns(request.Object);
 				listener.Setup(l => l.GetContextAsync().Result.Response).Returns(response.Object);
-				response.Setup(r => r.OutputStream).Returns(responseStream);
 
 				server.Receive();
 				server.Respond(message);
 
-				response.Verify(r => r.OutputStream);
-				response.VerifySet(r => r.ContentType = "application/soap+xml");
-				responseStream.CanWrite.Should().BeFalse();
-				responseStream.CanRead.Should().BeFalse();
-
-				var responseOutput = Encoding.Default.GetString(responseStream.ToArray());
-				responseOutput.Should().Contain("envelope");
+				soapDecoder.Verify(s => s.FromMessage(response.Object, message));
 			}
 
 			[Fact]
@@ -233,41 +227,38 @@ namespace ETH.Tests.Http
 				var injector = new MockInjector();
 				var listener = injector.SetupAndGetListener();
 				var server = injector.Create<Server>();
+				var soapDecoder = injector.GetMock<ISoapDecoder>();
 				var request = new Mock<IHttpListenerRequest>();
 				var response = new Mock<IHttpListenerResponse>();
-				var responseStream = new MemoryStream();
-				var data = new KeyValuePair<string, string>("moo", "baa");
+				var data = new { };
 
 				listener.Setup(l => l.GetContextAsync().Result.Request).Returns(request.Object);
 				listener.Setup(l => l.GetContextAsync().Result.Response).Returns(response.Object);
-				response.Setup(r => r.OutputStream).Returns(responseStream);
 
 				server.Receive();
 				server.Respond("moo", data);
 
-				response.Verify(r => r.OutputStream);
-				response.VerifySet(r => r.ContentType = "application/soap+xml");
-				responseStream.CanRead.Should().BeFalse();
-				responseStream.CanWrite.Should().BeFalse();
-
-				var responseOutput = Encoding.Default.GetString(responseStream.ToArray());
-				responseOutput.Should()
-				              .Contain("KeyValuePair")
-				              .And.Contain("envelope");
+				soapDecoder.Verify(s => s.FromData(response.Object, "moo", data));
 			}
 
 			[Fact]
-			public void RespondWithXmlNotImplementedYet()
+			public void RespondWithXml()
 			{
 				var injector = new MockInjector();
 				var listener = injector.SetupAndGetListener();
 				var server = injector.Create<Server>();
+				var soapDecoder = injector.GetMock<ISoapDecoder>();
 				var request = new Mock<IHttpListenerRequest>();
+				var response = new Mock<IHttpListenerResponse>();
+				const string xml = "<moo>";
 
 				listener.Setup(l => l.GetContextAsync().Result.Request).Returns(request.Object);
+				listener.Setup(l => l.GetContextAsync().Result.Response).Returns(response.Object);
 
 				server.Receive();
-				server.Invoking(s => s.Respond("xml")).ShouldThrow<NotImplementedException>();
+				server.Respond(xml);
+
+				soapDecoder.Verify(s => s.FromXml(response.Object, xml));
 			}
 
 			[Fact]

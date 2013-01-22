@@ -15,8 +15,8 @@ namespace ETH.Scenarios
 	{
 		public void Receive()
 		{
-			var result = Server.Receive()
-				.ToData<DeclareSaveDeterminationNotificationType>();
+			var result = Server.Receive();
+			Soap.ToData<DeclareSaveDeterminationNotificationType>(result);
 
 			Server.Respond("DeclareDetermination", ReceiptAcknowledgementSignalType);
 		}
@@ -30,11 +30,11 @@ namespace ETH.Scenarios
 		{
 			var message = DeclareSaveDeterminationNotification;
 			if (applicationInformation != null) message.Application.ApplicationNumber.Value = applicationInformation.ApplicationNumber;
-			var receipt = Client.Send(
+			var response = Client.Send(
 				"http://example.xml.gov.au/DeclareDetermination_Initiator.2.3.0r2/Declare",
-				message)
-					.ToData<ReceiptAcknowledgementSignalType>();
-			receipt.ReceiptAcknowledgement.RunCommonTests();
+				message);
+			Soap.ToData<ReceiptAcknowledgementSignalType>(response)
+				.ReceiptAcknowledgement.RunCommonTests();
 		}
 
 		DeclareSaveDeterminationNotificationType DeclareSaveDeterminationNotification

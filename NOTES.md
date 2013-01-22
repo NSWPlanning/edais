@@ -94,3 +94,16 @@
 * HTTP
 * SOAP / XML
 * Application
+
+# SSL Certificate Setup (windows)
+
+Run in an ADMIN `cmd`, certificates will be created in the directory you're in.
+
+    > "\Program Files (x86)\Windows Kits\8.0\bin\x64\makecert.exe" -n "CN=ethCA" -r -sv ethCA.pvk ethCA.cer -sr localmachine -ss My
+    > "\Program Files (x86)\Windows Kits\8.0\bin\x64\makecert.exe" -sk ethSignedByCA -iv ethCA.pvk -n "CN=ethSignedByCA" -ic ethCA.cer ethSignedByCA.cer -sr localmachine -ss My
+
+Open `MMC`. Add `Certificates (Local Computer)` snap-in.
+Move `ethCA` certificate from the `Personal certificate` store to `Trusted Root Certification Authorities` store.
+Get `ethSignedByCA` certificate thumbprint, and use in the command below.
+
+    > netsh http add sslcert ipport=0.0.0.0:8181 certhash=<ethSignedByCA Thumbprint> appid={71b3e5bc-4bdb-457b-903b-357e7bb20995}

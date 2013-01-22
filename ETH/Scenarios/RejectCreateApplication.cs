@@ -21,8 +21,7 @@ namespace ETH.Scenarios
 
 		public void Receive()
 		{
-			var result = Server.Receive()
-				.ToData<RejectCreateApplicationTransactionType>();
+			var result = Soap.ToData<RejectCreateApplicationTransactionType>(Server.Receive());
 
 			result.Application.RunProposeCreateTests();
 			result.StandardBusinessMessageHeader.RunCommonTests();
@@ -34,10 +33,10 @@ namespace ETH.Scenarios
 		{
 			var message = RejectCreateApplicationTransactionType;
 			if (applicationNumber != null) message.Application.ApplicationNumber.Value = applicationNumber;
-			var receipt = Client.Send(
+			var response = Client.Send(
 				"http://example.xml.gov.au/CreateApplication_Initiator.2.3.0r2/Reject",
-				message)
-					.ToData<ReceiptAcknowledgementSignalType>();
+				message);
+			var receipt = Soap.ToData<ReceiptAcknowledgementSignalType>(response);
 			receipt.ReceiptAcknowledgement.RunCommonTests();
 		}
 	}

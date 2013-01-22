@@ -16,16 +16,15 @@ namespace ETH.Scenarios
 	{
 		public void ProposeCreate()
 		{
-			var proposeCreate = Server.Receive()
-				.ToData<ProposeCreateApplicationTransactionType>();
+			var proposeCreate = Soap.ToData<ProposeCreateApplicationTransactionType>(
+				Server.Receive());
 
 			TestAttachments(proposeCreate.Application.Attachment);
 		}
 
 		public void DeclareDetermination()
 		{
-			var declareDetermination = Server.Receive()
-				.ToData<DeclareSaveDeterminationNotificationType>();
+			var declareDetermination = Soap.ToData<DeclareSaveDeterminationNotificationType>(Server.Receive());
 			TestAttachments(declareDetermination.Application.Attachment);
 		}
 

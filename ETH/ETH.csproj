@@ -75,9 +75,12 @@
     <Compile Include="Http\IHttpListenerContextTask.cs" />
     <Compile Include="Http\IHttpListenerRequest.cs" />
     <Compile Include="Http\IHttpListenerResponse.cs" />
+    <Compile Include="Http\IHttpWebRequest.cs" />
+    <Compile Include="Http\IHttpWebResponse.cs" />
     <Compile Include="Http\Server.cs" />
     <Compile Include="eDAIS.cs" />
     <Compile Include="CommandLine\Options.cs" />
+    <Compile Include="Http\WebRequestFactory.cs" />
     <Compile Include="OutputModels\AttachmentScenarioType.cs" />
     <Compile Include="OutputModels\ParameterType.cs" />
     <Compile Include="OutputModels\Result.cs" />
@@ -96,20 +99,27 @@
     <Compile Include="Scenarios\DeclareDetermination.cs" />
     <Compile Include="Scenarios\EHC_EndToEnd.cs" />
     <Compile Include="Scenarios\EndToEndScenario.cs" />
+    <Compile Include="Scenarios\PrivateCertifier_EndToEnd.cs" />
     <Compile Include="Scenarios\RejectCreateApplication.cs" />
     <Compile Include="Scenarios\Segments\ReceiptAcknowledgementSegment.cs" />
     <Compile Include="Scenarios\Segments\StandardBusinessMessageHeaderSegment.cs" />
     <Compile Include="Scenarios\ProposeCreateApplication.cs" />
+    <Compile Include="Soap\Nonce.cs" />
+    <Compile Include="Soap\Password.cs" />
+    <Compile Include="Soap\Security.cs" />
     <Compile Include="Scenarios\Scenario.cs" />
     <Compile Include="Scenarios\Segments\AddressSegment.cs" />
     <Compile Include="Scenarios\Segments\ApplicationSegment.cs" />
     <Compile Include="Scenarios\TestScenario.cs" />
     <Compile Include="Scenarios\ScenarioType.cs" />
-    <Compile Include="Soap\RequestConversions.cs" />
+    <Compile Include="Soap\SecurityHeaderFactory.cs" />
     <Compile Include="Soap\SoapDecoder.cs" />
+    <Compile Include="Soap\UsernameToken.cs" />
     <Compile Include="Util\ApplicationInformation.cs" />
+    <Compile Include="Util\DateTimeProvider.cs" />
     <Compile Include="Util\Deserialization.cs" />
     <Compile Include="Util\Dumper.cs" />
+    <Compile Include="Util\RandomNumberGeneratorProvider.cs" />
     <Compile Include="Util\TestData.cs" />
   </ItemGroup>
   <ItemGroup>

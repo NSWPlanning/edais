@@ -24,14 +24,20 @@ namespace ETH.Http
 		readonly IHttpListener listener;
 		readonly IEndpointProvider endpointProvider;
 		readonly IOutput output;
+		readonly ISoapDecoder soapDecoder;
 		IHttpListenerContext currentContext;
 		bool isDisposed;
 
-		public Server(IHttpListener listener, IEndpointProvider endpointProvider, IOutput output)
+		public Server(
+			IHttpListener listener,
+			IEndpointProvider endpointProvider,
+			IOutput output,
+			ISoapDecoder soapDecoder)
 		{
 			this.listener = listener;
 			this.endpointProvider = endpointProvider;
 			this.output = output;
+			this.soapDecoder = soapDecoder;
 			listener.Prefixes.Add(endpointProvider.ServerBaseUrl);
 		}
 
@@ -83,17 +89,17 @@ namespace ETH.Http
 
 		public void Respond(Message message)
 		{
-			Respond(r => r.FromMessage(message));
+			Respond(r => soapDecoder.FromMessage(r, message));
 		}
 
 		public void Respond(string action, object data)
 		{
-			Respond(r => r.FromData(action, data));
+			Respond(r => soapDecoder.FromData(r, action, data));
 		}
 
 		public void Respond(string xml)
 		{
-			Respond(r => r.FromXml(xml));
+			Respond(r => soapDecoder.FromXml(r, xml));
 		}
 
 		public void Respond(Action<IHttpListenerResponse> modifyResponse)

@@ -29,7 +29,8 @@ namespace ETH.Soap
 
 			Created = created.ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
 			Nonce.Value = Convert.ToBase64String(nonce);
-			Password.Value = ComputePasswordDigest(password, nonce, Created);
+			//Password.Value = ComputePasswordDigest(password, nonce, Created);
+			Password.Value = password;
 		}
 
 		static string ComputePasswordDigest(string secret, byte[] nonceInBytes, string created)
@@ -48,17 +49,18 @@ namespace ETH.Soap
 			Username.Should().NotBeNullOrEmpty();
 			Password.Should().NotBeNull();
 			Password.Value.Should().NotBeNullOrEmpty();
-			Nonce.Should().NotBeNull();
-			Nonce.Value.Should().NotBeNullOrEmpty();
-			Created.Should().NotBeNullOrEmpty();
+			//Nonce.Should().NotBeNull();
+			//Nonce.Value.Should().NotBeNullOrEmpty();
+			//Created.Should().NotBeNullOrEmpty();
 
-			var digest = ComputePasswordDigest(
-				password,
-				Convert.FromBase64String(Nonce.Value),
-				Created);
+			//var digest = ComputePasswordDigest(
+			//	password,
+			//	Convert.FromBase64String(Nonce.Value),
+			//	Created);
 
 			Username.Should().Be(username);
-			Password.Value.Should().Be(digest);
+			//Password.Value.Should().Be(digest);
+			Password.Value.Should().Be(password);
 		}
 	}
 }

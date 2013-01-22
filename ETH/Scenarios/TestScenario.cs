@@ -8,7 +8,7 @@ namespace ETH.Scenarios
 	{
 		public void Valid1()
 		{
-			var proposeCreate = Server.Receive().ToData<ProposeCreateApplicationTransactionType>();
+			var proposeCreate = Soap.ToData<ProposeCreateApplicationTransactionType>(Server.Receive());
 
 			proposeCreate.Application.ApplicationNumber.Value.Should().Be("APP-0000134647");
 

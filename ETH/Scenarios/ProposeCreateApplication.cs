@@ -19,8 +19,8 @@ namespace ETH.Scenarios
 		public ApplicationInformation Receive()
 		{
 			var result = new ApplicationInformation();
-			var proposeCreate = Server.Receive()
-				.ToData<ProposeCreateApplicationTransactionType>();
+			var proposeCreate = Soap.ToData<ProposeCreateApplicationTransactionType>(
+				Server.Receive());
 
 			proposeCreate.Application.RunCommonTests();
 			result.ApplicationNumber = proposeCreate.Application.ApplicationNumber.Value;
@@ -69,11 +69,11 @@ namespace ETH.Scenarios
 
 		public void Send()
 		{
-			var receipt = Client.Send(
+			var response = Client.Send(
 				"http://example.xml.gov.au/CreateApplication_Initiator.2.3.0r2/ProposeCreate",
-				ProposeCreateApplicationTransactionType)
-					.ToData<ReceiptAcknowledgementSignalType>();
-			receipt.ReceiptAcknowledgement.RunCommonTests();
+				ProposeCreateApplicationTransactionType);
+			Soap.ToData<ReceiptAcknowledgementSignalType>(response)
+				.ReceiptAcknowledgement.RunCommonTests();
 		}
 		
 		ProposeCreateApplicationTransactionType ProposeCreateApplicationTransactionType

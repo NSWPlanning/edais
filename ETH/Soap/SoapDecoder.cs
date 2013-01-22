@@ -10,15 +10,77 @@ using System.Xml.Serialization;
 using ETH.CommandLine;
 using ETH.Http;
 using Autofac;
+using FluentAssertions;
 
 namespace ETH.Soap
 {
+	public interface ISoapDecoder
+	{
+		/// <summary>
+		/// Converts a Nancy Request to a .NET SOAP Message.
+		/// </summary>
+		/// <param name="request"></param>
+		/// <returns></returns>
+		Message ToMessage(IHttpListenerRequest request);
+
+		Message ToMessage(IHttpWebResponse response);
+
+		/// <summary>
+		/// Extract object from Message body, using XmlSerializer.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="message"></param>
+		/// <returns></returns>
+		T ToData<T>(Message message);
+
+		/// <summary>
+		/// Extract object from Message body, using XmlSerializer.
+		/// </summary>
+		/// <param name="message"></param>
+		/// <param name="type"></param>
+		/// <returns></returns>
+		object ToData(Message message, Type type);
+
+		/// <summary>
+		/// Respond with a SOAP message from data and an action.
+		/// </summary>
+		/// <param name="response"></param>
+		/// <param name="action"></param>
+		/// <param name="data"></param>
+		/// <returns></returns>
+		void FromData(IHttpListenerResponse response, string action, object data);
+
+		void FromData(IHttpWebRequest request, string action, object data);
+		Message ToMessage(string action, object data);
+
+		/// <summary>
+		/// Respond with a SOAP message, from a Message.
+		/// </summary>
+		/// <param name="response"></param>
+		/// <param name="message"></param>
+		void FromMessage(IHttpListenerResponse response, Message message);
+
+		void FromMessage(IHttpWebRequest request, Message message);
+		void FromXml(IHttpListenerResponse response, string xml);
+		string ToXml(Message message);
+		string ToXml(IHttpListenerRequest request);
+		string ToXml(IHttpWebResponse response);
+		T ToData<T>(IHttpWebResponse response);
+		T ToData<T>(IHttpListenerRequest request);
+		void VerifySecurity(Message message);
+	}
+
 	/// <summary>
 	/// Various SOAP protocol encoding/decoding helpers.
 	/// </summary>
-	public static class SoapDecoder
+	public class SoapDecoder : ISoapDecoder
 	{
-		// TODO: refactor with RequestConversions class
+		readonly IEndpointProvider endpointProvider;
+
+		public SoapDecoder(IEndpointProvider endpointProvider)
+		{
+			this.endpointProvider = endpointProvider;
+		}
 
 		const string SoapContentType = "application/soap+xml";
 
@@ -34,15 +96,16 @@ namespace ETH.Soap
 		/// </summary>
 		/// <param name="request"></param>
 		/// <returns></returns>
-		public static Message ToMessage(this IHttpListenerRequest request)
+		public Message ToMessage(IHttpListenerRequest request)
 		{
 			var contentType = GetContentType(request.ContentType);
 			var message = GetMessage(request.InputStream);
 			SetAction(message, contentType, request.Headers);
+			VerifySecurity(message);
 			return message;
 		}
 
-		public static Message ToMessage(this HttpWebResponse response)
+		public Message ToMessage(IHttpWebResponse response)
 		{
 			return GetMessage(response.GetResponseStream());
 		}
@@ -53,9 +116,9 @@ namespace ETH.Soap
 		/// <typeparam name="T"></typeparam>
 		/// <param name="message"></param>
 		/// <returns></returns>
-		public static T ToData<T>(this Message message)
+		public T ToData<T>(Message message)
 		{
-			return (T) message.ToData(typeof (T));
+			return (T) ToData(message, typeof (T));
 		}
 
 		/// <summary>
@@ -64,7 +127,7 @@ namespace ETH.Soap
 		/// <param name="message"></param>
 		/// <param name="type"></param>
 		/// <returns></returns>
-		public static object ToData(this Message message, Type type)
+		public object ToData(Message message, Type type)
 		{
 			using (var reader = message.GetReaderAtBodyContents())
 			{
@@ -80,17 +143,17 @@ namespace ETH.Soap
 		/// <param name="action"></param>
 		/// <param name="data"></param>
 		/// <returns></returns>
-		public static void FromData(this IHttpListenerResponse response, string action, object data)
-		{			
-			response.FromMessage(ToMessage(action, data));
-		}
-
-		public static void FromData(this HttpWebRequest request, string action, object data)
+		public void FromData(IHttpListenerResponse response, string action, object data)
 		{
-			request.FromMessage(ToMessage(action, data));
+			FromMessage(response, ToMessage(action, data));
 		}
 
-		public static Message ToMessage(string action, object data)
+		public void FromData(IHttpWebRequest request, string action, object data)
+		{
+			FromMessage(request, ToMessage(action, data));
+		}
+
+		public Message ToMessage(string action, object data)
 		{
 			var stream = new MemoryStream(); // Message holds onto this
 
@@ -104,7 +167,7 @@ namespace ETH.Soap
 			return Message.CreateMessage(
 				MessageVersion.Soap12WSAddressingAugust2004,
 				action,
-				reader);			
+				reader);
 		}
 
 		/// <summary>
@@ -112,7 +175,7 @@ namespace ETH.Soap
 		/// </summary>
 		/// <param name="response"></param>
 		/// <param name="message"></param>
-		public static void FromMessage(this IHttpListenerResponse response, Message message)
+		public void FromMessage(IHttpListenerResponse response, Message message)
 		{
 			response.ContentType = SoapContentType;
 
@@ -124,7 +187,7 @@ namespace ETH.Soap
 			}
 		}
 
-		public static void FromMessage(this HttpWebRequest request, Message message)
+		public void FromMessage(IHttpWebRequest request, Message message)
 		{
 			// TODO: refactor to share code with other FromMessage
 			request.ContentType = SoapContentType;
@@ -138,9 +201,60 @@ namespace ETH.Soap
 			}
 		}
 
-		public static void FromXml(this IHttpListenerResponse response, string xml)
+		public void FromXml(IHttpListenerResponse response, string xml)
 		{
 			throw new NotImplementedException();
+		}
+
+		public string ToXml(Message message)
+		{
+			return message.GetReaderAtBodyContents().ReadOuterXml();
+		}
+
+		public string ToXml(IHttpListenerRequest request)
+		{
+			return ToXml(ToMessage(request));
+		}
+
+		public string ToXml(IHttpWebResponse response)
+		{
+			return ToXml(ToMessage(response));
+		}
+		public T ToData<T>(IHttpWebResponse response)
+		{
+			return ToData<T>(ToMessage(response));
+		}
+
+		public T ToData<T>(IHttpListenerRequest request)
+		{
+			return ToData<T>(ToMessage(request));
+		}
+
+		public class NamespaceIgnorantXmlTextReader : XmlTextReader
+		{
+			public NamespaceIgnorantXmlTextReader(TextReader reader) : base(reader) { }
+
+			public override string NamespaceURI
+			{
+				get { return ""; }
+			}
+		}
+
+		public void VerifySecurity(Message message)
+		{
+			if (endpointProvider.SkipAuthentication)
+				return;
+
+			var headerIndex = message.Headers.FindHeader(
+				"Security", 
+				"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd");
+			var header = message.Headers[headerIndex];
+			var headerString = header.ToString();
+
+			var xmlSerializer = new XmlSerializer(typeof (Security));
+			var security = (Security)xmlSerializer.Deserialize(new StringReader(headerString));
+
+			security.UsernameToken.Verify(endpointProvider.Username, endpointProvider.Password);
 		}
 
 		/// <exception cref="InvalidOperationException">Request is not a SOAP request.</exception>

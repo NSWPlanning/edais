@@ -70,11 +70,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandLine\EndpointProviderTest.cs" />
     <Compile Include="CommandLine\ProgramTest.cs" />
+    <Compile Include="Http\ClientTest.cs" />
     <Compile Include="Http\ServerTest.cs" />
     <Compile Include="MockInjector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScenarioRunner\RunnerTest.cs" />
+    <Compile Include="Soap\SecurityHeaderFactoryTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -85,9 +88,7 @@
       <Name>ETH</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Soap\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

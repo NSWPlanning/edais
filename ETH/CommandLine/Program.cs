@@ -46,14 +46,15 @@ namespace ETH.CommandLine
 
 		public int Run(Options options)
 		{
-			// TODO: extract output to its own class, so we can handle Json there.
-			// TODO: handle endpoint option
 			if (options.TestRun != null)
 			{
 				if (options.Scenario != null)
 				{
 					endpointProvider.ServerBaseUrl = options.ListenUrl;
 					endpointProvider.ClientEndpoint = options.ClientUrl;
+					endpointProvider.Username = options.Username;
+					endpointProvider.Password = options.Password;
+					endpointProvider.SkipAuthentication = options.SkipAuthentication;
 
 					if (options.UseSoap11)
 					{
@@ -133,7 +134,12 @@ namespace ETH.CommandLine
 			builder.RegisterType<Server>().As<IServer>().SingleInstance();
 			builder.RegisterType<Client>().As<IClient>().SingleInstance();
 			builder.RegisterType<Runner>().As<IRunner>().SingleInstance();
+			builder.RegisterType<SoapDecoder>().As<ISoapDecoder>();
 			builder.RegisterType<TestDataLoader>().As<ITestDataLoader>();
+			builder.RegisterType<WebRequestFactory>().As<IWebRequestFactory>();
+			builder.RegisterType<DateTimeProvider>().As<IDateTimeProvider>();
+			builder.RegisterType<RandomNumberGeneratorProvider>().As<IRandomNumberGeneratorProvider>();
+			builder.RegisterType<SecurityHeaderFactory>().As<ISecurityHeaderFactory>();
 
 			builder.RegisterSource(new ScenarioRegistrationSource());
 

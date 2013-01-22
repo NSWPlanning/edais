@@ -7,6 +7,9 @@ namespace ETH.CommandLine
 		string ServerBaseUrl { get; set; }
 		string ClientEndpoint { get; set; }
 		MessageVersion MessageVersion { get; set; }
+		string Username { get; set; }
+		string Password { get; set; }
+		bool SkipAuthentication { get; set; }
 	}
 
 	class EndpointProvider : IEndpointProvider
@@ -19,5 +22,8 @@ namespace ETH.CommandLine
 		public string ServerBaseUrl { get; set; }
 		public string ClientEndpoint { get; set; }
 		public MessageVersion MessageVersion { get; set; }
+		public string Username { get; set; }
+		public string Password { get; set; }
+		public bool SkipAuthentication { get; set; }
 	}
 }

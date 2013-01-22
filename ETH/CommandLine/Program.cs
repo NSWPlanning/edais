@@ -58,7 +58,7 @@ namespace ETH.CommandLine
 
 					if (options.UseSoap11)
 					{
-						endpointProvider.MessageVersion = MessageVersion.Soap11WSAddressingAugust2004;
+						endpointProvider.MessageVersion = MessageVersion.Soap11;
 					}
 
 					try

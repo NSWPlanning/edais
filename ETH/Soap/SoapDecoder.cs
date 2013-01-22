@@ -165,8 +165,8 @@ namespace ETH.Soap
 			var reader = XmlDictionaryReader.CreateTextReader(stream, new XmlDictionaryReaderQuotas());
 
 			return Message.CreateMessage(
-				MessageVersion.Soap12WSAddressingAugust2004,
-				action,
+				endpointProvider.MessageVersion,
+				null,
 				reader);
 		}
 
@@ -189,8 +189,7 @@ namespace ETH.Soap
 
 		public void FromMessage(IHttpWebRequest request, Message message)
 		{
-			// TODO: refactor to share code with other FromMessage
-			request.ContentType = SoapContentType;
+			request.ContentType = message.Version == MessageVersion.Soap11 ? "text/xml" : SoapContentType;
 			request.Method = "POST";
 
 			using (var stream = request.GetRequestStream())

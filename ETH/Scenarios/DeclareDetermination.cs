@@ -31,7 +31,7 @@ namespace ETH.Scenarios
 			var message = DeclareSaveDeterminationNotification;
 			if (applicationInformation != null) message.Application.ApplicationNumber.Value = applicationInformation.ApplicationNumber;
 			var response = Client.Send(
-				"http://example.xml.gov.au/DeclareDetermination_Initiator.2.3.0r2/Declare",
+				"http://example.xml.gov.au/DeclareDetermination_Responder.2.3.0r2/Declare",
 				message);
 			Soap.ToData<ReceiptAcknowledgementSignalType>(response)
 				.ReceiptAcknowledgement.RunCommonTests();

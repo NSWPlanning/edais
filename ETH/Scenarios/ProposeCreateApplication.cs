@@ -72,7 +72,7 @@ namespace ETH.Scenarios
 			var message = ProposeCreateApplicationTransactionType;
 			if (applicationNumber != null) message.Application.ApplicationNumber.Value = applicationNumber;
 			var response = Client.Send(
-				"http://example.xml.gov.au/CreateApplication_Initiator.2.3.0r2/ProposeCreate",
+				"http://example.xml.gov.au/CreateApplication_Responder.2.3.0r2/Propose",
 				ProposeCreateApplicationTransactionType);
 			Soap.ToData<ReceiptAcknowledgementSignalType>(response)
 				.ReceiptAcknowledgement.RunCommonTests();

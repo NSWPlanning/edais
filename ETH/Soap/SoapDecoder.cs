@@ -166,7 +166,7 @@ namespace ETH.Soap
 
 			return Message.CreateMessage(
 				endpointProvider.MessageVersion,
-				null,
+				action,
 				reader);
 		}
 
@@ -191,6 +191,8 @@ namespace ETH.Soap
 		{
 			request.ContentType = message.Version == MessageVersion.Soap11 ? "text/xml" : SoapContentType;
 			request.Method = "POST";
+			request.Headers.Add("SOAPAction", message.Headers.Action);
+			message.Headers.Action = null;
 
 			using (var stream = request.GetRequestStream())
 			using (var writer = XmlDictionaryWriter.CreateTextWriter(stream))

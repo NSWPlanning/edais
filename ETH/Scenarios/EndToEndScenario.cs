@@ -32,5 +32,13 @@ namespace ETH.Scenarios
 				return Container.Resolve<DeclareDetermination>();
 			}
 		}
+
+		protected RejectCreateApplication RejectCreateApplication
+		{
+			get
+			{
+				return Container.Resolve<RejectCreateApplication>();
+			}
+		}
 	}
 }

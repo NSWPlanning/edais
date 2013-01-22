@@ -8,7 +8,7 @@ namespace ETH.Scenarios
 {
 	public class Council_EndToEnd : EndToEndScenario
 	{
-		public void FromCertifier()
+		public void FromCertifier_Accept()
 		{
 			// Wait to receive a ProposeCreate and send back an ack
 			// Send a ProposeAccept and receive an ack
@@ -18,14 +18,30 @@ namespace ETH.Scenarios
 			DeclareDetermination.Receive();
 		}
 
-		public void FromEHC()
+		public void FromEHC_Accept()
 		{
 			// Wait to receive a ProposeCreate and send back an ack
 			// Send a ProposeAccept and receive an ack
 			// Send a DeclareDetermination and receive an ack
-			ProposeCreateApplication.Receive();
-			AcceptCreateApplication.Send();
+			var applicationResult = ProposeCreateApplication.Receive();
+			AcceptCreateApplication.Send(applicationResult.ApplicationNumber);
 			DeclareDetermination.Send();
+		}
+
+		public void FromCertifier_Reject()
+		{
+			Reject();
+		}
+
+		public void FromEHC_Reject()
+		{
+			Reject();
+		}
+
+		void Reject()
+		{
+			var applicationResult = ProposeCreateApplication.Receive();
+			RejectCreateApplication.Send(applicationResult.ApplicationNumber);
 		}
 	}
 }

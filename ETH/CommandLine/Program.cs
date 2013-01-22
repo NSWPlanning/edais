@@ -11,6 +11,7 @@ using ETH.Util;
 using ImpromptuInterface;
 using System.Reflection;
 using CommandLine.Text;
+using System.Collections.Generic;
 
 namespace ETH.CommandLine
 {
@@ -100,7 +101,12 @@ namespace ETH.CommandLine
 					helpText.AddPreOptionsLine(scenario);
 					foreach(var method in scenarioTypeFinder.Methods[scenario])
 					{
-						helpText.AddPreOptionsLine(string.Format("|- {0}", method.Name));
+						var parameters = new List<string>();
+						for (int i = 0; i < method.GetParameters().Length; i++)
+						{
+							parameters.Add(method.GetParameters()[i].Name);
+						}
+						helpText.AddPreOptionsLine(string.Format("|- {0}({1})", method.Name, string.Join(",", parameters)));
 					}
 					helpText.AddPreOptionsLine(Environment.NewLine);
 				}

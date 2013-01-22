@@ -31,6 +31,11 @@ namespace ETH.ScenarioRunner
 		
 			var scenario = container.Resolve(scenarioType);
 			var arguments = new object[scenarioMethod.GetParameters().Length];
+			if (arguments.Length > 0 && (scenarioArguments == null || arguments.Length != scenarioArguments.Length))
+			{
+				throw new InvalidOperationException(
+					"Invalid arguments provided, use -a to specify arguments.");
+			}
 			if (arguments.Length > 0) arguments = scenarioArguments;
 			scenarioMethod.Invoke(scenario, arguments);
 		}

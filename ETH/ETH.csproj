@@ -95,6 +95,7 @@
     <Compile Include="Scenarios\AcceptCreateApplication.cs" />
     <Compile Include="Scenarios\DeclareDetermination.cs" />
     <Compile Include="Scenarios\EndToEndScenario.cs" />
+    <Compile Include="Scenarios\RejectCreateApplication.cs" />
     <Compile Include="Scenarios\Segments\ReceiptAcknowledgementSegment.cs" />
     <Compile Include="Scenarios\Segments\StandardBusinessMessageHeaderSegment.cs" />
     <Compile Include="Scenarios\ProposeCreateApplication.cs" />
@@ -121,8 +122,9 @@
     <EmbeddedResource Include="Scenarios\Messages\ReceiptAcknowledgementSignal.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scenarios\Messages\DeclareSaveDeterminationNotification.xml" />
-    <Content Include="Scenarios\Messages\ProposeCreateApplicationTransaction.xml" />
+    <EmbeddedResource Include="Scenarios\Messages\DeclareSaveDeterminationNotification.xml" />
+    <EmbeddedResource Include="Scenarios\Messages\ProposeCreateApplicationTransaction.xml" />
+    <EmbeddedResource Include="Scenarios\Messages\RejectCreateApplicationTransaction.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

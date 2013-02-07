@@ -1,25 +1,26 @@
 
-# Build
+## Build
 
 The solution is created using Visual Studio 2012 in C#. If you are building from vs2012 it is just a matter of opening the `ETH.sln` solution file and building it (F6).
 
 Without VS2012, if you have the .net framework you can build it using MSBuild.exe found by default in:
     > "%windir%\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe"
-    [http://msdn.microsoft.com/en-us/library/vstudio/ms164311.aspx]
+
+http://msdn.microsoft.com/en-us/library/vstudio/ms164311.aspx
 The only argument required is the solution file `ETH.sln`
 
 Alternatively you can use xbuild for mono.
-    [http://www.mono-project.com/Microsoft.Build]
+http://www.mono-project.com/Microsoft.Build
 
-# Executable/Build output
+## Executable/Build output
 
 The application will be built as ETH.exe and by default can be run from/found in `~\ETH\bin\Debug`.
 
-# Running the test harness
+## Running the test harness
 
 Running the test harness without parameters or arguments will result in the generated help text listing each option.
 
-# Listing available scenarios
+## Listing available scenarios
 
     > eth -l
 
@@ -27,7 +28,6 @@ This will list all available test scenarios and the arguments needed for each on
 
 When selecting a scenario to run, the brackets are not required but are just shown in the listing to indicate arguments for the scenarios.
 
-# Usages
     
 ## JSON results
 
@@ -74,8 +74,8 @@ Get `ethSignedByCA` certificate thumbprint, and use in the command below.
 ## Command line scenario examples
 
 
-|System Under Test         |Harness Role                        |Command Line Example
-|--------------------------|------------------------------------|------------------------
+|System Under Test         |Harness Role                        |Command Line Example                                       |
+|--------------------------|------------------------------------|-----------------------------------------------------------|
 |EHC                       |Council System                      |`eth -r test1 -t Council_EndToEnd.FromEHC_Accept`
 |EHC                       |Private Certifier System            |`eth -r test1 -t PrivateCertifier_EndToEnd.ForEhc_Accept -a APP-00000001 test@localhost.test -c https://endpoint.svc`
 |EHC                       |Council & Private Certifier Systems |N/A

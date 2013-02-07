@@ -5,8 +5,6 @@ The solution is created using Visual Studio 2012 in C#. If you are building from
 Without VS2012, if you have the .net framework you can build it using MSBuild.exe found by default in:
 
     > "%windir%\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe"
-
-http://msdn.microsoft.com/en-us/library/vstudio/ms164311.aspx
 The only argument required is the solution file `ETH.sln`
 
 http://msdn.microsoft.com/en-us/library/vstudio/ms164311.aspx

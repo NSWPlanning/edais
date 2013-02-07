@@ -8,6 +8,7 @@ namespace ETH.Scenarios
 {
 	public class Council_EndToEnd : EndToEndScenario
 	{
+		// Pretend to be council to test a private certifier system
 		public void FromCertifier_Accept()
 		{
 			// Wait to receive a ProposeCreate and send back an ack
@@ -18,6 +19,7 @@ namespace ETH.Scenarios
 			DeclareDetermination.Receive();
 		}
 
+		// Pretend to be council to test the EHC
 		public void FromEHC_Accept()
 		{
 			// Wait to receive a ProposeCreate and send back an ack

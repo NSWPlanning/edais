@@ -67,13 +67,14 @@ namespace ETH.Scenarios
 
 		
 
-		public void Send(string applicationNumber = null)
+		public void Send(string applicationNumber = null, string certifierEmail = null)
 		{
 			var message = ProposeCreateApplicationTransactionType;
 			if (applicationNumber != null) message.Application.ApplicationNumber.Value = applicationNumber;
+			if (certifierEmail != null) message.StandardBusinessMessageHeader.ReceiverPartner.Contact[0].EmailAddress = certifierEmail;
 			var response = Client.Send(
 				"http://example.xml.gov.au/CreateApplication_Responder.2.3.0r2/Propose",
-				ProposeCreateApplicationTransactionType);
+				message);
 			Soap.ToData<ReceiptAcknowledgementSignalType>(response)
 				.ReceiptAcknowledgement.RunCommonTests();
 		}

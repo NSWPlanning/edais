@@ -8,16 +8,16 @@ namespace ETH.Scenarios
 {
 	public class EHC_EndToEnd : EndToEndScenario
 	{
-		public void ToThirdParty_Accept(string applicationNumber = null)
+		public void ToThirdParty_Accept(string applicationNumber = null, string certifierEmail = null)
 		{
-			ProposeCreateApplication.Send(applicationNumber);
+			ProposeCreateApplication.Send(applicationNumber, certifierEmail);
 			AcceptCreateApplication.Receive();
 			DeclareDetermination.Receive();
 		}
 
-		public void ToThirdParty_Reject(string applicationNumber = null)
+		public void ToThirdParty_Reject(string applicationNumber = null, string certifierEmail = null)
 		{
-			ProposeCreateApplication.Send(applicationNumber);
+			ProposeCreateApplication.Send(applicationNumber, certifierEmail);
 			RejectCreateApplication.Receive();
 		}
 	}

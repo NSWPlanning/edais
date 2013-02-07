@@ -51,7 +51,7 @@ namespace ETH.ScenarioRunner
 			}
 
 			var scenarioTypeName = scenarioIdSplit[0];
-			var scenarioMethodName = scenarioIdSplit[1];
+			var scenarioMethodName = scenarioIdSplit[1].Replace("()", "");
 
 			scenarioType = scenarioTypeFinder.AllScenarioTypes
 			                             .SingleOrDefault(type => type.Name == scenarioTypeName);

@@ -20,7 +20,7 @@ namespace ETH.CommandLine
 		[Option("t", "test", MutuallyExclusiveSet = RunSet, HelpText = "The scenario to run.")]
 		public string Scenario { get; set; }
 
-		[OptionArray("a", "arg", HelpText = "Scenario arguments.")]
+		[OptionArray("a", "arg", HelpText = "Scenario arguments, separated by spaces. (e.g. -a APP-00000001 user@localhost.test)")]
 		public string[] ScenarioArguments { get; set; }
 
 		[Option("e", "results", MutuallyExclusiveSet = RunSet, HelpText = "Output the results of a test run.")]
@@ -32,7 +32,7 @@ namespace ETH.CommandLine
 		[Option("l", "list", MutuallyExclusiveSet = MainSet, HelpText = "List all scenarios.")]
 		public bool ListScenarios { get; set; }
 
-		[Option("i", "info", MutuallyExclusiveSet = MainSet, HelpText = "Retrieve info for a particular scenario.")]
+		//[Option("i", "info", MutuallyExclusiveSet = MainSet, HelpText = "Retrieve info for a particular scenario.")]
 		public string ScenarioInfo { get; set; }
 
 		[Option("u", "listen", HelpText = "URL to listen on.", DefaultValue = DefaultUrl)]

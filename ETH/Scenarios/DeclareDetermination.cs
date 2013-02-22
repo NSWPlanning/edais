@@ -21,15 +21,10 @@ namespace ETH.Scenarios
 			Server.Respond("DeclareDetermination", ReceiptAcknowledgementSignalType);
 		}
 
-		public void Send()
-		{
-			Send(null);
-		}
-
-		internal void Send(ApplicationInformation applicationInformation)
+		public void Send(string applicationNumber = null)
 		{
 			var message = DeclareSaveDeterminationNotification;
-			if (applicationInformation != null) message.Application.ApplicationNumber.Value = applicationInformation.ApplicationNumber;
+			if (!string.IsNullOrEmpty(applicationNumber)) message.Application.ApplicationNumber.Value = applicationNumber;
 			var response = Client.Send(
 				"http://example.xml.gov.au/DeclareDetermination_Responder.2.3.0r2/Declare",
 				message);

@@ -15,8 +15,8 @@ namespace ETH.Scenarios
 			header.DocumentIdentification.Should().NotBeNull();
 			header.DocumentIdentification.InstanceID.Should().NotBeNull();
 			header.DocumentIdentification.InstanceID.Value.Should().NotBeNullOrEmpty();
-			Guid instanceId;
-			Guid.TryParse(header.DocumentIdentification.InstanceID.Value, out instanceId).Should().BeTrue("InstanceID should be a GUID");
+			//Guid instanceId;
+			//Guid.TryParse(header.DocumentIdentification.InstanceID.Value, out instanceId).Should().BeTrue("InstanceID should be a GUID");
 			header.DocumentIdentification.CreationDateTime.Should().NotBeNull();
 			header.BusinessScope.Should().NotBeNull();
 			header.BusinessScope.Length.Should().Be(1);

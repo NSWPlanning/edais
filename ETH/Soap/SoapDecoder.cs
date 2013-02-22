@@ -284,13 +284,14 @@ namespace ETH.Soap
 				return;
 			}
 
+			var headerAction = headers["SOAPAction"];
 			if (contentType.Parameters != null && contentType.Parameters.ContainsKey("action"))
 			{
 				message.Headers.Action = contentType.Parameters["action"];
 			}
-			else if (headers.AllKeys.Contains("SOAPAction"))
+			else if (headerAction != null)
 			{
-				message.Headers.Action = headers["SOAPAction"];
+				message.Headers.Action = headerAction;
 			}
 			else
 			{

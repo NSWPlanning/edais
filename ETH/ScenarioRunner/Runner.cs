@@ -30,14 +30,14 @@ namespace ETH.ScenarioRunner
 			FindScenario(scenarioId, out scenarioType, out scenarioMethod);
 		
 			var scenario = container.Resolve(scenarioType);
-			var arguments = new object[scenarioMethod.GetParameters().Length];
-			if (arguments.Length > 0 && (scenarioArguments == null || arguments.Length != scenarioArguments.Length))
+			var arguments = scenarioMethod.GetParameters().GetArguments(scenarioArguments);
+			var compulsoryArgumentLength = scenarioMethod.GetParameters().Count(p => !p.IsOptional);
+			if (compulsoryArgumentLength > 0 && (scenarioArguments == null || compulsoryArgumentLength < scenarioArguments.Length))
 			{
 				throw new InvalidOperationException(
 					"Invalid arguments provided, use -a to specify arguments.");
 			}
-			if (arguments.Length > 0) arguments = scenarioArguments;
-			scenarioMethod.Invoke(scenario, arguments);
+			scenarioMethod.Invoke(scenario, arguments.ToArray());
 		}
 
 		void FindScenario(string scenarioId, out Type scenarioType, out MethodInfo scenarioMethod)

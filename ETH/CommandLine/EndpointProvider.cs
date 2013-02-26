@@ -1,11 +1,12 @@
-﻿using System.ServiceModel.Channels;
+﻿using System.Collections.Generic;
+using System.ServiceModel.Channels;
 
 namespace ETH.CommandLine
 {
 	public interface IEndpointProvider
 	{
 		string ServerBaseUrl { get; set; }
-		string ClientEndpoint { get; set; }
+		Queue<string> ClientEndpoint { get; set; }
 		MessageVersion MessageVersion { get; set; }
 		string Username { get; set; }
 		string Password { get; set; }
@@ -20,7 +21,7 @@ namespace ETH.CommandLine
 		}
 
 		public string ServerBaseUrl { get; set; }
-		public string ClientEndpoint { get; set; }
+		public Queue<string> ClientEndpoint { get; set; }
 		public MessageVersion MessageVersion { get; set; }
 		public string Username { get; set; }
 		public string Password { get; set; }

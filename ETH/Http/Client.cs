@@ -8,7 +8,7 @@ using ImpromptuInterface;
 namespace ETH.Http
 {
 	public interface IClient
-	{		
+	{
 		IHttpWebResponse Send(Message message);
 		IHttpWebResponse Send(string action, object data);
 		IHttpWebResponse Send(string xml);
@@ -63,7 +63,7 @@ namespace ETH.Http
 			IHttpWebResponse response;
 			try
 			{
-				var request = webRequestFactory.CreateHttp(endpointProvider.ClientEndpoint);
+				var request = webRequestFactory.CreateHttp(endpointProvider.ClientEndpoint.Dequeue());
 				modifyRequest(request);
 				response = request.GetResponse();
 			}

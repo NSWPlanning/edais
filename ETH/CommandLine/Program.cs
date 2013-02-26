@@ -51,7 +51,7 @@ namespace ETH.CommandLine
 				if (options.Scenario != null)
 				{
 					endpointProvider.ServerBaseUrl = options.ListenUrl;
-					endpointProvider.ClientEndpoint = options.ClientUrl;
+					if (options.ClientUrl != null && options.ClientUrl.Length > 0) endpointProvider.ClientEndpoint = new Queue<string>(options.ClientUrl);
 					endpointProvider.Username = options.Username;
 					endpointProvider.Password = options.Password;
 					endpointProvider.SkipAuthentication = options.SkipAuthentication;
@@ -69,7 +69,7 @@ namespace ETH.CommandLine
 							Result = Result.Pass
 						});
 					}
-					catch (Exception e)					
+					catch (Exception e)
 					{
 						output.Display(new ResultModel
 						{
@@ -78,7 +78,7 @@ namespace ETH.CommandLine
 						});
 						return 1;
 					}
-					
+
 				}
 				else if (options.Results)
 				{
@@ -90,7 +90,7 @@ namespace ETH.CommandLine
 				}
 				else
 				{
-					output.String("You must provide an additional argument with the run.");				
+					output.String("You must provide an additional argument with the run.");
 					return 1;
 				}
 			}
@@ -100,7 +100,7 @@ namespace ETH.CommandLine
 				foreach (var scenario in scenarioTypeFinder.Methods.Keys)
 				{
 					helpText.AddPreOptionsLine(scenario);
-					foreach(var method in scenarioTypeFinder.Methods[scenario])
+					foreach (var method in scenarioTypeFinder.Methods[scenario])
 					{
 						var parameters = new List<string>();
 						for (int i = 0; i < method.GetParameters().Length; i++)
@@ -144,18 +144,18 @@ namespace ETH.CommandLine
 			builder.RegisterSource(new ScenarioRegistrationSource());
 
 			builder.Register(context => new HttpListener().ActLike<IHttpListener>())
-			       .As<IHttpListener>();
+				   .As<IHttpListener>();
 			builder.Register(context => new ScenarioTypeFinder(typeof(Program).Assembly))
-			       .As<IScenarioTypeFinder>();
+				   .As<IScenarioTypeFinder>();
 
 			builder.RegisterInstance(new Output(Console.OpenStandardOutput()))
-			       .SingleInstance()
-			       .As<IOutput>();
+				   .SingleInstance()
+				   .As<IOutput>();
 
 			builder.RegisterType<Program>()
-			       .SingleInstance();
+				   .SingleInstance();
 			builder.RegisterType<EndpointProvider>()
-			       .SingleInstance()
+				   .SingleInstance()
 				   .As<IEndpointProvider>();
 
 			return builder.Build();

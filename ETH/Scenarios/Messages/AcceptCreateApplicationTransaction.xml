@@ -23,7 +23,7 @@
        <Contact>
          <Contact>Test System</Contact>
          <ContactTypeIdentifier></ContactTypeIdentifier>
-         <EmailAddress></EmailAddress>
+         <EmailAddress>test@test.com</EmailAddress>
          <TelephoneNumber></TelephoneNumber>
        </Contact>
        <ID>Test</ID>
@@ -34,7 +34,7 @@
        <Contact>
          <Contact>Test System</Contact>
          <ContactTypeIdentifier></ContactTypeIdentifier>
-         <EmailAddress></EmailAddress>
+         <EmailAddress>test@test.com</EmailAddress>
          <TelephoneNumber></TelephoneNumber>
        </Contact>
        <ID>Test</ID>

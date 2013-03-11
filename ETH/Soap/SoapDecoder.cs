@@ -6,11 +6,13 @@ using System.Net;
 using System.Net.Mime;
 using System.ServiceModel.Channels;
 using System.Xml;
-using System.Xml.Serialization;
 using ETH.CommandLine;
 using ETH.Http;
 using Autofac;
 using FluentAssertions;
+using ServiceStack.Text;
+using Utility.Logging;
+using XmlSerializer = System.Xml.Serialization.XmlSerializer;
 
 namespace ETH.Soap
 {
@@ -76,10 +78,12 @@ namespace ETH.Soap
 	public class SoapDecoder : ISoapDecoder
 	{
 		readonly IEndpointProvider endpointProvider;
+		readonly ILogger logger;
 
-		public SoapDecoder(IEndpointProvider endpointProvider)
+		public SoapDecoder(IEndpointProvider endpointProvider, ILogger logger)
 		{
 			this.endpointProvider = endpointProvider;
+			this.logger = logger;
 		}
 
 		const string SoapContentType = "application/soap+xml";
@@ -132,7 +136,9 @@ namespace ETH.Soap
 			using (var reader = message.GetReaderAtBodyContents())
 			{
 				var serializer = new XmlSerializer(type);
-				return serializer.Deserialize(reader);
+				var result = serializer.Deserialize(reader);
+				logger.Info("Deserialized from XML successfully.");
+				return result;
 			}
 		}
 
@@ -179,12 +185,9 @@ namespace ETH.Soap
 		{
 			response.ContentType = SoapContentType;
 
-			using (var writer = XmlDictionaryWriter.CreateTextWriter(response.OutputStream))
-			{
-				message.WriteMessage(writer);
-				writer.Flush();
-				response.OutputStream.Close();
-			}
+			var writer = XmlDictionaryWriter.CreateTextWriter(response.OutputStream);
+			message.WriteMessage(writer);
+			writer.Flush();
 		}
 
 		public void FromMessage(IHttpWebRequest request, Message message)
@@ -194,12 +197,10 @@ namespace ETH.Soap
 			request.Headers.Add("SOAPAction", message.Headers.Action);
 			message.Headers.Action = null;
 
-			using (var stream = request.GetRequestStream())
-			using (var writer = XmlDictionaryWriter.CreateTextWriter(stream))
-			{
-				message.WriteMessage(writer);
-				writer.Flush();
-			}
+			var stream = request.GetRequestStream();
+			var writer = XmlDictionaryWriter.CreateTextWriter(stream);
+			message.WriteMessage(writer);
+			writer.Flush();
 		}
 
 		public void FromXml(IHttpListenerResponse response, string xml)
@@ -256,6 +257,11 @@ namespace ETH.Soap
 			var security = (Security)xmlSerializer.Deserialize(new StringReader(headerString));
 
 			security.UsernameToken.Verify(endpointProvider.Username, endpointProvider.Password);
+
+			logger.Info(
+				"Verified username: {0}, password: {1}",
+				endpointProvider.Username,
+				endpointProvider.Password);
 		}
 
 		/// <exception cref="InvalidOperationException">Request is not a SOAP request.</exception>
@@ -277,7 +283,7 @@ namespace ETH.Soap
 		}
 
 		/// <exception cref="InvalidOperationException">SOAP action missing.</exception>
-		static void SetAction(Message message, ContentType contentType, NameValueCollection headers)
+		void SetAction(Message message, ContentType contentType, NameValueCollection headers)
 		{
 			if (!string.IsNullOrWhiteSpace(message.Headers.Action))
 			{
@@ -297,9 +303,11 @@ namespace ETH.Soap
 			{
 				throw new InvalidOperationException("SOAP action missing.");
 			}
+
+			logger.Info("Detected SOAP Action: {0}", message.Headers.Action);
 		}
 
-		static Message GetMessage(Stream stream)
+		Message GetMessage(Stream stream)
 		{
 			var requestDocument = GetRequestDocument(stream);
 
@@ -311,25 +319,17 @@ namespace ETH.Soap
 				int.MaxValue,
 				endpointProvider.MessageVersion);
 
+			logger.Info("Decoded into SOAP Message successfully.");
+
 			return message;
 		}
 
 		static XmlDocument GetRequestDocument(Stream stream)
 		{
-			var requestXml = GetRequestXml(stream);
+			var requestXml = stream.ReadFully().FromUtf8Bytes();
 			var requestDocument = new XmlDocument();
 			requestDocument.LoadXml(requestXml);
 			return requestDocument;
-		}
-
-		static string GetRequestXml(Stream stream)
-		{
-			string requestXml;
-			using (var reader = new StreamReader(stream))
-			{
-				requestXml = reader.ReadToEnd();
-			}
-			return requestXml;
 		}
 	}
 }

@@ -1,10 +1,16 @@
 ﻿using System;
+using System.Collections.Specialized;
+using System.Dynamic;
+using System.IO;
 using System.Net;
 using System.ServiceModel.Channels;
 using ETH.CommandLine;
 using ETH.OutputModels;
 using ETH.Soap;
 using ImpromptuInterface;
+using ServiceStack.Text;
+using Utility.Logging;
+using System.Linq;
 
 namespace ETH.Http
 {
@@ -25,6 +31,7 @@ namespace ETH.Http
 		readonly IEndpointProvider endpointProvider;
 		readonly IOutput output;
 		readonly ISoapDecoder soapDecoder;
+		readonly ILogger logger;
 		IHttpListenerContext currentContext;
 		bool isDisposed;
 
@@ -32,13 +39,16 @@ namespace ETH.Http
 			IHttpListener listener,
 			IEndpointProvider endpointProvider,
 			IOutput output,
-			ISoapDecoder soapDecoder)
+			ISoapDecoder soapDecoder,
+			ILogger logger)
 		{
 			this.listener = listener;
 			this.endpointProvider = endpointProvider;
 			this.output = output;
 			this.soapDecoder = soapDecoder;
+			this.logger = logger;
 			listener.Prefixes.Add(endpointProvider.ServerBaseUrl);
+			logger.Info("Listening on: {0}", endpointProvider.ServerBaseUrl);
 		}
 
 		~Server()
@@ -84,7 +94,9 @@ namespace ETH.Http
 			});
 
 			currentContext = listenerContextTask.Result;
-			return currentContext.Request;
+			var request = new HttpListenerRequestProxy(currentContext.Request);			
+			logger.Info("Request Headers: {0}", request.ToString());
+			return request;
 		}
 
 		public void Respond(Message message)
@@ -109,13 +121,116 @@ namespace ETH.Http
 				throw new InvalidOperationException("There's no request to respond to.");
 			}
 
-			modifyResponse(currentContext.Response);
+			var response = new HttpListenerResponseProxy(currentContext.Response);
+			modifyResponse(response);
+			logger.Info("Response: {0}", response.ToString());
+			response.Send();
 			currentContext = null;
 		}
 
 		public void AbortResponse()
 		{
 			Respond(r => r.Abort());
+		}
+
+		class HttpListenerRequestProxy : IHttpListenerRequest
+		{
+			readonly IHttpListenerRequest request;
+			MemoryStream stream;
+
+			public HttpListenerRequestProxy(IHttpListenerRequest request)
+			{
+				this.request = request;
+			}
+
+			public string ContentType
+			{
+				get { return request.ContentType; }
+			}
+
+			public Stream InputStream
+			{
+				get
+				{
+					if (stream == null)
+					{
+						stream = new MemoryStream();
+						request.InputStream.CopyTo(stream);
+					}
+					stream.Seek(0, SeekOrigin.Begin);
+					return stream;
+				}
+			}
+
+			public NameValueCollection Headers
+			{
+				get { return request.Headers; }
+			}
+
+			public override string ToString()
+			{
+				return new
+				{
+					Headers = request.Headers.AllKeys
+						.Select(k =>
+							new
+							{
+								Name = k,
+								Values = request.Headers.GetValues(k)
+							}),
+					Content = InputStream.ReadFully().FromUtf8Bytes()
+				}.Dump();
+			}
+		}
+
+		class HttpListenerResponseProxy : IHttpListenerResponse
+		{
+			readonly IHttpListenerResponse response;
+			bool isAborted;
+			readonly MemoryStream stream = new MemoryStream();
+
+			public HttpListenerResponseProxy(IHttpListenerResponse response)
+			{
+				this.response = response;
+			}
+
+			public void Abort()
+			{
+				isAborted = true;
+				response.Abort();
+			}
+
+			public string ContentType
+			{
+				get { return response.ContentType; }
+				set { response.ContentType = value; }
+			}
+
+			public Stream OutputStream
+			{
+				get { return stream; }
+			}
+
+			public void Send()
+			{
+				if (!isAborted)
+				{
+					stream.Seek(0, SeekOrigin.Begin);
+					stream.CopyTo(response.OutputStream);
+					response.OutputStream.Close();
+				}
+			}
+
+			public override string ToString()
+			{
+				stream.Seek(0, SeekOrigin.Begin);
+				return new
+				{
+					IsAborted = isAborted,
+					ContentType,
+					Response = stream.ReadFully().FromUtf8Bytes()
+				}.Dump();
+			}
 		}
 	}
 }

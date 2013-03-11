@@ -15,7 +15,6 @@ namespace ETH.Tests.CommandLine
 	{
 		public EthProcess()
 		{
-
 			var location = TestFiles.BinPath;
 			var startInfo = new ProcessStartInfo();
 			startInfo.CreateNoWindow = false;

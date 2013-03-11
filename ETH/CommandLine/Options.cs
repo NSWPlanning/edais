@@ -1,4 +1,5 @@
-﻿using CommandLine;
+﻿using System.IO;
+using CommandLine;
 using CommandLine.Text;
 using ETH.ScenarioRunner;
 using System;
@@ -13,6 +14,11 @@ namespace ETH.CommandLine
 		const string MainSet = "main";
 		const string DefaultUser = "testuser";
 		const string DefaultPass = "testpass";
+
+		public Options()
+		{
+			LogFileName = Path.Combine(Directory.GetCurrentDirectory(), "ETHLog.txt");
+		}
 
 		[Option("r", "run", MutuallyExclusiveSet = MainSet, HelpText = "Test run identifier.")]
 		public string TestRun { get; set; }
@@ -52,6 +58,9 @@ namespace ETH.CommandLine
 
 		[Option("s", "skip", HelpText = "Skip authenticaction.", DefaultValue = false)]
 		public bool SkipAuthentication { get; set; }
+
+		[Option("f", "log", HelpText = "Log filename.")]
+		public string LogFileName { get; set; }
 
 		[HelpOption]
 		public string GetUsage()

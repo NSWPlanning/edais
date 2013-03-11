@@ -4,6 +4,8 @@ using System.Runtime.Serialization.Json;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
+using ServiceStack.Text;
+using Utility.Logging;
 
 namespace ETH.CommandLine
 {
@@ -16,6 +18,7 @@ namespace ETH.CommandLine
 
 	class Output : IOutput, IDisposable
 	{
+		readonly ILogger logger;
 		readonly StreamWriter writer;
 
 		readonly JsonSerializerSettings jsonSettings = new JsonSerializerSettings
@@ -27,8 +30,9 @@ namespace ETH.CommandLine
 			}
 		};
 
-		public Output(Stream outputStream)
+		public Output(Stream outputStream, ILogger logger)
 		{
+			this.logger = logger;
 			writer = new StreamWriter(outputStream);
 		}
 
@@ -39,14 +43,24 @@ namespace ETH.CommandLine
 
 		public void String(string str)
 		{
+			String(str, true);
+		}
+
+		void String(string str, bool log)
+		{
+			if (log)
+			{
+				logger.Info(str);
+			}
 			writer.WriteLine(str);
 			writer.Flush();
 		}
 
 		public void Display(object model)
 		{
+			logger.Info(model.Dump());
 			var json = JsonConvert.SerializeObject(model, jsonSettings);
-			String(json);
+			String(json, false);
 		}
 
 		public void Dispose()

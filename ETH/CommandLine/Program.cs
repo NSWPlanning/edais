@@ -12,6 +12,12 @@ using ImpromptuInterface;
 using System.Reflection;
 using CommandLine.Text;
 using System.Collections.Generic;
+using NLog;
+using NLog.Config;
+using NLog.Targets;
+using Utility.Logging;
+using Utility.Logging.NLog.Autofac;
+using ServiceStack.Text;
 
 namespace ETH.CommandLine
 {
@@ -31,12 +37,35 @@ namespace ETH.CommandLine
 
 			if (!parser.ParseArguments(args, options)) return 1;
 
+			SetupLogging(args, options);
 			Container = CreateContainer();
 			var program = Container.Resolve<Program>();
 			return program.Run(options);
 		}
 
-		public Program(IRunner scenarioRunner, IEndpointProvider endpointProvider, IOutput output, IScenarioTypeFinder scenarioTypeFinder)
+		static void SetupLogging(string[] args, Options options)
+		{
+			var configuration = new LoggingConfiguration();
+			var fileTarget = new FileTarget
+			{
+				AutoFlush = true,
+				FileName = options.LogFileName,
+				Layout = @"${date:format=yyyy-MM-dd HH\:mm\:ss.fff} ${logger} ${message}"
+			};
+			configuration.AddTarget("file", fileTarget);			
+			configuration.LoggingRules.Add(new LoggingRule("*", LogLevel.Trace, fileTarget));
+
+			LogManager.Configuration = configuration;
+
+			LogManager.GetCurrentClassLogger().Info("Arguments: {0}", args.Dump());
+			LogManager.GetCurrentClassLogger().Info("Options: {0}", options.Dump());
+		}
+
+		public Program(
+			IRunner scenarioRunner, 
+			IEndpointProvider endpointProvider, 
+			IOutput output, 
+			IScenarioTypeFinder scenarioTypeFinder)
 		{
 			this.scenarioRunner = scenarioRunner;
 			this.endpointProvider = endpointProvider;
@@ -148,9 +177,13 @@ namespace ETH.CommandLine
 			builder.Register(context => new ScenarioTypeFinder(typeof(Program).Assembly))
 				   .As<IScenarioTypeFinder>();
 
-			builder.RegisterInstance(new Output(Console.OpenStandardOutput()))
-				   .SingleInstance()
-				   .As<IOutput>();
+			builder.RegisterType<Output>()
+				.As<IOutput>()
+				.WithParameter("outputStream", Console.OpenStandardOutput())
+				.SingleInstance();
+			//builder.RegisterInstance(new Output(Console.OpenStandardOutput()))
+			//	   .SingleInstance()
+			//	   .As<IOutput>();
 
 			builder.RegisterType<Program>()
 				   .SingleInstance();
@@ -158,7 +191,14 @@ namespace ETH.CommandLine
 				   .SingleInstance()
 				   .As<IEndpointProvider>();
 
+			builder.RegisterModule<NLogLoggerAutofacModule>();
+
 			return builder.Build();
+		}
+
+		class OutputModule : Autofac.Module
+		{
+			 
 		}
 
 		static CommandLineParser GetParser()
@@ -170,4 +210,6 @@ namespace ETH.CommandLine
 			return new CommandLineParser(parserSettings);
 		}
 	}
+
+
 }

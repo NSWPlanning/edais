@@ -82,8 +82,16 @@ namespace ETH.Http
 			catch (WebException ex)
 			{
 				logger.Error(ex, "Response error.");
-				response = new HttpWebResponseWrapper(ex.Response.ActLike<IHttpWebResponse>());
-				logger.Info("Response: {0}", response.ToString());
+				if (ex.Response != null)
+				{
+					response = new HttpWebResponseWrapper(ex.Response.ActLike<IHttpWebResponse>());
+					logger.Info("Response: {0}", response.ToString());
+				}
+				else
+				{
+					logger.Info("Exception details: {0}", ex);
+					throw ex;
+				}		
 			}
 			return response;
 		}

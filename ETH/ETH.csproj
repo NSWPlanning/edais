@@ -87,6 +87,10 @@
     <Compile Include="CommandLine\Output.cs" />
     <Compile Include="CommandLine\ScenarioRegistrationSource.cs" />
     <Compile Include="Http\Client.cs" />
+    <Compile Include="Http\HttpListenerRequestProxy.cs" />
+    <Compile Include="Http\HttpListenerResponseProxy.cs" />
+    <Compile Include="Http\HttpWebRequestWrapper.cs" />
+    <Compile Include="Http\HttpWebResponseWrapper.cs" />
     <Compile Include="Http\IHttpListener.cs" />
     <Compile Include="Http\IHttpListenerContext.cs" />
     <Compile Include="Http\IHttpListenerContextTask.cs" />

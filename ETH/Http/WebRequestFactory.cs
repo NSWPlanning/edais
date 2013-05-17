@@ -12,7 +12,8 @@ namespace ETH.Http
 	{
 		public IHttpWebRequest CreateHttp(string requestUriString)
 		{
-			return WebRequest.CreateHttp(requestUriString).ActLike<IHttpWebRequest>();
+			var request = new HttpWebRequestWrapper(WebRequest.CreateHttp(requestUriString).ActLike<IHttpWebRequest>());
+			return request;
 		}
 	}
 }

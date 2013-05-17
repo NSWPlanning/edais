@@ -9,6 +9,7 @@ namespace ETH.Http
 		NameValueCollection Headers { get; }
 		string ContentType { get; set; }
 		string Method { get; set; }
+		void Send();
 		Stream GetRequestStream();
 	}
 }

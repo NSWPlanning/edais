@@ -75,8 +75,15 @@ namespace ETH.Scenarios
 			var response = Client.Send(
 				"http://example.xml.gov.au/CreateApplication_Responder.2.3.0r2/Propose",
 				message);
-			Soap.ToData<ReceiptAcknowledgementSignalType>(response)
-				.ReceiptAcknowledgement.RunCommonTests();
+			var responsData = Soap.ToData<ReceiptAcknowledgementSignalType>(response);
+			if (responsData != null)
+			{
+				responsData.ReceiptAcknowledgement.RunCommonTests();
+			}
+			else
+			{
+				responsData.Should().NotBeNull("expected a response from the server");
+			}
 		}
 		
 		ProposeCreateApplicationTransactionType ProposeCreateApplicationTransactionType

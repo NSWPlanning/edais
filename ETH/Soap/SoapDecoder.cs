@@ -111,7 +111,7 @@ namespace ETH.Soap
 
 		public Message ToMessage(IHttpWebResponse response)
 		{
-			return GetMessage(response.GetResponseStream());
+			return response != null ? GetMessage(response.GetResponseStream()) : null;
 		}
 
 		/// <summary>
@@ -122,7 +122,7 @@ namespace ETH.Soap
 		/// <returns></returns>
 		public T ToData<T>(Message message)
 		{
-			return (T) ToData(message, typeof (T));
+			return (T) (message != null ? ToData(message, typeof (T)) : null);
 		}
 
 		/// <summary>

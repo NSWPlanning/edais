@@ -50,7 +50,6 @@ namespace ETH.Http
 			{
 				var securityHeader = securityHeaderFactory.Create();
 				message.Headers.Add(securityHeader);
-
 				r.ContentType = ContentType;
 				soapDecoder.FromMessage(r, message);
 			});
@@ -68,13 +67,13 @@ namespace ETH.Http
 
 		public IHttpWebResponse Send(Action<IHttpWebRequest> modifyRequest)
 		{
-			IHttpWebResponse response;
+			IHttpWebResponse response = null;
 			try
 			{
 				var requestUriString = endpointProvider.ClientEndpoint.Dequeue();
-				var request =
-					new HttpWebRequestWrapper(webRequestFactory.CreateHttp(requestUriString));
+				var request = webRequestFactory.CreateHttp(requestUriString);
 				modifyRequest(request);
+				request.Send();
 				logger.Info("Request: {0}", request.ToString());
 				response = request.GetResponse();
 				logger.Info("Response: {0}", response.ToString());
@@ -82,97 +81,13 @@ namespace ETH.Http
 			catch (WebException ex)
 			{
 				logger.Error(ex, "Response error.");
-				response = new HttpWebResponseWrapper(ex.Response.ActLike<IHttpWebResponse>());
-				logger.Info("Response: {0}", response.ToString());
+				if (ex.Response != null)
+				{
+					response = ex.Response.ActLike<IHttpWebResponse>();
+					logger.Info("Response: {0}", new HttpWebResponseWrapper(response).ToString());
+				}
 			}
 			return response;
-		}
-
-		class HttpWebRequestWrapper : IHttpWebRequest
-		{
-			readonly IHttpWebRequest request;
-			readonly MemoryStream stream = new MemoryStream();
-
-			public HttpWebRequestWrapper(IHttpWebRequest request)
-			{
-				this.request = request;
-			}
-
-			public IHttpWebResponse GetResponse()
-			{
-				return new HttpWebResponseWrapper(request.GetResponse());
-			}
-
-			public NameValueCollection Headers
-			{
-				get { return request.Headers; }
-			}
-
-			public string ContentType
-			{
-				get { return request.ContentType; }
-				set { request.ContentType = value; }
-			}
-
-			public string Method
-			{
-				get { return request.Method; }
-				set { request.Method = value; }
-			}
-
-			public Stream GetRequestStream()
-			{
-				return stream;
-			}
-
-			public void Send()
-			{
-				stream.Seek(0, SeekOrigin.Begin);
-				stream.CopyTo(request.GetRequestStream());
-			}
-
-			public override string ToString()
-			{
-				stream.Seek(0, SeekOrigin.Begin);
-				return new
-				{
-					Headers = request.Headers.AllKeys
-						.Select(k =>
-							new
-							{
-								Name = k,
-								Values = request.Headers.GetValues(k)
-							}),
-					Contents = stream.ReadFully().FromUtf8Bytes()
-				}.Dump();
-			}
-		}
-
-		class HttpWebResponseWrapper : IHttpWebResponse
-		{
-			readonly IHttpWebResponse response;
-			MemoryStream stream;
-
-			public HttpWebResponseWrapper(IHttpWebResponse response)
-			{
-				this.response = response;
-			}
-
-			public Stream GetResponseStream()
-			{
-				if (stream == null)
-				{
-					stream = new MemoryStream();
-					response.GetResponseStream().CopyTo(stream);
-				}
-				stream.Seek(0, SeekOrigin.Begin);
-				return stream;
-			}
-
-			public override string ToString()
-			{
-				return GetResponseStream().ReadFully().FromUtf8Bytes().Dump();
-			}
 		}
 	}
 }

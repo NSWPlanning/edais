@@ -12,6 +12,7 @@ using ETH.Util;
 using Moq;
 using FluentAssertions;
 using Xunit;
+using System.IO;
 
 namespace ETH.Tests.Http
 {
@@ -47,7 +48,7 @@ namespace ETH.Tests.Http
 				var request = new Mock<IHttpWebRequest>();
 				var response = new Mock<HttpWebResponse>();
 
-				// TODO: find out if we can mock the exception better?
+				response.Setup(r => r.GetResponseStream()).Returns(new MemoryStream());
 				endpointProvider.Setup(e => e.ClientEndpoint).Returns(new Queue<string>(new[] { "moo" }));
 				webRequestFactory.Setup(f => f.CreateHttp("moo")).Returns(request.Object);
 				request.Setup(r => r.GetResponse())
@@ -59,6 +60,28 @@ namespace ETH.Tests.Http
 
 				client.Send(r => r.Should().Be(request.Object))
 					  .Should().Be(response.Object);
+			}
+
+			[Fact]
+			public void SendCustomActionExceptionNoResponse()
+			{
+				var injector = new MockInjector();
+				var client = injector.Create<Client>();
+				var endpointProvider = injector.GetMock<IEndpointProvider>();
+				var webRequestFactory = injector.GetMock<IWebRequestFactory>();
+				var request = new Mock<IHttpWebRequest>();
+
+				endpointProvider.Setup(e => e.ClientEndpoint).Returns(new Queue<string>(new[] { "moo" }));
+				webRequestFactory.Setup(f => f.CreateHttp("moo")).Returns(request.Object);
+				request.Setup(r => r.GetResponse())
+					   .Throws(new WebException(
+								   "moo",
+								   null,
+								   WebExceptionStatus.ProtocolError,
+								   null));
+
+				client.Send(r => r.Should().Be(request.Object))
+					.Should().BeNull();
 			}
 
 			[Fact]

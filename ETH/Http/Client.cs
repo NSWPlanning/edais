@@ -75,6 +75,7 @@ namespace ETH.Http
 				var request =
 					new HttpWebRequestWrapper(webRequestFactory.CreateHttp(requestUriString));
 				modifyRequest(request);
+                request.ContentLength = request.GetRequestStream().Length;
 				logger.Info("Request: {0}", request.ToString());
 				response = request.GetResponse();
 				logger.Info("Response: {0}", response.ToString());
@@ -82,8 +83,16 @@ namespace ETH.Http
 			catch (WebException ex)
 			{
 				logger.Error(ex, "Response error.");
-				response = new HttpWebResponseWrapper(ex.Response.ActLike<IHttpWebResponse>());
-				logger.Info("Response: {0}", response.ToString());
+				if (ex.Response != null)
+				{
+					response = new HttpWebResponseWrapper(ex.Response.ActLike<IHttpWebResponse>());
+					logger.Info("Response: {0}", response.ToString());
+				}
+				else
+				{
+					logger.Info("Exception details: {0}", ex);
+					throw ex;
+				}		
 			}
 			return response;
 		}
@@ -99,7 +108,7 @@ namespace ETH.Http
 			}
 
 			public IHttpWebResponse GetResponse()
-			{
+            {
 				return new HttpWebResponseWrapper(request.GetResponse());
 			}
 
@@ -112,6 +121,12 @@ namespace ETH.Http
 			{
 				get { return request.ContentType; }
 				set { request.ContentType = value; }
+			}
+
+			public long ContentLength
+			{
+				get { return request.ContentLength; }
+				set { request.ContentLength = value; }
 			}
 
 			public string Method

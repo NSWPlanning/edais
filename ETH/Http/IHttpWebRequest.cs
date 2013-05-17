@@ -8,6 +8,7 @@ namespace ETH.Http
 		IHttpWebResponse GetResponse();
 		NameValueCollection Headers { get; }
 		string ContentType { get; set; }
+		long ContentLength { get; set; }
 		string Method { get; set; }
 		Stream GetRequestStream();
 	}

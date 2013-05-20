@@ -8,6 +8,7 @@ using FluentAssertions;
 using Xunit;
 using System.Reflection;
 using System.IO;
+using System.Threading;
 
 namespace ETH.Tests.CommandLine
 {
@@ -31,25 +32,37 @@ namespace ETH.Tests.CommandLine
 		[Fact]
 		public void RunEndToEnd()
 		{
-			//var endToEndProgram = new EthProcess();
-			//var acceptCreateResponderProgram = new EthProcess();
-			//var declareDeterminationProgram = new EthProcess();
-			//var sendCreateApplicationProgram = new EthProcess();
+			using (endToEndProgram = new EthProcess())
+			using (acceptCreateResponderProgram = new EthProcess())
+			using (declareDeterminationProgram = new EthProcess())
+			using (sendCreateApplicationProgram = new EthProcess())
+			{
+				endToEndProgram.StartInfo.Arguments = "-r test -t Council_EndToEnd.FromEHC_Accept -m  -u http://*:8181/ -s -c http://localhost:8182 http://localhost:8183";
+				endToEndProgram.Start();
 
-			//endToEndProgram.StartInfo.Arguments = "-r test -t Council_EndToEnd.FromEHC_Accept -m  -u http://*:8181/ -s -c http://localhost:8182 http://localhost:8183";
-			//endToEndProgram.Start();
+				acceptCreateResponderProgram.StartInfo.Arguments = "-r test3 -t AcceptCreateApplication.Receive -m -s -u http://localhost:8182/";
+				acceptCreateResponderProgram.Start();
 
-			//acceptCreateResponderProgram.StartInfo.Arguments = "-r test3 -t AcceptCreateApplication.Receive -m -s -u http://localhost:8182/";
-			//acceptCreateResponderProgram.Start();
+				declareDeterminationProgram.StartInfo.Arguments = "-r test4 -t DeclareDetermination.Receive -m -s -u http://localhost:8183/";
+				declareDeterminationProgram.Start();
 
-			//declareDeterminationProgram.StartInfo.Arguments = "-r test4 -t DeclareDetermination.Receive -m -s -u http://localhost:8183/";
-			//declareDeterminationProgram.Start();
+				sendCreateApplicationProgram.StartInfo.Arguments = "-r test2 -m -s -c http://localhost:8181/ -t ProposeCreateApplication.Send -a APP-1231231234 test@localhost.test";
+				sendCreateApplicationProgram.Start();
+				Thread.Sleep(5000);
+				endToEndProgram.StandardOutput.ReadToEnd().Should().Be("{\"status\":\"ready\",\"endpoint\":\"http://*:8181/\"}\r\n{\"result\":\"pass\",\"message\":null}\r\n");
+			}
+		}
+		EthProcess endToEndProgram;
+		EthProcess acceptCreateResponderProgram;
+		EthProcess declareDeterminationProgram;
+		EthProcess sendCreateApplicationProgram;
 
-			//sendCreateApplicationProgram.StartInfo.Arguments = "-r test2 -m -s -c http://localhost:8181/ -t ProposeCreateApplication.Send -a APP-1231231234 test@localhost.test";
-			//sendCreateApplicationProgram.Start();
-			//sendCreateApplicationProgram.WaitForExit();
-			//endToEndProgram.WaitForExit();
-			//endToEndProgram.StandardOutput.ReadToEnd().Should().Be("{\"status\":\"ready\",\"endpoint\":\"http://*:8181/\"}\r\n{\"result\":\"pass\",\"message\":null}\r\n");
+		~EndToEndTest()
+		{
+			if (!endToEndProgram.HasExited) endToEndProgram.Kill();
+			if (!acceptCreateResponderProgram.HasExited) acceptCreateResponderProgram.Kill();
+			if (!declareDeterminationProgram.HasExited) declareDeterminationProgram.Kill();
+			if (!sendCreateApplicationProgram.HasExited) sendCreateApplicationProgram.Kill();
 		}
 	}
 }

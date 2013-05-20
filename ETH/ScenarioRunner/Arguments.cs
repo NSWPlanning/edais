@@ -15,7 +15,7 @@ namespace ETH.ScenarioRunner
 			foreach(var parameter in parameters)
 			{
 				object result;
-				if (providedArguments.Count() > i)
+				if (providedArguments != null && providedArguments.Count() > i)
 				{
 					result = providedArguments.ElementAt(i);
 					i++;

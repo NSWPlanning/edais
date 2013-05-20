@@ -70,6 +70,7 @@ namespace ETH.Http
 			IHttpWebResponse response = null;
 			try
 			{
+				if (endpointProvider.ClientEndpoint == null) throw new NotSupportedException("Client endpoint should be specified with -c");
 				var requestUriString = endpointProvider.ClientEndpoint.Dequeue();
 				var request = webRequestFactory.CreateHttp(requestUriString);
 				modifyRequest(request);

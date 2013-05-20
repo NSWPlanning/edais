@@ -39,6 +39,23 @@ namespace ETH.Tests.Http
 			}
 
 			[Fact]
+			public void SendMissingClientEndpoint()
+			{
+				var injector = new MockInjector();
+				var client = injector.Create<Client>();
+				var endpointProvider = injector.GetMock<IEndpointProvider>();
+				var webRequestFactory = injector.GetMock<IWebRequestFactory>();
+				var request = new Mock<IHttpWebRequest>();
+				var response = new Mock<IHttpWebResponse>();
+
+				webRequestFactory.Setup(f => f.CreateHttp("moo")).Returns(request.Object);
+				request.Setup(r => r.GetResponse()).Returns(response.Object);
+
+				var ex = Assert.Throws<NotSupportedException>(() => client.Send(r => r.Should().Be(request.Object)));
+				ex.Message.Should().Be("Client endpoint should be specified with -c");
+			}
+
+			[Fact]
 			public void SendCustomActionExceptionStillReturnsResponse()
 			{
 				var injector = new MockInjector();

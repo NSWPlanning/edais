@@ -73,9 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandLine\EndpointProviderTest.cs" />
-    <Compile Include="CommandLine\EndToEndTest.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="CommandLine\EndToEndTest.cs" />
     <Compile Include="CommandLine\ProgramTest.cs" />
     <Compile Include="Http\ClientTest.cs" />
     <Compile Include="Http\ServerTest.cs" />

@@ -8,12 +8,12 @@ using ServiceStack.Text;
 
 namespace ETH.Http
 {
-	public class HttpWebResponseWrapper : IHttpWebResponse
+	public class HttpWebResponseProxy : IHttpWebResponse
 	{
 		readonly IHttpWebResponse response;
 		MemoryStream stream;
 
-		public HttpWebResponseWrapper(IHttpWebResponse response)
+		public HttpWebResponseProxy(IHttpWebResponse response)
 		{
 			this.response = response;
 		}

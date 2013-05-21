@@ -91,6 +91,7 @@ namespace ETH.Tests.Http
 				var listener = injector.SetupAndGetListener();
 				var server = injector.Create<Server>();
 				var request = new Mock<IHttpListenerRequest>();
+				injector.SetupProxy(request);
 
 				listener.Setup(l => l.IsListening).Returns(false);
 				listener.Setup(l => l.GetContextAsync().Result.Request).Returns(request.Object);
@@ -108,6 +109,7 @@ namespace ETH.Tests.Http
 				var listener = injector.SetupAndGetListener();
 				var server = injector.Create<Server>();
 				var request = new Mock<IHttpListenerRequest>();
+				injector.SetupProxy(request);
 
 				listener.Setup(l => l.IsListening).Returns(true);
 				listener.Setup(l => l.GetContextAsync().Result.Request).Returns(request.Object);
@@ -125,6 +127,7 @@ namespace ETH.Tests.Http
 				var listener = injector.SetupAndGetListener();
 				var server = injector.Create<Server>();
 				var request = new Mock<IHttpListenerRequest>();
+				injector.SetupProxy(request);
 
 				listener.Setup(l => l.GetContextAsync().Result.Request).Returns(request.Object);
 
@@ -141,8 +144,11 @@ namespace ETH.Tests.Http
 				var listener = injector.SetupAndGetListener();
 				var server = injector.Create<Server>();
 				var request1 = new Mock<IHttpListenerRequest>();
+				injector.SetupProxy(request1);
 				var response1 = new Mock<IHttpListenerResponse>();
+				injector.SetupProxy(response1);
 				var request2 = new Mock<IHttpListenerRequest>();
+				injector.SetupProxy(request2);
 
 				listener.SetupSequence(l => l.GetContextAsync().Result.Request)
 				        .Returns(request1.Object)
@@ -168,6 +174,8 @@ namespace ETH.Tests.Http
 				var server = injector.Create<Server>();
 				var request = new Mock<IHttpListenerRequest>();
 				var response = new Mock<IHttpListenerResponse>();
+				injector.SetupProxy(request);
+				injector.SetupProxy(response);
 
 				listener.Setup(l => l.GetContextAsync().Result.Request).Returns(request.Object);
 				listener.Setup(l => l.GetContextAsync().Result.Response).Returns(response.Object);
@@ -186,6 +194,8 @@ namespace ETH.Tests.Http
 				var server = injector.Create<Server>();
 				var request = new Mock<IHttpListenerRequest>();
 				var response = new Mock<IHttpListenerResponse>();
+				injector.SetupProxy(request);
+				injector.SetupProxy(response);
 
 				listener.Setup(l => l.GetContextAsync().Result.Request).Returns(request.Object);
 				listener.Setup(l => l.GetContextAsync().Result.Response).Returns(response.Object);
@@ -210,6 +220,8 @@ namespace ETH.Tests.Http
 				var soapDecoder = injector.GetMock<ISoapDecoder>();
 				var request = new Mock<IHttpListenerRequest>();
 				var response = new Mock<IHttpListenerResponse>();
+				injector.SetupProxy(request);
+				injector.SetupProxy(response);
 				var message = Message.CreateMessage(MessageVersion.Default, "moo");
 
 				listener.Setup(l => l.GetContextAsync().Result.Request).Returns(request.Object);
@@ -230,6 +242,8 @@ namespace ETH.Tests.Http
 				var soapDecoder = injector.GetMock<ISoapDecoder>();
 				var request = new Mock<IHttpListenerRequest>();
 				var response = new Mock<IHttpListenerResponse>();
+				injector.SetupProxy(request);
+				injector.SetupProxy(response);
 				var data = new { };
 
 				listener.Setup(l => l.GetContextAsync().Result.Request).Returns(request.Object);
@@ -250,6 +264,8 @@ namespace ETH.Tests.Http
 				var soapDecoder = injector.GetMock<ISoapDecoder>();
 				var request = new Mock<IHttpListenerRequest>();
 				var response = new Mock<IHttpListenerResponse>();
+				injector.SetupProxy(request);
+				injector.SetupProxy(response);
 				const string xml = "<moo>";
 
 				listener.Setup(l => l.GetContextAsync().Result.Request).Returns(request.Object);
@@ -281,6 +297,8 @@ namespace ETH.Tests.Http
 				var server = injector.Create<Server>();
 				var request = new Mock<IHttpListenerRequest>();
 				var response = new Mock<IHttpListenerResponse>();
+				injector.SetupProxy(request);
+				injector.SetupProxy(response);
 
 				listener.Setup(l => l.GetContextAsync().Result.Request).Returns(request.Object);
 				listener.Setup(l => l.GetContextAsync().Result.Response).Returns(response.Object);
@@ -301,6 +319,22 @@ namespace ETH.Tests.Http
 			var result = injector.GetMock<IHttpListener>();
 			result.Setup(l => l.Prefixes).Returns(new List<string>());
 			return result;
+		}
+
+		public static void SetupProxy(this MockInjector injector, Mock<IHttpListenerRequest> request)
+		{
+			var webRequestFactory = injector.GetMock<IWebRequestFactory>();
+			webRequestFactory
+				.Setup(f => f.WithLoggingProxy(request.Object))
+				.Returns(request.Object);
+		}
+
+		public static void SetupProxy(this MockInjector injector, Mock<IHttpListenerResponse> response)
+		{
+			var webRequestFactory = injector.GetMock<IWebRequestFactory>();
+			webRequestFactory
+				.Setup(f => f.WithLoggingProxy(response.Object))
+				.Returns(response.Object);
 		}
 	}
 }

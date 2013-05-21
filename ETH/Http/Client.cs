@@ -84,8 +84,8 @@ namespace ETH.Http
 				logger.Error(ex, "Response error.");
 				if (ex.Response != null)
 				{
-					response = ex.Response.ActLike<IHttpWebResponse>();
-					logger.Info("Response: {0}", new HttpWebResponseWrapper(response).ToString());
+					response = webRequestFactory.WithLoggingProxy(ex.Response.ActLike<IHttpWebResponse>());
+					logger.Info("Response: {0}", response.ToString());
 				}
 			}
 			return response;

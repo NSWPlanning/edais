@@ -89,8 +89,8 @@
     <Compile Include="Http\Client.cs" />
     <Compile Include="Http\HttpListenerRequestProxy.cs" />
     <Compile Include="Http\HttpListenerResponseProxy.cs" />
-    <Compile Include="Http\HttpWebRequestWrapper.cs" />
-    <Compile Include="Http\HttpWebResponseWrapper.cs" />
+    <Compile Include="Http\HttpWebRequestProxy.cs" />
+    <Compile Include="Http\HttpWebResponseProxy.cs" />
     <Compile Include="Http\IHttpListener.cs" />
     <Compile Include="Http\IHttpListenerContext.cs" />
     <Compile Include="Http\IHttpListenerContextTask.cs" />
@@ -141,6 +141,7 @@
     <Compile Include="Util\DateTimeProvider.cs" />
     <Compile Include="Util\Deserialization.cs" />
     <Compile Include="Util\Dumper.cs" />
+    <Compile Include="Util\FailException.cs" />
     <Compile Include="Util\RandomNumberGeneratorProvider.cs" />
     <Compile Include="Util\TestData.cs" />
   </ItemGroup>

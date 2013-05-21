@@ -7,6 +7,7 @@ using System.ServiceModel.Channels;
 using ETH.CommandLine;
 using ETH.OutputModels;
 using ETH.Soap;
+using ETH.Util;
 using ImpromptuInterface;
 using ServiceStack.Text;
 using Utility.Logging;
@@ -32,6 +33,7 @@ namespace ETH.Http
 		readonly IOutput output;
 		readonly ISoapDecoder soapDecoder;
 		readonly ILogger logger;
+		readonly IWebRequestFactory webRequestFactory;
 		IHttpListenerContext currentContext;
 		bool isDisposed;
 
@@ -40,14 +42,28 @@ namespace ETH.Http
 			IEndpointProvider endpointProvider,
 			IOutput output,
 			ISoapDecoder soapDecoder,
-			ILogger logger)
+			ILogger logger,
+			IWebRequestFactory webRequestFactory)
 		{
 			this.listener = listener;
 			this.endpointProvider = endpointProvider;
 			this.output = output;
 			this.soapDecoder = soapDecoder;
 			this.logger = logger;
-			listener.Prefixes.Add(endpointProvider.ServerBaseUrl);
+			this.webRequestFactory = webRequestFactory;
+			try
+			{
+				listener.Prefixes.Add(endpointProvider.ServerBaseUrl);
+			}
+			catch (ArgumentException ex)
+			{
+				throw new FailException(
+					string.Format(
+						"While attempting to listen on URL '{1}': {0}",
+						ex.Message,
+						endpointProvider.ServerBaseUrl),
+					ex);
+			}
 			logger.Info("Listening on: {0}", endpointProvider.ServerBaseUrl);
 		}
 
@@ -82,7 +98,18 @@ namespace ETH.Http
 
 			if (!listener.IsListening)
 			{
-				listener.Start();
+				try
+				{
+					listener.Start();
+				}
+				catch (HttpListenerException ex)
+				{
+					throw new FailException(
+						string.Format(
+							"While attempting to start listening for requests: {0}",
+							ex.Message), 
+						ex);
+				}
 			}
 
 			var listenerContextTask = listener.GetContextAsync();
@@ -94,7 +121,7 @@ namespace ETH.Http
 			});
 
 			currentContext = listenerContextTask.Result;
-			var request = new HttpListenerRequestProxy(currentContext.Request);			
+			var request = webRequestFactory.WithLoggingProxy(currentContext.Request);			
 			logger.Info("Request Headers: {0}", request.ToString());
 			return request;
 		}
@@ -121,7 +148,7 @@ namespace ETH.Http
 				throw new InvalidOperationException("There's no request to respond to.");
 			}
 
-			var response = new HttpListenerResponseProxy(currentContext.Response);
+			var response = webRequestFactory.WithLoggingProxy(currentContext.Response);
 			modifyResponse(response);
 			logger.Info("Response: {0}", response.ToString());
 			response.Send();

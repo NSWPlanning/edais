@@ -26,6 +26,7 @@ namespace ETH.CommandLine
 		readonly IRunner scenarioRunner;
 		readonly IEndpointProvider endpointProvider;
 		readonly IScenarioTypeFinder scenarioTypeFinder;
+		readonly ILogger logger;
 		readonly IOutput output;
 
 		public static IContainer Container { get; private set; } // TODO: refactor out
@@ -50,7 +51,7 @@ namespace ETH.CommandLine
 			{
 				AutoFlush = true,
 				FileName = options.LogFileName,
-				Layout = @"${date:format=yyyy-MM-dd HH\:mm\:ss.fff} ${logger} ${message}"
+				Layout = @"[${date:format=yyyy-MM-dd HH\:mm\:ss.fff}] [${logger}] ${message}"
 			};
 			configuration.AddTarget("file", fileTarget);			
 			configuration.LoggingRules.Add(new LoggingRule("*", LogLevel.Trace, fileTarget));
@@ -65,12 +66,14 @@ namespace ETH.CommandLine
 			IRunner scenarioRunner, 
 			IEndpointProvider endpointProvider, 
 			IOutput output, 
-			IScenarioTypeFinder scenarioTypeFinder)
+			IScenarioTypeFinder scenarioTypeFinder, 
+			ILogger logger)
 		{
 			this.scenarioRunner = scenarioRunner;
 			this.endpointProvider = endpointProvider;
 			this.output = output;
 			this.scenarioTypeFinder = scenarioTypeFinder;
+			this.logger = logger;
 		}
 
 		public int Run(Options options)
@@ -100,10 +103,17 @@ namespace ETH.CommandLine
 					}
 					catch (Exception e)
 					{
+						var baseException = e.GetBaseException();
+						var failException = baseException as FailException;
+						logger.Error(string.Format("Exception:\n{0}", e));
+						if (failException != null)
+						{
+							logger.Error(string.Format("Wrapped Exception:\n{0}", failException.WrappedException));
+						}
 						output.Display(new ResultModel
 						{
 							Result = Result.Fail,
-							Message = e.ToString()
+							Message = (failException ?? e).ToString()
 						});
 						return 1;
 					}

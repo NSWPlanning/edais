@@ -9,6 +9,7 @@ using ETH.CommandLine;
 using ETH.Http;
 using ETH.Soap;
 using ETH.Util;
+using ImpromptuInterface;
 using Moq;
 using FluentAssertions;
 using Xunit;
@@ -65,9 +66,18 @@ namespace ETH.Tests.Http
 				var request = new Mock<IHttpWebRequest>();
 				var response = new Mock<HttpWebResponse>();
 
-				response.Setup(r => r.GetResponseStream()).Returns(new MemoryStream());
-				endpointProvider.Setup(e => e.ClientEndpoint).Returns(new Queue<string>(new[] { "moo" }));
-				webRequestFactory.Setup(f => f.CreateHttp("moo")).Returns(request.Object);
+				response
+					.Setup(r => r.GetResponseStream())
+					.Returns(new MemoryStream());
+				endpointProvider
+					.Setup(e => e.ClientEndpoint)
+					.Returns(new Queue<string>(new[] { "moo" }));
+				webRequestFactory
+					.Setup(f => f.CreateHttp("moo"))
+					.Returns(request.Object);
+				webRequestFactory
+					.Setup(f => f.WithLoggingProxy(response.Object.ActLike<IHttpWebResponse>()))
+					.Returns(response.Object.ActLike<IHttpWebResponse>());
 				request.Setup(r => r.GetResponse())
 					   .Throws(new WebException(
 								   "moo",

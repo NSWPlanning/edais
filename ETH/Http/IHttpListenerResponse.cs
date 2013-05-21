@@ -8,5 +8,6 @@ namespace ETH.Http
 		void Abort();
 		string ContentType { get; set; }
 		Stream OutputStream { get; }
+		void Send();
 	}
 }

@@ -9,19 +9,19 @@ using ServiceStack.Text;
 
 namespace ETH.Http
 {
-	public class HttpWebRequestWrapper : IHttpWebRequest
+	public class HttpWebRequestProxy : IHttpWebRequest
 	{
 		readonly IHttpWebRequest request;
 		readonly MemoryStream stream = new MemoryStream();
 
-		public HttpWebRequestWrapper(IHttpWebRequest request)
+		public HttpWebRequestProxy(IHttpWebRequest request)
 		{
 			this.request = request;
 		}
 
 		public IHttpWebResponse GetResponse()
 		{
-			return new HttpWebResponseWrapper(request.GetResponse());
+			return new HttpWebResponseProxy(request.GetResponse());
 		}
 
 		public NameValueCollection Headers

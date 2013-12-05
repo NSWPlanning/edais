@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:cdt="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2" xmlns:spec="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.3.0r2">
+	<xs:import namespace="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2" schemaLocation="cdt.type.2.3.0r2.xsd"/>
+	<xs:annotation>
+		<xs:documentation>
+			<artefact id="6AC66DAB_91B8_46de_A13D_B58C0D15560C" name="Specialisation" stereotype="CCLibrary"/>
+			<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+			<notes/>
+		</xs:documentation>
+	</xs:annotation>
+	<xs:element name="Specialisation" type="spec:Specialisation"/>
+	<xs:complexType name="Specialisation">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="4645050A_7160_46ea_8AF9_BEC60BB16BEC" name="Specialisation" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>An envelope provided to attach specialised data structures to business messages.  Usage is as per the eDAIS Jurisdictional Specialisation Specification v1.0.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="DomainId" type="cdt:IdentifierType"/>
+			<xs:element name="Extension" type="xs:anyType"/>
+			<xs:element name="Jurisdiction" type="cdt:CodeType"/>
+			<xs:element name="Version" type="cdt:IdentifierType"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:cdt="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2" xmlns:naa="http://xml.gov.au/edais/core/naa.data.2.3.0r2" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xml.gov.au/edais/core/naa.data.2.3.0r2" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.3.0r2">
+	<xs:import namespace="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2" schemaLocation="cdt.type.2.3.0r2.xsd"/>
+	<xs:annotation>
+		<xs:documentation>
+			<artefact id="31687661_C584_48af_A957_791BF364253C" name="Name and Address" stereotype="CCLibrary"/>
+			<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+			<notes/>
+		</xs:documentation>
+	</xs:annotation>
+	<xs:element name="Address" type="naa:Address"/>
+	<xs:complexType name="Address">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="F3D8F141_ED6B_4f58_A48C_1DA00FE8E138" name="Address" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>The location at which a particular organisation or person may be found or reached.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Address" type="naa:Address" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="BlockName" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="BuildingName" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="BuildingNumber" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="CityName" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="Code" type="cdt:CodeType" minOccurs="0"/>
+			<xs:element name="CountryName" type="cdt:CodeType" minOccurs="0"/>
+			<xs:element name="CountrySubDivision" type="cdt:CodeType" minOccurs="0"/>
+			<xs:element name="Geocode" type="naa:Geocode" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Identification" type="cdt:IdentifierType"/>
+			<xs:element name="LineFive" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="LineFour" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="LineOne" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="LineSix" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="LineThree" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="LineTwo" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="PostOfficeBox" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="Postcode" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="StreetName" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="StreetSuffix" type="cdt:CodeType" minOccurs="0"/>
+			<xs:element name="StreetType" type="cdt:CodeType" minOccurs="0"/>
+			<xs:element name="Usage" type="cdt:CodeType" minOccurs="0"/>
+			<xs:element name="UsagePeriod" type="naa:Period" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="Contact" type="naa:Contact"/>
+	<xs:complexType name="Contact">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="2D18EB74_E7B2_4719_9CA3_D11B68FB49A6" name="Contact" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>A person or department that acts as a point of contact with another person or department.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="DepartmentName" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="Description" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="Identification" type="cdt:IdentifierType"/>
+			<xs:element name="Internet" type="naa:Internet" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="IsPrimary" type="cdt:IndicatorType" minOccurs="0"/>
+			<xs:element name="JobTitle" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="PersonName" type="naa:PersonName" minOccurs="0"/>
+			<xs:element name="Responsibility" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="Telephone" type="naa:Telephone" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Type" type="cdt:CodeType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="Geocode" type="naa:Geocode"/>
+	<xs:complexType name="Geocode">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="1D99F9CA_5C9B_4559_A8A4_6B2F713D4C53" name="Geocode" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>A set of geographical coordinates of a specific point such as the longitude, latitude and altitude.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="AltimetricSystem" type="cdt:CodeType" minOccurs="0"/>
+			<xs:element name="Altitude" type="cdt:NumericType" minOccurs="0"/>
+			<xs:element name="Identification" type="cdt:IdentifierType"/>
+			<xs:element name="Latitude" type="cdt:NumericType"/>
+			<xs:element name="LatitudeDirection" type="cdt:CodeType" minOccurs="0"/>
+			<xs:element name="Longitude" type="cdt:NumericType"/>
+			<xs:element name="LongitudeDirection" type="cdt:CodeType" minOccurs="0"/>
+			<xs:element name="System" type="cdt:CodeType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="Internet" type="naa:Internet"/>
+	<xs:complexType name="Internet">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="2933DCD1_43F7_4e42_882A_05DD7A23D25A" name="Internet" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>Details for internet based communication.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Type" type="cdt:CodeType"/>
+			<xs:element name="URI" type="xs:anyURI"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="Organisation" type="naa:Organisation"/>
+	<xs:complexType name="Organisation">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="A9FA3A77_64E3_450b_BDDF_4070DDEEF6DB" name="Organisation" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>An organised structure set up for a particular purpose, such as a business, government body, department, charity, or financial institution.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Contact" type="naa:Contact" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Description" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="Identification" type="cdt:IdentifierType"/>
+			<xs:element name="IndustryClassification" type="cdt:CodeType" minOccurs="0"/>
+			<xs:element name="Internet" type="naa:Internet" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="IsActive" type="cdt:IndicatorType" minOccurs="0"/>
+			<xs:element name="LegalClassification" type="cdt:CodeType" minOccurs="0"/>
+			<xs:element name="Organisation" type="naa:Organisation" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="OrganisationName" type="naa:OrganisationName" maxOccurs="unbounded"/>
+			<xs:element name="PhysicalAddress" type="naa:Address" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="PostalAddress" type="naa:Address" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Registration" type="naa:Registration" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Status" type="naa:Status" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Telephone" type="naa:Telephone" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Type" type="cdt:CodeType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="OrganisationName" type="naa:OrganisationName"/>
+	<xs:complexType name="OrganisationName">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="A0534378_5545_45ff_8A28_B797EC457A5A" name="OrganisationName" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>The name(s) by which an organisation may be known.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Classification" type="cdt:CodeType"/>
+			<xs:element name="Name" type="cdt:TextType"/>
+			<xs:element name="ValidityPeriod" type="naa:Period" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="Party" type="naa:Party"/>
+	<xs:complexType name="Party">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="960783D7_0187_4bce_A6D3_3D6F119BEEA5" name="Party" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>An individual, a group, or a body having a role in a business function.  Party has a legal connotation in a business transaction.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="AccessRights" type="cdt:CodeType" minOccurs="0"/>
+			<xs:element name="Description" type="cdt:TextType" minOccurs="0"/>
+			<xs:choice>
+				<xs:element name="Organisation" type="naa:Organisation" minOccurs="0"/>
+				<xs:element name="Person" type="naa:Person" minOccurs="0"/>
+			</xs:choice>
+			<xs:element name="Identification" type="cdt:IdentifierType"/>
+			<xs:element name="Language" type="cdt:CodeType" minOccurs="0"/>
+			<xs:element name="Name" type="cdt:TextType"/>
+			<xs:element name="Type" type="cdt:TextType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="Period" type="naa:Period"/>
+	<xs:complexType name="Period">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="B526E802_CB1A_46ce_89CC_A92DF295CECF" name="Period" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>An interval of time (meaningful in relation to the development assessment process).
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Complete" type="cdt:DateTimeType" minOccurs="0"/>
+			<xs:element name="Description" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="Duration" type="cdt:MeasureType" minOccurs="0"/>
+			<xs:element name="End" type="cdt:DateTimeType" minOccurs="0"/>
+			<xs:element name="Identification" type="cdt:IdentifierType"/>
+			<xs:element name="Inclusive" type="cdt:IndicatorType" minOccurs="0"/>
+			<xs:element name="Name" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="Sequence" type="cdt:IdentifierType" minOccurs="0"/>
+			<xs:element name="Start" type="cdt:DateTimeType"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="Person" type="naa:Person"/>
+	<xs:complexType name="Person">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="43D1CEF4_FC21_4b20_9CE7_06F4254E5D9C" name="Person" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>An individual human being.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Description" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="Identification" type="cdt:IdentifierType"/>
+			<xs:element name="Internet" type="naa:Internet" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="PersonName" type="naa:PersonName" maxOccurs="unbounded"/>
+			<xs:element name="PostalAddress" type="naa:Address" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Registration" type="naa:Registration" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ResidentialAddress" type="naa:Address" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Status" type="naa:Status" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Telephone" type="naa:Telephone" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="PersonName" type="naa:PersonName"/>
+	<xs:complexType name="PersonName">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="27416BB5_8571_45aa_98E4_7C42A0877C17" name="PersonName" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>The name(s) by which a person may be known.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Classification" type="cdt:CodeType"/>
+			<xs:element name="FamilyName" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="FamilyNamePrefix" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="GivenName" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="MiddleName" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="Name" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="NameSuffix" type="cdt:CodeType" minOccurs="0"/>
+			<xs:element name="Salutation" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="Title" type="cdt:CodeType" minOccurs="0"/>
+			<xs:element name="ValidityPeriod" type="naa:Period" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="Registration" type="naa:Registration"/>
+	<xs:complexType name="Registration">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="D18C3D08_5262_4b49_A232_0CEEF69C1A62" name="Registration" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>The recording of items or details for a specific purpose.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Category" type="cdt:CodeType" minOccurs="0"/>
+			<xs:element name="Country" type="cdt:CodeType" minOccurs="0"/>
+			<xs:element name="Identification" type="cdt:IdentifierType"/>
+			<xs:element name="Licence" type="cdt:IdentifierType" minOccurs="0"/>
+			<xs:element name="Recorded" type="cdt:DateTimeType" minOccurs="0"/>
+			<xs:element name="Type" type="cdt:CodeType" minOccurs="0"/>
+			<xs:element name="ValidityPeriod" type="naa:Period" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="Status" type="naa:Status"/>
+	<xs:complexType name="Status">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="0EC023EE_570A_4016_952A_14E84238B58C" name="Status" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>The status as applied to a variety of data held in the system.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Code" type="cdt:CodeType"/>
+			<xs:element name="Description" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="ValidityPeriod" type="naa:Period" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="Telephone" type="naa:Telephone"/>
+	<xs:complexType name="Telephone">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="02C6E19D_6D55_4a00_9CDD_C04F3436BDBA" name="Telephone" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>Details for telephonic communication.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="AreaCode" type="cdt:CodeType" minOccurs="0"/>
+			<xs:element name="CountryCode" type="cdt:CodeType" minOccurs="0"/>
+			<xs:element name="Extension" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="Number" type="cdt:IdentifierType"/>
+			<xs:element name="Type" type="cdt:CodeType"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,54 @@
+﻿<RejectCreateApplicationTransaction xmlns="http://xml.gov.au/edais/bm/RejectCreateApplicationTransaction.msg.2.3.0r2" xmlns:da="http://xml.gov.au/edais/core/da.data.2.3.0r2" xmlns:lab="http://xml.gov.au/edais/core/lab.data.2.3.0r2" 
+                                    xmlns:msg="http://xml.gov.au/edais/core/msg.data.2.3.0r2" xmlns:naa="http://xml.gov.au/edais/core/naa.data.2.3.0r2" xmlns:spec="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2" 
+                                    xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Application xmlns="http://xml.gov.au/edais/bm/RejectCreateApplicationTransaction.msg.2.3.0r2">
+    <ApplicationNumber xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">APP-0000123456</ApplicationNumber>
+    <Comments xmlns="http://xml.gov.au/edais/core/da.data.2.3.0r2">This is a test rejection.</Comments>
+  </Application>
+  <Specialisation xmlns="http://xml.gov.au/edais/bm/RejectCreateApplicationTransaction.msg.2.3.0r2">
+    <DomainId xmlns="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2">EHC</DomainId>
+    <Extension xmlns="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2"></Extension>
+    <Jurisdiction xmlns="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2">NSW</Jurisdiction>
+    <Version xmlns="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2">1.0</Version>
+  </Specialisation>
+  <StandardBusinessMessageHeader>
+    <BusinessScope xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+      <CorrelationInformation>
+        <ExpectedResponseDateTime>2012-11-27T19:05:22.8339767+11:00</ExpectedResponseDateTime>
+        <RequestingDocumentCreationDateTime>2012-11-27T19:00:22.8339843+11:00</RequestingDocumentCreationDateTime>
+        <RequestingDocumentInstanceID>cf2d8dce-5e6b-4a66-9c35-59b50a6dfb6d</RequestingDocumentInstanceID>
+      </CorrelationInformation>
+      <Type>BusinessCollaboration</Type>
+    </BusinessScope>
+    <DocumentIdentification xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+      <CreationDateTime>2012-11-27T19:00:22.8239945+11:00</CreationDateTime>
+      <InstanceID>cf2d8dce-5e6b-4a66-9c35-59b50a6dfb6d</InstanceID>
+      <Standard codeListURI="http://xml.gov.au/edais/dt/qdt/msg.type.2.3.0r2" codeListName="Standard_Code" codeListVersion="2.3.0r2">eDAIS</Standard>
+      <Type>RejectCreateApplicationTransaction</Type>
+      <TypeVersion>2.3.0r2</TypeVersion>
+    </DocumentIdentification>
+    <ReceiverPartner xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+      <Authority>Test</Authority>
+      <Contact>
+        <Contact>Test System</Contact>
+        <ContactTypeIdentifier></ContactTypeIdentifier>
+        <EmailAddress></EmailAddress>
+        <TelephoneNumber></TelephoneNumber>
+      </Contact>
+      <ID>Test</ID>
+      <ProcessRole>Initiator</ProcessRole>
+    </ReceiverPartner>
+    <SenderPartner xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+      <Authority>Test</Authority>
+      <Contact>
+        <Contact>Test System</Contact>
+        <ContactTypeIdentifier></ContactTypeIdentifier>
+        <EmailAddress></EmailAddress>
+        <TelephoneNumber></TelephoneNumber>
+      </Contact>
+      <ID>Test</ID>
+      <ProcessRole>Responder</ProcessRole>
+    </SenderPartner>
+    <Version xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">2.3.0r2</Version>
+  </StandardBusinessMessageHeader>
+</RejectCreateApplicationTransaction>

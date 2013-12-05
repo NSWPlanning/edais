@@ -1,0 +1,5 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" targetNamespace="http://xml.gov.au/edais/nsw/dt/qdt/cdt.type.1.0">
+	<xs:simpleType name="Boolean">
+		<xs:restriction base="xs:boolean"/>
+	</xs:simpleType>
+</xs:schema>

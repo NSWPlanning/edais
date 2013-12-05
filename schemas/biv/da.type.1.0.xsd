@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://edais.daf.gov.au/nsw/da.type.1.0"
+           xmlns:tns="http://edais.daf.gov.au/nsw/da.type.1.0" elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+    <xs:simpleType name="Floor_Type">
+      <xs:restriction base="xs:string">
+            <xs:enumeration value="20">
+                <xs:annotation>
+                    <xs:documentation>Concrete or Slate</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="40">
+                <xs:annotation>
+                    <xs:documentation>Timber</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="80">
+                <xs:annotation>
+                    <xs:documentation>Other</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="90">
+                <xs:annotation>
+                    <xs:documentation>Not Specified</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="Floor_CodeList">
+        <xs:annotation>
+            <xs:documentation></xs:documentation>
+        </xs:annotation>
+        <xs:simpleContent>
+            <xs:extension base="tns:Floor_Type">
+                <xs:attribute name="codeListURI" type="xs:string" use="required"
+                              fixed="http://edais.daf.gov.au/nsw/da.type.1.0">
+                    <xs:annotation>
+                        <xs:documentation>This namespace is not resolvable to a published resource. It simply provide
+                            namespace separation.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="codeListAgency" type="xs:string" use="required" fixed="DoPNSW">
+                    <xs:annotation>
+                        <xs:documentation>For more details contact the e-planning team and the Department of Planning
+                            NSW
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="codeListName" type="xs:string" use="required" fixed="Floor_CodeList">
+                    <xs:annotation>
+                        <xs:documentation>The name of the code list the content is taken from.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="codeListVersion" type="xs:string" use="required" fixed="1.0">
+                    <xs:annotation>
+                        <xs:documentation>The unique version of this content's codelist.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:simpleType name="Frame_type">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="40">
+                <xs:annotation>
+                    <xs:documentation>Timber</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="60">
+                <xs:annotation>
+                    <xs:documentation>Steel</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="70">
+                <xs:annotation>
+                    <xs:documentation>Aluminium</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="80">
+                <xs:annotation>
+                    <xs:documentation>Other</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="90">
+                <xs:annotation>
+                    <xs:documentation>Not Specified</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="Frame_CodeList">
+        <xs:annotation>
+            <xs:documentation></xs:documentation>
+        </xs:annotation>
+        <xs:simpleContent>
+            <xs:extension base="tns:Frame_type">
+                <xs:attribute name="codeListURI" type="xs:string" use="required"
+                              fixed="http://edais.daf.gov.au/nsw/da.type.1.0">
+                    <xs:annotation>
+                        <xs:documentation>This namespace is not resolvable to a published resource. It simply provide
+                            namespace separation.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="codeListAgency" type="xs:string" use="required" fixed="DoPNSW">
+                    <xs:annotation>
+                        <xs:documentation>For more details contact the e-planning team and the Department of Planning
+                            NSW
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="codeListName" type="xs:string" use="required" fixed="Frame_CodeList">
+                    <xs:annotation>
+                        <xs:documentation>The name of the code list the content is taken from.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="codeListVersion" type="xs:string" use="required" fixed="1.0">
+                    <xs:annotation>
+                        <xs:documentation>The unique version of this content's codelist.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:simpleType name="Roof_type">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="10">
+                <xs:annotation>
+                    <xs:documentation>Tiles</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="20">
+                <xs:annotation>
+                    <xs:documentation>Concrete or Slate</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="30">
+                <xs:annotation>
+                    <xs:documentation>Fibre Cement</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="60">
+                <xs:annotation>
+                    <xs:documentation>Steel</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="70">
+                <xs:annotation>
+                    <xs:documentation>Aluminium</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="80">
+                <xs:annotation>
+                    <xs:documentation>Other</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="90">
+                <xs:annotation>
+                    <xs:documentation>Not Specified</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="Roof_CodeList">
+        <xs:annotation>
+            <xs:documentation></xs:documentation>
+        </xs:annotation>
+        <xs:simpleContent>
+            <xs:extension base="tns:Roof_type">
+                <xs:attribute name="codeListURI" type="xs:string" use="required"
+                              fixed="http://edais.daf.gov.au/nsw/da.type.1.0">
+                    <xs:annotation>
+                        <xs:documentation>This namespace is not resolvable to a published resource. It simply provide
+                            namespace separation.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="codeListAgency" type="xs:string" use="required" fixed="DoPNSW">
+                    <xs:annotation>
+                        <xs:documentation>For more details contact the e-planning team and the Department of Planning
+                            NSW
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="codeListName" type="xs:string" use="required" fixed="Roof_CodeList">
+                    <xs:annotation>
+                        <xs:documentation>The name of the code list the content is taken from.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="codeListVersion" type="xs:string" use="required" fixed="1.0">
+                    <xs:annotation>
+                        <xs:documentation>The unique version of this content's codelist.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:simpleType name="Walls_type">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="11">
+                <xs:annotation>
+                    <xs:documentation>Double Brick</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="12">
+                <xs:annotation>
+                    <xs:documentation>Brick Veneer</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="20">
+                <xs:annotation>
+                    <xs:documentation>Concrete or Slate</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="30">
+                <xs:annotation>
+                    <xs:documentation>Fibre Cement</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="40">
+                <xs:annotation>
+                    <xs:documentation>Timber</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="50">
+                <xs:annotation>
+                    <xs:documentation>Curtain Glass</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="60">
+                <xs:annotation>
+                    <xs:documentation>Steel</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="70">
+                <xs:annotation>
+                    <xs:documentation>Aluminium</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="80">
+                <xs:annotation>
+                    <xs:documentation>Other</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="90">
+                <xs:annotation>
+                    <xs:documentation>Not Specified</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="Walls_CodeList">
+        <xs:annotation>
+            <xs:documentation></xs:documentation>
+        </xs:annotation>
+        <xs:simpleContent>
+            <xs:extension base="tns:Walls_type">
+                <xs:attribute name="codeListURI" type="xs:string" use="required"
+                              fixed="http://edais.daf.gov.au/nsw/da.type.1.0">
+                    <xs:annotation>
+                        <xs:documentation>This namespace is not resolvable to a published resource. It simply provide
+                            namespace separation.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="codeListAgency" type="xs:string" use="required" fixed="DoPNSW">
+                    <xs:annotation>
+                        <xs:documentation>For more details contact the e-planning team and the Department of Planning
+                            NSW
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="codeListName" type="xs:string" use="required" fixed="Walls_CodeList">
+                    <xs:annotation>
+                        <xs:documentation>The name of the code list the content is taken from.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="codeListVersion" type="xs:string" use="required" fixed="1.0">
+                    <xs:annotation>
+                        <xs:documentation>The unique version of this content's codelist.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+</xs:schema>

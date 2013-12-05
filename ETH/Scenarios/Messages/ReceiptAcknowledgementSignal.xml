@@ -1,0 +1,45 @@
+﻿<rec:ReceiptAcknowledgementSignal  xmlns:rec="http://xml.gov.au/edais/bs/ReceiptAcknowledgementSignal.msg.2.3.0r2" xmlns:msg="http://xml.gov.au/edais/core/msg.data.2.3.0r2" xmlns:spec="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2">
+  <ReceiptAcknowledgement xmlns="http://xml.gov.au/edais/bs/ReceiptAcknowledgementSignal.msg.2.3.0r2">
+    <Timestamp xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">2012-11-06T10:24:30.6109013+11:00</Timestamp>
+  </ReceiptAcknowledgement>
+  <StandardBusinessMessageHeader xmlns="http://xml.gov.au/edais/bs/ReceiptAcknowledgementSignal.msg.2.3.0r2">
+    <BusinessScope xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+      <CorrelationInformation>
+        <RequestingDocumentCreationDateTime>2012-11-06T10:24:30.6109013+11:00</RequestingDocumentCreationDateTime>
+        <RequestingDocumentInstanceID>316c7e2a-b9c4-447c-a2cd-ac9c6a02a966</RequestingDocumentInstanceID>
+      </CorrelationInformation>
+      <InstanceID>a056b7b7-2707-40ab-8859-67b6f157c16c</InstanceID>
+      <Type>BusinessCollaboration</Type>
+    </BusinessScope>
+    <DocumentIdentification xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+      <CreationDateTime>2012-11-06T10:24:30.6109013+11:00</CreationDateTime>
+      <InstanceID>46034d1d-cb32-483c-83f1-a9a1cc8fc01d</InstanceID>
+      <Standard>eDAIS</Standard>
+      <Type>ReceiptAcknowledgement</Type>
+      <TypeVersion>2.3.0r2</TypeVersion>
+    </DocumentIdentification>
+    <ReceiverPartner xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+      <Authority>Test</Authority>
+      <Contact>
+        <Contact>Test System</Contact>
+        <ContactTypeIdentifier></ContactTypeIdentifier>
+        <EmailAddress></EmailAddress>
+        <TelephoneNumber></TelephoneNumber>
+      </Contact>
+      <ID>Test</ID>
+      <ProcessRole>Initiator</ProcessRole>
+    </ReceiverPartner>
+    <SenderPartner xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">
+      <Authority>Test</Authority>
+      <Contact>
+        <Contact>Test System</Contact>
+        <ContactTypeIdentifier></ContactTypeIdentifier>
+        <EmailAddress></EmailAddress>
+        <TelephoneNumber></TelephoneNumber>
+      </Contact>
+      <ID>Test</ID>
+      <ProcessRole>Responder</ProcessRole>
+    </SenderPartner>
+    <Version xmlns="http://xml.gov.au/edais/core/msg.data.2.3.0r2">2.3.0r2</Version>
+  </StandardBusinessMessageHeader>
+</rec:ReceiptAcknowledgementSignal>

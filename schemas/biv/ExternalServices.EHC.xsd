@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ExternalServices.EHC" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.datacontract.org/2004/07/ExternalServices.EHC">
+	<xs:complexType name="ReceiptExceptionSignalType">
+		<xs:sequence>
+			<xs:element name="receiptExceptionField" nillable="true" type="tns:ReceiptException"/>
+			<xs:element name="specialisationField" nillable="true" type="tns:ArrayOfSpecialisation"/>
+			<xs:element name="standardBusinessMessageHeaderField" nillable="true" type="tns:StandardBusinessMessageHeader"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ReceiptExceptionSignalType" nillable="true" type="tns:ReceiptExceptionSignalType"/>
+	<xs:complexType name="ReceiptException">
+		<xs:sequence>
+			<xs:element name="identificationField" nillable="true" type="tns:IdentifierType"/>
+			<xs:element name="messageField" nillable="true" type="tns:TextType"/>
+			<xs:element name="reasonField" nillable="true" type="tns:TextType"/>
+			<xs:element name="refField" nillable="true" type="xs:string"/>
+			<xs:element name="typeField" nillable="true" type="tns:CodeType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ReceiptException" nillable="true" type="tns:ReceiptException"/>
+	<xs:complexType name="IdentifierType">
+		<xs:sequence>
+			<xs:element name="identificationSchemeAgencyField" nillable="true" type="xs:string"/>
+			<xs:element name="identificationSchemeNameField" nillable="true" type="xs:string"/>
+			<xs:element name="identificationSchemeURIField" nillable="true" type="xs:string"/>
+			<xs:element name="identificationSchemeVersionField" nillable="true" type="xs:string"/>
+			<xs:element name="valueField" nillable="true" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="IdentifierType" nillable="true" type="tns:IdentifierType"/>
+	<xs:complexType name="TextType">
+		<xs:sequence>
+			<xs:element name="languageIdentifierField" nillable="true" type="xs:string"/>
+			<xs:element name="languageLocaleIdentifierField" nillable="true" type="xs:string"/>
+			<xs:element name="valueField" nillable="true" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="TextType" nillable="true" type="tns:TextType"/>
+	<xs:complexType name="CodeType">
+		<xs:sequence>
+			<xs:element name="codeListAgencyField" nillable="true" type="xs:string"/>
+			<xs:element name="codeListNameField" nillable="true" type="xs:string"/>
+			<xs:element name="codeListURIField" nillable="true" type="xs:string"/>
+			<xs:element name="codeListVersionField" nillable="true" type="xs:string"/>
+			<xs:element name="codeNameField" nillable="true" type="xs:string"/>
+			<xs:element name="valueField" nillable="true" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="CodeType" nillable="true" type="tns:CodeType"/>
+	<xs:complexType name="ArrayOfSpecialisation">
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="Specialisation" nillable="true" type="tns:Specialisation"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ArrayOfSpecialisation" nillable="true" type="tns:ArrayOfSpecialisation"/>
+	<xs:complexType name="Specialisation">
+		<xs:sequence>
+			<xs:element name="domainIdField" nillable="true" type="tns:IdentifierType"/>
+			<xs:element name="extensionField" nillable="true" type="xs:anyType"/>
+			<xs:element name="jurisdictionField" nillable="true" type="tns:CodeType"/>
+			<xs:element name="refField" nillable="true" type="xs:string"/>
+			<xs:element name="versionField" nillable="true" type="tns:IdentifierType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Specialisation" nillable="true" type="tns:Specialisation"/>
+	<xs:complexType name="StandardBusinessMessageHeader">
+		<xs:sequence>
+			<xs:element name="businessScopeField" nillable="true" type="tns:ArrayOfBusinessScope"/>
+			<xs:element name="documentIdentificationField" nillable="true" type="tns:DocumentIdentification"/>
+			<xs:element name="receiverPartnerField" nillable="true" type="tns:Partner"/>
+			<xs:element name="refField" nillable="true" type="xs:string"/>
+			<xs:element name="senderPartnerField" nillable="true" type="tns:Partner"/>
+			<xs:element name="softwareInformationField" nillable="true" type="tns:ArrayOfSoftwareInformation"/>
+			<xs:element name="versionField" nillable="true" type="tns:IdentifierType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="StandardBusinessMessageHeader" nillable="true" type="tns:StandardBusinessMessageHeader"/>
+	<xs:complexType name="ArrayOfBusinessScope">
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="BusinessScope" nillable="true" type="tns:BusinessScope"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ArrayOfBusinessScope" nillable="true" type="tns:ArrayOfBusinessScope"/>
+	<xs:complexType name="BusinessScope">
+		<xs:sequence>
+			<xs:element name="correlationInformationField" nillable="true" type="tns:ArrayOfCorrelationInformation"/>
+			<xs:element name="idField" nillable="true" type="tns:IdentifierType"/>
+			<xs:element name="instanceIDField" nillable="true" type="tns:IdentifierType"/>
+			<xs:element name="refField" nillable="true" type="xs:string"/>
+			<xs:element name="typeField" nillable="true" type="tns:BusinessScope_CodeType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="BusinessScope" nillable="true" type="tns:BusinessScope"/>
+	<xs:complexType name="ArrayOfCorrelationInformation">
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="CorrelationInformation" nillable="true" type="tns:CorrelationInformation"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ArrayOfCorrelationInformation" nillable="true" type="tns:ArrayOfCorrelationInformation"/>
+	<xs:complexType name="CorrelationInformation">
+		<xs:sequence>
+			<xs:element name="expectedResponseDateTimeField" nillable="true" type="tns:DateTimeType"/>
+			<xs:element name="refField" nillable="true" type="xs:string"/>
+			<xs:element name="requestingDocumentCreationDateTimeField" nillable="true" type="tns:DateTimeType"/>
+			<xs:element name="requestingDocumentInstanceIDField" nillable="true" type="tns:IdentifierType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="CorrelationInformation" nillable="true" type="tns:CorrelationInformation"/>
+	<xs:complexType name="DateTimeType">
+		<xs:sequence>
+			<xs:element name="formatField" nillable="true" type="xs:string"/>
+			<xs:element name="valueField" type="xs:dateTime"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="DateTimeType" nillable="true" type="tns:DateTimeType"/>
+	<xs:complexType name="BusinessScope_CodeType">
+		<xs:sequence>
+			<xs:element name="codeListAgencyField" nillable="true" type="xs:string"/>
+			<xs:element name="codeListNameField" nillable="true" type="xs:string"/>
+			<xs:element name="codeListURIField" nillable="true" type="xs:string"/>
+			<xs:element name="codeListVersionField" nillable="true" type="xs:string"/>
+			<xs:element name="codeNameField" nillable="true" type="xs:string"/>
+			<xs:element name="valueField" type="tns:BusinessScope_Code"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="BusinessScope_CodeType" nillable="true" type="tns:BusinessScope_CodeType"/>
+	<xs:simpleType name="BusinessScope_Code">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="BusinessCollaboration"/>
+			<xs:enumeration value="BusinessProcess"/>
+			<xs:enumeration value="BusinessTransaction"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="BusinessScope_Code" nillable="true" type="tns:BusinessScope_Code"/>
+	<xs:complexType name="DocumentIdentification">
+		<xs:sequence>
+			<xs:element name="creationDateTimeField" nillable="true" type="tns:DateTimeType"/>
+			<xs:element name="instanceIDField" nillable="true" type="tns:IdentifierType"/>
+			<xs:element name="refField" nillable="true" type="xs:string"/>
+			<xs:element name="standardField" nillable="true" type="tns:Standard_CodeType"/>
+			<xs:element name="typeField" nillable="true" type="tns:CodeType"/>
+			<xs:element name="typeVersionField" nillable="true" type="tns:TextType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="DocumentIdentification" nillable="true" type="tns:DocumentIdentification"/>
+	<xs:complexType name="Standard_CodeType">
+		<xs:sequence>
+			<xs:element name="codeListAgencyField" nillable="true" type="xs:string"/>
+			<xs:element name="codeListNameField" nillable="true" type="xs:string"/>
+			<xs:element name="codeListURIField" nillable="true" type="xs:string"/>
+			<xs:element name="codeListVersionField" nillable="true" type="xs:string"/>
+			<xs:element name="codeNameField" nillable="true" type="xs:string"/>
+			<xs:element name="valueField" type="tns:Standard_Code"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Standard_CodeType" nillable="true" type="tns:Standard_CodeType"/>
+	<xs:simpleType name="Standard_Code">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="eDAIS"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="Standard_Code" nillable="true" type="tns:Standard_Code"/>
+	<xs:complexType name="Partner">
+		<xs:sequence>
+			<xs:element name="authorityField" nillable="true" type="tns:TextType"/>
+			<xs:element name="contactField" nillable="true" type="tns:ArrayOfContact1"/>
+			<xs:element name="idField" nillable="true" type="tns:IdentifierType"/>
+			<xs:element name="processRoleField" nillable="true" type="tns:CodeType"/>
+			<xs:element name="refField" nillable="true" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Partner" nillable="true" type="tns:Partner"/>
+	<xs:complexType name="ArrayOfContact1">
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="Contact1" nillable="true" type="tns:Contact1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ArrayOfContact1" nillable="true" type="tns:ArrayOfContact1"/>
+	<xs:complexType name="Contact1">
+		<xs:sequence>
+			<xs:element name="contactField" nillable="true" type="tns:TextType"/>
+			<xs:element name="contactTypeIdentifierField" nillable="true" type="tns:CodeType"/>
+			<xs:element name="emailAddressField" nillable="true" type="xs:string"/>
+			<xs:element name="refField" nillable="true" type="xs:string"/>
+			<xs:element name="telephoneNumberField" nillable="true" type="tns:TextType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Contact1" nillable="true" type="tns:Contact1"/>
+	<xs:complexType name="ArrayOfSoftwareInformation">
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="SoftwareInformation" nillable="true" type="tns:SoftwareInformation"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ArrayOfSoftwareInformation" nillable="true" type="tns:ArrayOfSoftwareInformation"/>
+	<xs:complexType name="SoftwareInformation">
+		<xs:sequence>
+			<xs:element name="productIDField" nillable="true" type="tns:IdentifierType"/>
+			<xs:element name="productNameField" nillable="true" type="tns:TextType"/>
+			<xs:element name="productVersionField" nillable="true" type="tns:TextType"/>
+			<xs:element name="refField" nillable="true" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="SoftwareInformation" nillable="true" type="tns:SoftwareInformation"/>
+</xs:schema>

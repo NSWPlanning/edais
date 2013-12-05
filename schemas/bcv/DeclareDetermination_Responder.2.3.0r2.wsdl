@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:ack="http://xml.gov.au/edais/bs/ReceiptAcknowledgementSignal.msg.2.3.0r2" xmlns:exc="http://xml.gov.au/edais/bs/ReceiptExceptionSignal.msg.2.3.0r2" xmlns:declare="http://xml.gov.au/edais/bm/DeclareSaveDeterminationNotification.msg.2.3.0r2" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy" xmlns:tns="http://example.xml.gov.au/DeclareDetermination_Responder.2.3.0r2" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://example.xml.gov.au/DeclareDetermination_Responder.2.3.0r2">
+	<wsdl:types>
+		<xs:schema targetNamespace="http://example.xml.gov.au/DeclareDetermination_Responder.2.3.0r2/Imports" elementFormDefault="qualified">
+			<xs:import schemaLocation="../biv/DeclareSaveDeterminationNotification.msg.2.3.0r2.xsd" namespace="http://xml.gov.au/edais/bm/DeclareSaveDeterminationNotification.msg.2.3.0r2"/>
+			<xs:import schemaLocation="../biv/ReceiptAcknowledgementSignal.msg.2.3.0r2.xsd" namespace="http://xml.gov.au/edais/bs/ReceiptAcknowledgementSignal.msg.2.3.0r2"/>
+			<xs:import schemaLocation="../biv/ReceiptExceptionSignal.msg.2.3.0r2.xsd" namespace="http://xml.gov.au/edais/bs/ReceiptExceptionSignal.msg.2.3.0r2" />
+                        <xs:import schemaLocation="../biv/da.data.2.3.0r2.xsd" namespace="http://xml.gov.au/edais/core/da.data.2.3.0r2"/>
+                        <xs:import schemaLocation="../biv/cdt.type.2.3.0r2.xsd" namespace="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2"/>
+                        <xs:import schemaLocation="../biv/naa.data.2.3.0r2.xsd" namespace="http://xml.gov.au/edais/core/naa.data.2.3.0r2"/>
+                        <xs:import schemaLocation="../biv/lab.data.2.3.0r2.xsd" namespace="http://xml.gov.au/edais/core/lab.data.2.3.0r2"/>
+                        <xs:import schemaLocation="../biv/specialisation.data.2.3.0r2.xsd" namespace="http://xml.gov.au/edais/core/specialisation.data.2.3.0r2"/>
+			<xs:import schemaLocation="../biv/da.data.1.0.xsd" namespace="http://edais.daf.gov.au/nsw/da.data.1.0" />
+                        <xs:import schemaLocation="../biv/msg.data.2.3.0r2.xsd" namespace="http://xml.gov.au/edais/core/msg.data.2.3.0r2"/>
+                        <xs:import schemaLocation="../biv/msg.type.2.3.0r2.xsd" namespace="http://xml.gov.au/edais/dt/qdt/msg.type.2.3.0r2"/>
+			<xs:import schemaLocation="../biv/ExternalServices.EHC.xsd" namespace="http://schemas.datacontract.org/2004/07/ExternalServices.EHC"/>
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="RequestMsg">
+		<wsdl:part name="DeclareSaveDeterminationNotification" element="declare:DeclareSaveDeterminationNotification"/>
+	</wsdl:message>
+	<wsdl:message name="ReceiptAcknowledgementSignal">
+		<wsdl:part name="ReceiptAcknowledgement" element="ack:ReceiptAcknowledgementSignal"/>
+	</wsdl:message>
+	<wsdl:message name="ReceiptExceptionSignal">
+		<wsdl:part name="ReceiptException" element="exc:ReceiptExceptionSignal"/>
+	</wsdl:message>
+	<wsdl:portType name="Responder_DeclareDetermination.2.3.0r2">
+		<wsdl:operation name="Declare">
+			<wsdl:input message="tns:RequestMsg"/>
+			<wsdl:output message="tns:ReceiptAcknowledgementSignal"/>
+			<wsdl:fault name="ReceiptException" message="tns:ReceiptExceptionSignal"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="Responder_DeclareDetermination_Binding.2.3.0r2" type="tns:Responder_DeclareDetermination.2.3.0r2">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="Declare">
+			<soap:operation soapAction="http://example.xml.gov.au/DeclareDetermination_Responder.2.3.0r2/Declare" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="ReceiptException">
+				<soap:fault name="ReceiptException" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="Responder_DeclareDetermination_Service.2.3.0r2">
+		<wsdl:port name="Responder_DeclareDetermination_Port.2.3.0r2" binding="tns:Responder_DeclareDetermination_Binding.2.3.0r2">
+			<soap:address location="http://example.xml.gov.au/DeclareDetermination_Responder.2.3.0r2"/>
+		</wsdl:port>
+	</wsdl:service>
+	<wsp:Policy wsu:Id="PortBindingPolicy">
+		<wsp:ExactlyOne>
+			<wsp:All>
+				<sp:TransportBinding>
+					<wsp:Policy>
+						<sp:TransportToken>
+							<wsp:Policy>
+								<sp:HttpsToken RequireClientCertificate="false"/>
+							</wsp:Policy>
+						</sp:TransportToken>
+						<sp:Layout>
+							<wsp:Policy>
+								<sp:Lax/>
+							</wsp:Policy>
+						</sp:Layout>
+						<sp:IncludeTimestamp/>
+						<sp:AlgorithmSuite>
+							<wsp:Policy>
+								<sp:Basic128/>
+							</wsp:Policy>
+						</sp:AlgorithmSuite>
+					</wsp:Policy>
+				</sp:TransportBinding>
+				<sp:Wss10>
+					<wsp:Policy>
+						<sp:MustSupportRefKeyIdentifier/>
+					</wsp:Policy>
+				</sp:Wss10>
+				<sp:SignedSupportingTokens>
+					<wsp:Policy>
+						<sp:UsernameToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
+							<wsp:Policy>
+								<sp:WssUsernameToken10/>
+								<sp:HashPassword/>
+							</wsp:Policy>
+						</sp:UsernameToken>
+					</wsp:Policy>
+				</sp:SignedSupportingTokens>
+			</wsp:All>
+		</wsp:ExactlyOne>
+	</wsp:Policy>
+</wsdl:definitions>

@@ -1,0 +1,14 @@
+
+
+svcutil /n:"*, Buildaform.eDAIS.Initiator" CreateApplication_Initiator.2.3.0r2.wsdl ..\biv\*.xsd /mc /ser:Auto /importXmlTypes /tcv:Version35 /s
+
+svcutil /n:"*, Buildaform.eDAIS" CreateApplication_Responder.2.3.0r2.wsdl ..\biv\*.xsd /mc /ser:Auto /importXmlTypes /tcv:Version35 /s
+
+ DeclareDetermination_Responder.2.3.0r2.wsdl
+
+Remove the top ReceiptExceptionSignalType and ReceiptException partial classes.
+Remove the ReplyAction=* from the OperationContractAttribute on the Bindings
+
+
+
+

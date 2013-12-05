@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:cdt="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2" xmlns:da="http://xml.gov.au/edais/core/da.data.2.3.0r2" xmlns:lab="http://xml.gov.au/edais/core/lab.data.2.3.0r2" xmlns:naa="http://xml.gov.au/edais/core/naa.data.2.3.0r2" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xml.gov.au/edais/core/da.data.2.3.0r2" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.3.0r2">
+	<xs:import namespace="http://xml.gov.au/edais/core/lab.data.2.3.0r2" schemaLocation="lab.data.2.3.0r2.xsd"/>
+	<xs:import namespace="http://xml.gov.au/edais/core/naa.data.2.3.0r2" schemaLocation="naa.data.2.3.0r2.xsd"/>
+	<xs:import namespace="http://xml.gov.au/edais/dt/qdt/cdt.type.2.3.0r2" schemaLocation="cdt.type.2.3.0r2.xsd"/>
+	<xs:annotation>
+		<xs:documentation>
+			<artefact id="CB0DB916_A9AA_4a75_9F73_5A7EBC38E0C8" name="Development Assessment" stereotype="CCLibrary"/>
+			<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+			<notes/>
+		</xs:documentation>
+	</xs:annotation>
+	<xs:element name="AdditionalInformation" type="da:AdditionalInformation"/>
+	<xs:complexType name="AdditionalInformation">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="7E934A23_E08F_4d55_9A19_BF9EBD84014B" name="AdditionalInformation" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>Any supporting documentation from the applicant subsequent to the initial application.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Attachment" type="da:Attachment" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Comments" type="cdt:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="DueDate" type="cdt:DateTimeType" minOccurs="0"/>
+			<xs:element name="Identification" type="cdt:IdentifierType"/>
+			<xs:element name="Purpose" type="cdt:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ReceivedDate" type="cdt:DateTimeType" minOccurs="0"/>
+			<xs:element name="RequestedDate" type="cdt:DateTimeType" minOccurs="0"/>
+			<xs:element name="RequestingAuthorityPartyRole" type="da:PartyRole" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ResponsiblePartyRole" type="da:PartyRole" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Status" type="cdt:CodeType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="Appeal" type="da:Appeal"/>
+	<xs:complexType name="Appeal">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="F3C11FF0_9904_4ff0_BF47_17CE86DB550F" name="Appeal" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>A review of a development assessment decision or statutory failure to make a decision by an independent jurisdiction.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="AppealDate" type="cdt:DateTimeType"/>
+			<xs:element name="AppealDecisionDate" type="cdt:DateTimeType" minOccurs="0"/>
+			<xs:element name="AppealReference" type="cdt:IdentifierType"/>
+			<xs:element name="Comments" type="cdt:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Condition" type="da:Condition" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Outcome" type="cdt:CodeType" minOccurs="0"/>
+			<xs:element name="PartyRole" type="da:PartyRole" maxOccurs="unbounded"/>
+			<xs:element name="Type" type="cdt:CodeType" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="Application" type="da:Application"/>
+	<xs:complexType name="Application">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="C5BECEC0_075F_4826_8321_EFA5ACAABC1F" name="Application" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>The documentation lodged pursuant to planning and development legislation which commences development assessment processes (which may include modification to or finalisation of previous processes/applications).
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="AdditionalInformation" type="da:AdditionalInformation" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Appeal" type="da:Appeal" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ApplicationNumber" type="cdt:IdentifierType"/>
+			<xs:element name="Assessment" type="da:Assessment" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Attachment" type="da:Attachment" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Authorisation" type="da:Authorisation" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Comments" type="cdt:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="CreatedDate" type="cdt:DateTimeType" minOccurs="0"/>
+			<xs:element name="Determination" type="da:Determination" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Event" type="da:Event" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="FeeOrLevy" type="da:FeeOrLevy" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="LastUpdated" type="cdt:DateTimeType" minOccurs="0"/>
+			<xs:element name="LodgementDate" type="cdt:DateTimeType" minOccurs="0"/>
+			<xs:element name="NationalApplicationNumber" type="cdt:IdentifierType" minOccurs="0"/>
+			<xs:element name="PartyRole" type="da:PartyRole" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Payment" type="da:Payment" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="PublicInspection" type="da:PublicInspection" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="PublicNotificationObligation" type="da:PublicNotificationObligation" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ReasonDetails" type="da:ReasonDetails" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ReferencedApplication" type="da:ReferencedApplication" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ReferralObligation" type="da:ReferralObligation" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Status" type="cdt:CodeType" minOccurs="0"/>
+			<xs:element name="SubjectLand" type="da:SubjectLand" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="Assessment" type="da:Assessment"/>
+	<xs:complexType name="Assessment">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="EC970BCC_0935_458b_B0BB_41B71EC70883" name="Assessment" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>Details of an evaluation of the application.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="AssessmentIssue" type="da:AssessmentIssue" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Attachment" type="da:Attachment" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ComplianceWithPlan" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="Effort" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="PartyRole" type="da:PartyRole" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="AssessmentIssue" type="da:AssessmentIssue"/>
+	<xs:complexType name="AssessmentIssue">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="DAD3A939_FA25_4cc3_8352_8F1659D45066" name="AssessmentIssue" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>Details of a specific issue in relation to the assessment of an application.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="AdvisedDate" type="cdt:DateTimeType" minOccurs="0"/>
+			<xs:element name="Comments" type="cdt:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Description" type="cdt:TextType"/>
+			<xs:element name="Identification" type="cdt:IdentifierType"/>
+			<xs:element name="ReportingPartyRole" type="da:PartyRole"/>
+			<xs:element name="ResponsiblePartyRole" type="da:PartyRole"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="Attachment" type="da:Attachment"/>
+	<xs:complexType name="Attachment">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="832A014B_0690_43f2_9C64_3C4BBB00C60D" name="Attachment" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>A document or other material provided as part of the development assessment process, including details of the document metadata, as well as the actual document/material itself.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Contributor" type="cdt:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Coverage" type="cdt:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Creator" type="cdt:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Date" type="cdt:DateTimeType" minOccurs="0"/>
+			<xs:element name="Description" type="cdt:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Format" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="Identification" type="cdt:IdentifierType"/>
+			<xs:element name="Language" type="cdt:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Publisher" type="cdt:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Relation" type="cdt:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Rights" type="cdt:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Size" type="cdt:MeasureType" minOccurs="0"/>
+			<xs:element name="Source" type="cdt:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Subject" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="Title" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="Type" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="Version" type="cdt:TextType" minOccurs="0"/>
+			<xs:choice>
+				<xs:element name="Attachment" type="cdt:BinaryObjectType" minOccurs="0"/>
+				<xs:element name="URI" type="xs:anyURI" minOccurs="0"/>
+			</xs:choice>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="Authorisation" type="da:Authorisation"/>
+	<xs:complexType name="Authorisation">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="E848BA1E_8259_422b_90CF_E49A948413F6" name="Authorisation" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>Records the fact of the authorisation given by a party (typically the Applicant) to the application being lodged and processed. A graphical representation of a signature can be attached to the authorisation if so required (using the Attachment element, associated with this element).  The Authorisation element can also relate to a Party Role element, indicating the person who is providing the authorisation.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Attachment" type="da:Attachment" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Date" type="cdt:DateTimeType" minOccurs="0"/>
+			<xs:element name="PartyRole" type="da:PartyRole" maxOccurs="unbounded"/>
+			<xs:element name="Type" type="cdt:CodeType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="Condition" type="da:Condition"/>
+	<xs:complexType name="Condition">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="8375BC5D_0E41_40cb_8C2F_995EC8E9CF8B" name="Condition" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>Records any conditions applied to a development application pursuant to relevant legislation.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Classification" type="cdt:CodeType"/>
+			<xs:element name="ConditionReference" type="cdt:IdentifierType" minOccurs="0"/>
+			<xs:element name="Detail" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="Identification" type="cdt:IdentifierType"/>
+			<xs:element name="Type" type="cdt:CodeType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="Determination" type="da:Determination"/>
+	<xs:complexType name="Determination">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="D19C6C2B_7075_4441_BF34_6815C0D21A05" name="Determination" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>The decision made by an authority on the application issued to the applicant (typically by the consent authority).
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Attachment" type="da:Attachment" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Comments" type="cdt:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Condition" type="da:Condition" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="DeterminationDate" type="cdt:DateTimeType" minOccurs="0"/>
+			<xs:element name="Identification" type="cdt:IdentifierType"/>
+			<xs:element name="PartyRole" type="da:PartyRole" maxOccurs="unbounded"/>
+			<xs:element name="Period" type="naa:Period" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="SystemRecordedDate" type="cdt:DateTimeType" minOccurs="0"/>
+			<xs:element name="Type" type="cdt:CodeType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="Event" type="da:Event"/>
+	<xs:complexType name="Event">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="EE5FA6D4_FC1C_4dab_A750_AF5C27037C8E" name="Event" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>Any recordable action associated with applications.  Can also be characterised as a significant occurrence or happening related to an object, process, or person.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="DateTime" type="cdt:DateTimeType"/>
+			<xs:element name="Description" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="EventCode" type="cdt:CodeType"/>
+			<xs:element name="Period" type="naa:Period" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="FeeOrLevy" type="da:FeeOrLevy"/>
+	<xs:complexType name="FeeOrLevy">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="665FF0BB_6AFB_4507_B60F_BF2DE5BA7261" name="FeeOrLevy" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>Details of the fees to be paid or levies which have been raised, together with links to details of payment of fees and levies (including refunds/waivers).
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="DateDue" type="cdt:DateTimeType" minOccurs="0"/>
+			<xs:element name="Description" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="Identification" type="cdt:IdentifierType"/>
+			<xs:element name="Payment" type="da:Payment" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ValuePayable" type="cdt:AmountType"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="PartyRole" type="da:PartyRole"/>
+	<xs:complexType name="PartyRole">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="DB2FBD85_BB58_42b2_922D_542589FB6220" name="PartyRole" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>The role that an individual party (being, for instance,  an applicant, a consent authority, a referral agency, an officer (of an authority or an agency), a representative of the applicant, etc) plays with respect to the processing of an application (throughout the life of the application), allowing the linking of various aspects of processing of the application between the application itself and the party involved in that processing.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="DateTime" type="cdt:DateTimeType" minOccurs="0"/>
+			<xs:element name="Party" type="naa:Party" maxOccurs="unbounded"/>
+			<xs:element name="Type" type="cdt:CodeType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="Payment" type="da:Payment"/>
+	<xs:complexType name="Payment">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="2F91C01C_6941_49fe_BEE0_B1BD37A098D9" name="Payment" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>Details of payments which have been made against fees or levies raised in connection with processing an application.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="AmountPaid" type="cdt:AmountType"/>
+			<xs:element name="CreationDate" type="cdt:DateTimeType"/>
+			<xs:element name="DatePaid" type="cdt:DateTimeType"/>
+			<xs:element name="DiscountPercent" type="cdt:NumericType" minOccurs="0"/>
+			<xs:element name="Identification" type="cdt:IdentifierType"/>
+			<xs:element name="InstructionCode" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="PayeeName" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="PaymentMethod" type="cdt:CodeType" minOccurs="0"/>
+			<xs:element name="PenaltyPercent" type="cdt:NumericType" minOccurs="0"/>
+			<xs:element name="PriorityCode" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="ReasonCode" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="ReceiptNumber" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="StatusCode" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="TaxAmount" type="cdt:AmountType" minOccurs="0"/>
+			<xs:element name="TaxInvoiceNumber" type="cdt:TextType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="PublicInspection" type="da:PublicInspection"/>
+	<xs:complexType name="PublicInspection">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="043A38E6_BA44_44bb_82DD_843D4A2B62C3" name="PublicInspection" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>Identifies whether the application is open or closed to public inspection.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Indicator" type="cdt:CodeType"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="PublicNotificationObligation" type="da:PublicNotificationObligation"/>
+	<xs:complexType name="PublicNotificationObligation">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="782FC725_DD45_4b6c_8DB2_B0A9E00F8AC6" name="PublicNotificationObligation" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>An agreement to provide information with respect to a public notification.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Attachment" type="da:Attachment" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ComplianceDate" type="cdt:DateTimeType" minOccurs="0"/>
+			<xs:element name="Description" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="Identification" type="cdt:IdentifierType"/>
+			<xs:element name="PartyRole" type="da:PartyRole" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Period" type="naa:Period" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="PublicOpinion" type="da:PublicOpinion" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Type" type="cdt:CodeType"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="PublicOpinion" type="da:PublicOpinion"/>
+	<xs:complexType name="PublicOpinion">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="81B83549_D610_4ad1_A2F6_34807F1AE0E9" name="PublicOpinion" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>Formal public comment relating to the application.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Attachment" type="da:Attachment" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Comments" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="Reported" type="cdt:DateTimeType"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="ReasonDetails" type="da:ReasonDetails"/>
+	<xs:complexType name="ReasonDetails">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="6CFE14A7_9AEC_459a_B153_AD541ED684C2" name="ReasonDetails" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>Contains details related to a response on a business transaction.  Typically used for reject or accept with condition reasons.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="DateTime" type="cdt:DateTimeType" minOccurs="0"/>
+			<xs:element name="Description" type="cdt:TextType" minOccurs="0"/>
+			<xs:element name="ReasonCode" type="cdt:CodeType"/>
+			<xs:element name="ReasonText" type="cdt:TextType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="ReferencedApplication" type="da:ReferencedApplication"/>
+	<xs:complexType name="ReferencedApplication">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="93684EDB_CF18_4b97_8C48_D3E344CE5F7D" name="ReferencedApplication" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>A reference to an application already in existence (being an application number as the reference).
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ApplicationNumber" type="cdt:IdentifierType"/>
+			<xs:element name="Type" type="cdt:CodeType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="ReferralObligation" type="da:ReferralObligation"/>
+	<xs:complexType name="ReferralObligation">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="FB5E5BFF_7E2E_48a1_B517_31EF29F8EE7A" name="ReferralObligation" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>An agreement (both binding and non-binding) to provide a response (to a referral).
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Classification" type="cdt:CodeType" minOccurs="0"/>
+			<xs:element name="ComplianceDate" type="cdt:DateTimeType" minOccurs="0"/>
+			<xs:element name="Description" type="cdt:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Identification" type="cdt:IdentifierType"/>
+			<xs:element name="Period" type="naa:Period" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ReferralAuthorityPartyRole" type="da:PartyRole" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ReferralResponse" type="da:ReferralResponse" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ReferrerPartyRole" type="da:PartyRole" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Type" type="cdt:CodeType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="ReferralResponse" type="da:ReferralResponse"/>
+	<xs:complexType name="ReferralResponse">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="16BFABB8_914C_4a4a_9D42_AB1E9C226764" name="ReferralResponse" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>A response, either a direction (binding) or advice (non-binding), from a referral authority, to be taken into account in the assessment and determination of an application.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Attachment" type="da:Attachment" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Comments" type="cdt:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Condition" type="da:Condition" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ResponseDate" type="cdt:DateTimeType"/>
+			<xs:element name="Type" type="cdt:CodeType"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:element name="SubjectLand" type="da:SubjectLand"/>
+	<xs:complexType name="SubjectLand">
+		<xs:annotation>
+			<xs:documentation>
+				<artefact id="47C4740B_11B8_49b6_92C9_6FA19CA9EB26" name="SubjectLand" stereotype="ACC"/>
+				<properties author="National eDAIS Coordination Office" version="2.3.0r2"/>
+				<notes>Subject land is the joining element to reference ePLAN elements associated with the application.
+</notes>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Address" type="naa:Address" minOccurs="0"/>
+			<xs:element name="Attachment" type="da:Attachment" minOccurs="0"/>
+			<xs:element name="Comments" type="cdt:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Document" type="lab:Document" minOccurs="0"/>
+			<xs:element name="Parcel" type="lab:Parcel" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="ref" type="xs:string" use="optional"/>
+	</xs:complexType>
+</xs:schema>

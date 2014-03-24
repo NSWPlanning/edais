@@ -25,6 +25,8 @@ namespace ETH.Scenarios
 		{
 			var message = DeclareSaveDeterminationNotification;
 			if (!string.IsNullOrEmpty(applicationNumber)) message.Application.ApplicationNumber.Value = applicationNumber;
+			message.StandardBusinessMessageHeader.ReceiverPartner.Contact[0].EmailAddress = "mary@example.com";
+			message.StandardBusinessMessageHeader.SenderPartner.Contact[0].EmailAddress = "mary@example.com";
 			var response = Client.Send(
 				"http://example.xml.gov.au/DeclareDetermination_Responder.2.3.0r2/Declare",
 				message);
@@ -37,6 +39,7 @@ namespace ETH.Scenarios
 			get
 			{
 				var message = Data.FromXml<DeclareSaveDeterminationNotificationType>("DeclareSaveDeterminationNotification.xml");
+				SetReceiverParty(message.StandardBusinessMessageHeader);
 				return message;
 			}
 		}

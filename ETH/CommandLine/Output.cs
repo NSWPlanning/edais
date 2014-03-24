@@ -13,7 +13,7 @@ namespace ETH.CommandLine
 	{
 		void Exception(Exception exception);
 		void Display(object model);
-		void String(string str);
+		void String(string str, bool log=true);
 	}
 
 	class Output : IOutput, IDisposable
@@ -41,12 +41,7 @@ namespace ETH.CommandLine
 			Display(exception);
 		}
 
-		public void String(string str)
-		{
-			String(str, true);
-		}
-
-		void String(string str, bool log)
+		public void String(string str, bool log=true)
 		{
 			if (log)
 			{

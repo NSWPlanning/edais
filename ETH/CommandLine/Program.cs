@@ -106,7 +106,7 @@ namespace ETH.CommandLine
 
 				try
 				{
-					scenarioRunner.Run(options.Scenario, options.ScenarioArguments);
+					scenarioRunner.Run(options.Scenario, options.ScenarioArguments, options.ReceiverParty);
 					output.Display(new ResultModel
 					{
 						Result = Result.Pass
@@ -146,7 +146,7 @@ namespace ETH.CommandLine
 					}
 					helpText.AddPreOptionsLine(Environment.NewLine);
 				}
-				output.String(helpText);
+				output.String(helpText, log: false);
 				return 1;
 			}
 			else if (options.ScenarioInfo != null)
@@ -155,7 +155,7 @@ namespace ETH.CommandLine
 			}
 			else
 			{
-				output.String(options.GetUsage());
+				output.String(options.GetUsage(), log: false);
 				return 1;
 			}
 

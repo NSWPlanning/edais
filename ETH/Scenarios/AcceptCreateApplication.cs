@@ -15,6 +15,7 @@ namespace ETH.Scenarios
 			get
 			{
 				var message = Data.FromXml<AcceptCreateApplicationTransactionType>("AcceptCreateApplicationTransaction.xml");
+				SetReceiverParty(message.StandardBusinessMessageHeader);
 				return message;
 			}
 		}

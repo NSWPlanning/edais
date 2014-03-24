@@ -19,5 +19,15 @@ namespace ETH.Scenarios
 				return result;
 			}
 		}
+
+		public string ReceiverParty { get; set; }
+
+		protected void SetReceiverParty(StandardBusinessMessageHeader standardBusinessMessageHeader)
+		{
+			if (!string.IsNullOrWhiteSpace(ReceiverParty))
+			{
+				standardBusinessMessageHeader.ReceiverPartner.Authority.Value = ReceiverParty;
+			}
+		}
 	}
 }

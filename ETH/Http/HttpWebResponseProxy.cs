@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using ServiceStack.Text;
@@ -18,6 +19,10 @@ namespace ETH.Http
 			this.response = response;
 		}
 
+		public HttpStatusCode StatusCode { get { return response.StatusCode; }  }
+
+		public string StatusDescription { get { return response.StatusDescription; } }
+
 		public Stream GetResponseStream()
 		{
 			if (stream == null)
@@ -31,7 +36,12 @@ namespace ETH.Http
 
 		public override string ToString()
 		{
-			return GetResponseStream().ReadFully().FromUtf8Bytes().Dump();
+			return new
+			{
+				Content = GetResponseStream().ReadFully().FromUtf8Bytes(),
+				StatusCode = StatusCode,
+				StatusDescription = StatusDescription
+			}.Dump();
 		}
 	}
 }

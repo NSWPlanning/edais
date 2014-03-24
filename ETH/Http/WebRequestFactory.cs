@@ -1,4 +1,7 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 using ImpromptuInterface;
 
 namespace ETH.Http
@@ -16,7 +19,14 @@ namespace ETH.Http
 	{
 		public IHttpWebRequest CreateHttp(string requestUriString)
 		{
-			return WithLoggingProxy(WebRequest.CreateHttp(requestUriString).ActLike<IHttpWebRequest>());
+			var httpWebRequest = WebRequest.CreateHttp(requestUriString);
+			httpWebRequest.ServerCertificateValidationCallback += ServerCertificateValidationCallback;
+			return WithLoggingProxy(httpWebRequest.ActLike<IHttpWebRequest>());
+		}
+
+		bool ServerCertificateValidationCallback(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
+		{
+			return true;
 		}
 
 		public IHttpListenerRequest WithLoggingProxy(IHttpListenerRequest request)

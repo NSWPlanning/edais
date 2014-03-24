@@ -24,10 +24,10 @@ namespace ETH.Scenarios
 				request);
 
 			proposeCreate.Application.RunCommonTests();
-            proposeCreate.Application.RunStatusTests();
+			proposeCreate.Application.RunStatusTests();
 			result.ApplicationNumber = proposeCreate.Application.ApplicationNumber.Value;
 			proposeCreate.StandardBusinessMessageHeader.RunCommonTests();
-            proposeCreate.StandardBusinessMessageHeader.RunFullPartnerTests();
+			proposeCreate.StandardBusinessMessageHeader.RunFullPartnerTests();
 
 			proposeCreate.Specialisation.Should().NotBeNull();
 			proposeCreate.Specialisation.Count().Should().Be(2);
@@ -71,19 +71,19 @@ namespace ETH.Scenarios
 		
 
 		public void Send(string applicationNumber = null, string certifierEmail = null)
-		{
-			var message = ProposeCreateApplicationTransactionType;
-            if (applicationNumber != null)
-            {
-                message.Application.@ref = applicationNumber;
-                message.Application.ApplicationNumber.Value = applicationNumber;
-                var application = message.Specialisation[0].Extension[0].ConvertNode<Application1>();
-                application.@ref = applicationNumber;
-                message.StandardBusinessMessageHeader.BusinessScope[0].CorrelationInformation[0].RequestingDocumentInstanceID.Value = applicationNumber;
-                message.StandardBusinessMessageHeader.BusinessScope[0].ID.Value = applicationNumber;
-                message.StandardBusinessMessageHeader.BusinessScope[0].InstanceID.Value = applicationNumber;
-                message.StandardBusinessMessageHeader.DocumentIdentification.InstanceID.Value = applicationNumber;
-            }
+		{					
+			var message = ProposeCreateApplicationTransactionType;			
+			if (applicationNumber != null)
+			{
+				message.Application.@ref = applicationNumber;
+				message.Application.ApplicationNumber.Value = applicationNumber;
+				var application = message.Specialisation[0].Extension[0].ConvertNode<Application1>();
+				application.@ref = applicationNumber;
+				message.StandardBusinessMessageHeader.BusinessScope[0].CorrelationInformation[0].RequestingDocumentInstanceID.Value = applicationNumber;
+				message.StandardBusinessMessageHeader.BusinessScope[0].ID.Value = applicationNumber;
+				message.StandardBusinessMessageHeader.BusinessScope[0].InstanceID.Value = applicationNumber;
+				message.StandardBusinessMessageHeader.DocumentIdentification.InstanceID.Value = applicationNumber;
+			}
 			if (certifierEmail != null) message.StandardBusinessMessageHeader.ReceiverPartner.Contact[0].EmailAddress = certifierEmail;
 			var response = Client.Send(
 				"http://example.xml.gov.au/CreateApplication_Responder.2.3.0r2/Propose",
@@ -104,6 +104,7 @@ namespace ETH.Scenarios
 			get
 			{
 				var message = Data.FromXml<ProposeCreateApplicationTransactionType>("ProposeCreateApplicationTransaction.xml");
+				SetReceiverParty(message.StandardBusinessMessageHeader);
 				return message;
 			}
 		}

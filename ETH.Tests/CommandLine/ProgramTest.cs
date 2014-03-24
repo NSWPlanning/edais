@@ -38,7 +38,7 @@ namespace ETH.Tests.CommandLine
 					program.Run(options)
 					       .Should().Be(0);
 
-					runner.Verify(r => r.Run("whee", null));
+					runner.Verify(r => r.Run("whee", null, null));
 				}
 
 				[Fact]
@@ -56,7 +56,7 @@ namespace ETH.Tests.CommandLine
 					program.Run(options)
 					       .Should().Be(0);
 
-					runner.Verify(r => r.Run("moo", new[] {"a1", "a2"}));
+					runner.Verify(r => r.Run("moo", new[] {"a1", "a2"}, null));
 				}
 
 				[Fact]
@@ -74,7 +74,7 @@ namespace ETH.Tests.CommandLine
 					var exception = new InvalidOperationException("moo");
 					runner.Setup(r =>
 					             r.Run(It.IsAny<string>(),
-					                   It.IsAny<string[]>()))
+					                   It.IsAny<string[]>(), null))
 					      .Throws(exception);
 
 					program.Run(options)

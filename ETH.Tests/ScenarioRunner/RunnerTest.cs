@@ -32,7 +32,7 @@ namespace ETH.Tests.ScenarioRunner
 				finder.Setup(f => f.AllScenarioTypes).Returns(new[] { typeof(DummyScenario) });
 				scope.SetupResolve<ILifetimeScope, Scenario>(scenario.Object);
 
-				runner.Run("DummyScenario.SomeScenario", new string[0]);
+				runner.Run("DummyScenario.SomeScenario", new string[0], null);
 
 				scenario.Verify(s => s.SomeScenario(), Times.Once());
 			}
@@ -44,7 +44,7 @@ namespace ETH.Tests.ScenarioRunner
 				var finder = new Mock<IScenarioTypeFinder>();
 				var runner = new Runner(scope.Object, finder.Object);
 
-				runner.Invoking(r => r.Run("DummyScenarioSomeScenario", new string[0]))
+				runner.Invoking(r => r.Run("DummyScenarioSomeScenario", new string[0], null))
 				      .ShouldThrow<InvalidOperationException>()
 					  .WithMessage("format", ComparisonMode.Substring);
 			}
@@ -56,7 +56,7 @@ namespace ETH.Tests.ScenarioRunner
 				var finder = new Mock<IScenarioTypeFinder>();
 				var runner = new Runner(scope.Object, finder.Object);
 
-				runner.Invoking(r => r.Run("DummyScenario.SomeScenario", new string[0]))
+				runner.Invoking(r => r.Run("DummyScenario.SomeScenario", new string[0], null))
 					  .ShouldThrow<InvalidOperationException>()
 					  .WithMessage("find scenario", ComparisonMode.Substring);
 			}
@@ -70,7 +70,7 @@ namespace ETH.Tests.ScenarioRunner
 
 				finder.Setup(f => f.AllScenarioTypes).Returns(new[] { typeof(DummyScenario) });
 
-				runner.Invoking(r => r.Run("DummyScenario.SomeOtherScenario", new string[0]))
+				runner.Invoking(r => r.Run("DummyScenario.SomeOtherScenario", new string[0], null))
 					  .ShouldThrow<InvalidOperationException>()
 					  .WithMessage("find test", ComparisonMode.Substring);
 			}

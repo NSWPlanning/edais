@@ -1,4 +1,6 @@
-﻿using ETH.CommandLine;
+﻿using System.Runtime.CompilerServices;
+using System.Xml.Linq;
+using ETH.CommandLine;
 using ETH.Http;
 using ETH.Util;
 using System;
@@ -130,11 +132,31 @@ namespace ETH.Soap
 		/// <param name="type"></param>
 		/// <returns></returns>
 		public object ToData(Message message, Type type)
-		{
+		{			
 			using (var reader = message.GetReaderAtBodyContents())
 			{
+				if (message.IsFault)
+				{
+					var faultDoc = XDocument.Load(reader.ReadSubtree());
+					string faultString = faultDoc.Descendants("faultstring").Single().Value;
+					string detail = faultDoc.Descendants("detail").Single().Value;
+					throw new FailException("Received fault from other end: " + detail, null);
+				}
+
 				var serializer = new XmlSerializer(type);
-				var result = serializer.Deserialize(reader);
+				object result;
+				try
+				{
+					result = serializer.Deserialize(reader);
+				}
+				catch (InvalidOperationException exception)
+				{
+					if (exception.InnerException != null && exception.Message.Contains("There is an error in XML document"))
+					{
+						throw new FailException("Invalid or unexpected XML: " + exception.InnerException.Message, exception);
+					}
+					throw;
+				}
 				logger.Info("Deserialized from XML successfully.");
 				return result;
 			}

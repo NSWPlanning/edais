@@ -18,18 +18,18 @@ namespace ETH.Scenarios
 			application.ApplicationNumber.Value.Length.Should().Be(14);
 		}
 
-        public static void RunStatusTests(this Application application)
-        {
-            //  Neither Infor nor Civica provide a <status> in AcceptCreateApplicationTransaction, so status checks split out from RunCommonTests
-            application.Status.Should().NotBeNull();
-            application.Status.Value.Should().NotBeNullOrEmpty();
-            application.Status.Value.ToUpperInvariant().Should().BeOneOf(new[] { "LODGED", "APPROVED", "PENDING" });
-        }
+		public static void RunStatusTests(this Application application)
+		{
+			//  Neither Infor nor Civica provide a <status> in AcceptCreateApplicationTransaction, so status checks split out from RunCommonTests
+			application.Status.Should().NotBeNull();
+			application.Status.Value.Should().NotBeNullOrEmpty();
+			application.Status.Value.ToUpperInvariant().Should().BeOneOf(new[] { "LODGED", "APPROVED", "PENDING" });
+		}
 
 		public static void RunProposeCreateTests(this Application application)
 		{
 			application.RunCommonTests();
-            application.RunStatusTests();
+			application.RunStatusTests();
 			application.Status.Value.ToUpperInvariant().Should().BeOneOf(new[] { "LODGED", "APPROVED" });
 
 			application.SubjectLand.Should().NotBeNull();

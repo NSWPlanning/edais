@@ -47,7 +47,7 @@ namespace ETH.Http
 		}
 
 		public override string ToString()
-		{
+		{			
 			stream.Seek(0, SeekOrigin.Begin);
 			return new
 			{

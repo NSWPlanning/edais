@@ -127,6 +127,7 @@
     <Compile Include="Scenarios\Segments\StandardBusinessMessageHeaderSegment.cs" />
     <Compile Include="Scenarios\ProposeCreateApplication.cs" />
     <Compile Include="Soap\DocumentProvider.cs" />
+    <Compile Include="Soap\Fault.cs" />
     <Compile Include="Soap\MessageProvider.cs" />
     <Compile Include="Soap\Nonce.cs" />
     <Compile Include="Soap\Password.cs" />

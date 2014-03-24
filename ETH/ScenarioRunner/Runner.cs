@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Autofac;
+using ETH.Scenarios;
 
 namespace ETH.ScenarioRunner
 {
 	public interface IRunner
 	{
-		void Run(string scenarioId, string[] scenarioArguments);
+		void Run(string scenarioId, string[] scenarioArguments, string receiverParty);
 	}
 
 	public class Runner : IRunner
@@ -22,13 +23,14 @@ namespace ETH.ScenarioRunner
 			this.scenarioTypeFinder = scenarioTypeFinder;
 		}
 
-		public void Run(string scenarioId, string[] scenarioArguments)
+		public void Run(string scenarioId, string[] scenarioArguments, string receiverParty)
 		{
 			Type scenarioType;
 			MethodInfo scenarioMethod;
 			FindScenario(scenarioId, out scenarioType, out scenarioMethod);
-		
-			var scenario = container.Resolve(scenarioType);
+
+			var scenario = (Scenario)container.Resolve(scenarioType);
+			scenario.ReceiverParty = receiverParty;
 			var arguments = scenarioMethod.GetParameters().GetArguments(scenarioArguments);
 			var compulsoryArgumentLength = scenarioMethod.GetParameters().Count(p => !p.IsOptional);
 			if (compulsoryArgumentLength > 0 && (scenarioArguments == null || compulsoryArgumentLength < scenarioArguments.Length))

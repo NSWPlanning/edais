@@ -29,6 +29,9 @@ namespace ETH.CommandLine
 		[Option("l", "list", MutuallyExclusiveSet = MainSet, HelpText = "List all scenarios.")]
 		public bool ListScenarios { get; set; }
 
+		[Option("p", "party", HelpText = "Receiver party")]
+		public string ReceiverParty { get; set; }
+
 		//[Option("i", "info", MutuallyExclusiveSet = MainSet, HelpText = "Retrieve info for a particular scenario.")]
 		public string ScenarioInfo { get; set; }
 
@@ -38,7 +41,7 @@ namespace ETH.CommandLine
 		[OptionArray("c", "client-url", HelpText = "Endpoint(s) for client, separated by spaces.", DefaultValue = null)]
 		public string[] ClientUrl { get; set; }
 
-		[Option("m", null, HelpText = "Use SOAP 1.1 instead of 1.2.")]
+		[Option("m", null, DefaultValue = true, HelpText = "Use SOAP 1.2 instead of 1.1.")]
 		public bool UseSoap11 { get; set; }
 
 		[Option(null, "user", HelpText = "Username for requests/responses.", DefaultValue = DefaultUser)]
